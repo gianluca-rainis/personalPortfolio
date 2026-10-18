@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /include/
+
+Sitemap: https://projects.gianlucarainis.com/sitemap.xml

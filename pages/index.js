@@ -1,6 +1,7 @@
 import React from 'react';
-import Nav from '@/components/Nav';
 import Head from '@/components/Head';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 import { usePathname } from 'next/navigation';
 
 export async function getStaticProps() {
@@ -64,6 +65,8 @@ export default function HomePage({ pageTitle }) {
                 <h1>Home Page</h1>
                 <h1>Home Page</h1>
             </main>
+
+            <Footer />
         </>
     );
 }

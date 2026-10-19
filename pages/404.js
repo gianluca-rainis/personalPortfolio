@@ -1,6 +1,7 @@
 import React from 'react';
-import Nav from '@/components/Nav';
 import Head from '@/components/Head';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 import { usePathname } from 'next/navigation';
 
 export async function getStaticProps() {
@@ -27,6 +28,8 @@ export default function Page404({ pageTitle }) {
                     We're sorry, but the page you're looking for doesn't exist or has moved.
                 </p>
             </main>
+
+            <Footer />
         </>
     );
 }

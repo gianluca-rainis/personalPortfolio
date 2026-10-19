@@ -1,6 +1,7 @@
 import React from 'react';
-import Nav from '@/components/Nav';
 import Head from '@/components/Head';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
 import { usePathname } from 'next/navigation';
 
 GenericError.getInitialProps = ({ res, err }) => {
@@ -28,6 +29,8 @@ export default function GenericError({ pageTitle, statusCode }) {
                     We're sorry, but we've encountered an unexpected error. Please try again later.
                 </p>
             </main>
+
+            <Footer />
         </>
     );
 }

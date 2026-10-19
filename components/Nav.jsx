@@ -1,7 +1,24 @@
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '@/styles/nav.module.css';
 
 export default function Nav() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    // Handle the window resize
+    useEffect(() => {
+        function handleResize() {
+            if (window.innerWidth > 600) {
+                setMenuOpen(false); // Hide the mobile menu
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <nav className={styles.nav} aria-label='Primary navigation'>
             <div className={styles.brandWrap}>
@@ -30,13 +47,34 @@ export default function Nav() {
                     </a>
                 </div>
                 <div className={styles.mobileLinks}>
-                    <svg className={styles.menuImage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu h-6 w-6 transform transition-transform duration-300 hover:scale-110" aria-hidden="true">
+                    <svg onClick={() => setMenuOpen(!menuOpen)} className={styles.menuImage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M4 5h16"></path>
                         <path d="M4 12h16"></path>
                         <path d="M4 19h16"></path>
                     </svg>
                 </div>
             </div>
+
+            {menuOpen && (
+                <div className={styles.mobileMenu}>
+                    <svg onClick={() => setMenuOpen(false)} className={styles.closeMenuImage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg>
+                    <Link href='/projects' aria-label='All Projects'>
+                        All Projects
+                    </Link>
+                    <Link href='/docs' aria-label='Docs'>
+                        Docs
+                    </Link>
+                    <a href='https://github.com/gianluca-rainis' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
+                        GitHub ↗
+                    </a>
+                    <a href='https://gianlucarainis.com' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
+                        About Me ↗
+                    </a>
+                </div>
+            )}
         </nav>
     );
 }

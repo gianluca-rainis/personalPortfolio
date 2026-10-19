@@ -70,16 +70,32 @@
 }
 
 .mobileMenu {
-    position: absolute;
-    right: 0;
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+    z-index: 1000;
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease,
+        visibility 0.3s ease;
     display: flex;
     flex-direction: column;
     background: linear-gradient(135deg, #0a110b 0%, #0c301a 100%);
     align-items: center;
     text-align: center;
-    padding: 20px;
     width: 50%;
     gap: 10px;
+    left: 50%;
+    padding-top: 25px;
+}
+
+.mobileMenu.open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
 }
 
 .menuImage {

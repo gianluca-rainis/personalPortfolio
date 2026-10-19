@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Audiowide;
+}
+
+:root {
+    color-scheme: dark;
+    --page-bg: linear-gradient(135deg, #0a0a0a 0%, #16300c 100%);
+    --surface-bg: rgba(18, 18, 18, 0.95);
+    --surface-border: rgba(255, 255, 255, 0.12);
+    --surface-border-strong: rgba(255, 255, 255, 0.2);
+    --text-primary: rgba(245, 245, 247, 0.95);
+    --text-secondary: rgba(245, 245, 247, 0.78);
+    --text-muted: rgba(245, 245, 247, 0.52);
+    --theme-text: #5ed34a;
+    --theme-accent: #3da32b;
+    --theme-accent-bright: #a5ff96;
+    --theme-accent-rgb: 125, 255, 125;
+    --theme-accent-bright-rgb: 0, 255, 0;
+    --theme-accent-soft: rgba(125, 255, 125, 0.15);
+    --theme-accent-soft-strong: rgba(125, 255, 125, 0.25);
+}
+
+@font-face {
+    font-family: Audiowide;
+    src: url('/fonts/Audiowide/Audiowide-Regular.ttf');
+}
+
+body {
+    background-color: var(--page-bg);
+}

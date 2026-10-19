@@ -5,31 +5,25 @@ export default function Nav() {
     return (
         <nav className={styles.nav} aria-label='Primary navigation'>
             <div className={styles.brandWrap}>
-                <Link href='/' className={styles.avatarLink} aria-label='Homepage'>
-                    <img className={styles.avatar} src='/icon.png' alt='' aria-hidden='true' />
+                <Link href='/' className={styles.logoLink} aria-label='Homepage'>
+                    <img className={styles.logo} src='/GRProjects.svg' alt='' aria-hidden='true' />
                 </Link>
                 <Link href='/' className={styles.brand} aria-label='Homepage'>
-                    Gianluca Rainis
+                    <p>Gianluca Rainis</p>
+                    <p className={styles.projectsP}>Projects</p>
                 </Link>
             </div>
 
             <div className={styles.links}>
-                <a href='https://github.com/gianluca-rainis' target='_blank' rel='noopener noreferrer'>
-                    GitHub
-                </a>
-                <a href='https://www.linkedin.com/in/gianluca-rainis' target='_blank' rel='noopener noreferrer'>
-                    LinkedIn
-                </a>
-                <Link href='/curriculum' aria-label='Curriculum Vitae'>
-                    Curriculum Vitae
+                <Link href='/projects' aria-label='All Projects'>
+                    All Projects
                 </Link>
-                <Link href='/contact' aria-label='Contact Me'>
-                    Contact Me
+                <Link href='/docs' aria-label='Docs'>
+                    Docs
                 </Link>
-            </div>
-
-            <div className={styles.statusArea}>
-                
+                <a href='https://gianlucarainis.com' target='_blank' rel='noopener noreferrer'>
+                    About Me
+                </a>
             </div>
         </nav>
     );

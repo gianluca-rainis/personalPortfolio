@@ -13,9 +13,9 @@
     --text-primary: rgba(245, 245, 247, 0.95);
     --text-secondary: rgba(245, 245, 247, 0.78);
     --text-muted: rgba(245, 245, 247, 0.52);
-    --theme-text: #5ed34a;
-    --theme-accent: #3da32b;
-    --theme-accent-bright: #a5ff96;
+    --theme-text: #20ff44;
+    --theme-accent: #47ffa3;
+    --theme-accent-bright: #35b98f;
     --theme-accent-rgb: 125, 255, 125;
     --theme-accent-bright-rgb: 0, 255, 0;
     --theme-accent-soft: rgba(125, 255, 125, 0.15);
@@ -28,5 +28,18 @@
 }
 
 body {
-    background-color: var(--page-bg);
+    background: var(--page-bg);
+    color: var(--text-primary);
+}
+
+a {
+    text-decoration: none;
+    color: var(--theme-accent);
+    border-color: var(--theme-accent);
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--theme-accent-bright);
+    border-color: var(--theme-accent-bright);
 }

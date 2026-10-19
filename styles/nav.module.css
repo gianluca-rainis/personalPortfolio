@@ -1,9 +1,11 @@
 .nav {
     width: 100%;
     max-height: 80px;
+    position: sticky;
+    top: 0;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid red; /* Temporary - to made the nav more visible in developments */
+    background: linear-gradient(135deg, #0a110b 0%, #0c301a 100%);
 }
 
 .brandWrap {
@@ -33,6 +35,10 @@
     color: var(--text-primary);
 }
 
+.brand:hover, .brandWrap:hover {
+    color: var(--text-primary);
+}
+
 .projectsP {
     color: var(--theme-text);
     font-size: small;
@@ -43,14 +49,78 @@
     flex-direction: row;
     align-items: center;
     text-align: center;
-    gap: 40px;
 }
 
-.links Link, .links a {
+.computerLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+    padding-right: 20px;
+}
+
+.mobileLinks {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    padding-right: 20px;
+    height: 100%;
+}
+
+.menuImage {
+    width: 30px;
+    height: 30px;
+    color: var(--theme-text);
+}
+
+.links .computerLinks a {
     width: max-content;
     text-align: left;
     align-items: center;
-    border: 1px solid var(--text-secondary);
-    border-radius: 5px;
     padding: 10px;
+}
+
+.externalLink {
+    border: 1px solid;
+    border-radius: 30px;
+}
+
+@media screen and (max-width: 850px) and (min-width: 700px) {
+    .computerLinks {
+        font-size: small;
+        gap: 20px;
+    }
+}
+@media screen and (max-width: 700px) and (min-width: 600px) {
+    .brand {
+        font-size: small;
+    }
+
+    .projectsP {
+        font-size: 12px;
+    }
+
+    .computerLinks {
+        font-size: 12px;
+        gap: 10px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .brand {
+        font-size: small;
+    }
+
+    .projectsP {
+        font-size: 12px;
+    }
+
+    .computerLinks {
+        display: none;
+    }
+
+    .mobileLinks {
+        display: flex;
+    }
 }

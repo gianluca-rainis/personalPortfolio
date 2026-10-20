@@ -1,24 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '@/styles/footer.module.css';
 
 export default function Footer() {
-    // const [menuOpen, setMenuOpen] = useState(false);
-
-    // Handle the window resize
-    useEffect(() => {
-        function handleResize() {
-            if (window.innerWidth > 600) {
-                // Handle resize here
-            }
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     return (
         <footer className={styles.footer} aria-label='Footer'>
             <div className={styles.firstRow}>
@@ -41,10 +24,11 @@ export default function Footer() {
                     </a>
                 </div>
             </div>
-            <br />
             <div className={styles.secondRow}>
-                <p className={styles.motto}>Copyright © {new Date().getFullYear()} Gianluca Rainis</p>
-                <p className={styles.motto}>All Rights Reserved</p>
+                <div className={styles.brandWrap}>
+                    <p className={styles.secondRowText}>Copyright © {new Date().getFullYear()} Gianluca Rainis</p>
+                    <p className={styles.secondRowText}>All Rights Reserved</p>
+                </div>
 
                 <div className={styles.links}>
                     <Link href='/' aria-label='projects.gianlucarainis.com'>

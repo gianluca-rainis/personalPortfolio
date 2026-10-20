@@ -1,17 +1,38 @@
 .footer {
     width: 100%;
-    max-height: 80px;
-    position: sticky;
+    max-height: 120px;
+    position: relative;
     bottom: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background: linear-gradient(135deg, #0a110b 0%, #0c301a 100%);
 }
 
-.brandWrap, .firstRow {
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--theme-accent-soft) 25%, var(--theme-accent-soft-strong) 50%, var(--theme-accent-soft) 75%, transparent 100%);
+    pointer-events: none;
+}
+
+.brandWrap, .firstRow, .secondRow {
     width: 100%;
     display: flex;
     flex-direction: row;
+}
+
+.firstRow, .secondRow {
+    height: 50px;
+}
+
+.secondRow {
+    background: linear-gradient(90deg, transparent 0%, var(--theme-accent-soft) 25%, var(--theme-accent-soft-strong) 50%, var(--theme-accent-soft) 75%, transparent 100%) top / 100% 1px no-repeat;
 }
 
 .logoLink {
@@ -22,11 +43,11 @@
 .logo {
     width: 100%;
     height: 100%;
-    max-width: min-content;
-    max-height: min-content;
+    max-width: 80px;
+    max-height: 80px;
 }
 
-.motto {
+.motto, .secondRowText {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -34,6 +55,11 @@
     padding-left: 10px;
     text-decoration: none;
     color: var(--text-primary);
+}
+
+.secondRowText {
+    font-size: small;
+    padding-left: 50px;
 }
 
 .links {
@@ -55,18 +81,75 @@
 .links a img {
     width: 25px;
     height: 25px;
+    transition: filter 180ms ease;
+}
+
+.links a:hover img, .links a:focus-visible img {
+    filter: drop-shadow(0 0 4px var(--theme-accent-soft-strong)) drop-shadow(0 0 12px var(--theme-accent-soft-strong));
 }
 
 @media screen and (max-width: 850px) and (min-width: 700px) {
-    
+    .secondRow, .secondRowText {
+        font-size: 12px;
+    }
 }
 @media screen and (max-width: 700px) and (min-width: 600px) {
     .motto {
         font-size: small;
     }
+
+    .secondRow, .secondRowText {
+        font-size: 11px;
+    }
+
+    .secondRowText {
+        padding-left: 25px;
+    }
 }
 @media screen and (max-width: 600px) {
+    .footer {
+        box-sizing: border-box;
+        max-height: none;
+        padding: 14px 12px;
+    }
+
+    .firstRow, .secondRow {
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .secondRow {
+        padding-top: 8px;
+    }
+
+    .brandWrap {
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
     .motto {
         font-size: small;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .secondRowText {
+        padding-left: 0;
+        font-size: 10px;
+    }
+
+    .links {
+        justify-content: center;
+        padding-right: 0;
+        gap: 12px;
+    }
+
+    .secondRow .links a {
+        padding: 6px;
+        font-size: 10px;
     }
 }

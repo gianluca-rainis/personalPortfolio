@@ -22,6 +22,24 @@
     --theme-accent-soft-strong: rgba(125, 255, 125, 0.25);
 }
 
+@property --pointer-glow {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+}
+
+@property --pointer-glow-top {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+}
+
+@property --pointer-glow-divider {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+}
+
 @font-face {
     font-family: Audiowide;
     src: url('/fonts/Audiowide/Audiowide-Regular.ttf');

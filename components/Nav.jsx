@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from '@/styles/nav.module.css';
 
 export default function Nav() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [mobileMenuHeight, setMobileMenuHeight] = useState(200);
+    const navRef = useRef(null);
 
     // Handle the window resize
     useEffect(() => {
@@ -22,8 +23,47 @@ export default function Nav() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        const nav = navRef.current;
+
+        if (!nav) {
+            return;
+        }
+
+        function clearGlow() {
+            nav.style.setProperty('--pointer-glow', '0');
+        }
+
+        function handlePointerMove(event) {
+            const bounds = nav.getBoundingClientRect();
+            const horizontalDistance = Math.max(bounds.left - event.clientX, 0, event.clientX - bounds.right);
+            const distanceFromBorder = Math.hypot(horizontalDistance, event.clientY - bounds.bottom);
+            const pointerX = Math.min(100, Math.max(0, ((event.clientX - bounds.left) / bounds.width) * 100));
+            const glowIntensity = Math.max(0, 0.3 * (1 - distanceFromBorder / 80));
+
+            nav.style.setProperty('--pointer-x', `${pointerX}%`);
+            nav.style.setProperty('--pointer-glow', `${glowIntensity}`);
+        }
+
+        function handlePointerOut(event) {
+            if (event.relatedTarget === null) {
+                clearGlow();
+            }
+        }
+
+        window.addEventListener('pointermove', handlePointerMove);
+        window.addEventListener('pointerout', handlePointerOut);
+        window.addEventListener('blur', clearGlow);
+
+        return () => {
+            window.removeEventListener('pointermove', handlePointerMove);
+            window.removeEventListener('pointerout', handlePointerOut);
+            window.removeEventListener('blur', clearGlow);
+        };
+    }, []);
+
     return (
-        <nav className={styles.nav} aria-label='Primary navigation'>
+        <nav ref={navRef} className={styles.nav} aria-label='Primary navigation'>
             <div className={styles.brandWrap}>
                 <Link href='/' className={styles.logoLink} aria-label='Homepage'>
                     <img className={styles.logo} src='/GRProjects.svg' alt='Gianluca Rainis Projects Logo' aria-hidden='true' />

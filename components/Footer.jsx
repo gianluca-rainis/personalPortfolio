@@ -1,9 +1,58 @@
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from '@/styles/footer.module.css';
 
 export default function Footer() {
+    const footerRef = useRef(null);
+
+    useEffect(() => {
+        const footer = footerRef.current;
+
+        if (!footer) {
+            return;
+        }
+
+        const divider = footer.getElementsByClassName(styles.secondRow)[0];
+
+        function clearGlow() {
+            footer.style.setProperty('--pointer-glow-top', '0');
+            footer.style.setProperty('--pointer-glow-divider', '0');
+        }
+
+        function handlePointerMove(event) {
+            const bounds = footer.getBoundingClientRect();
+            const dividerBounds = divider.getBoundingClientRect();
+            const horizontalDistance = Math.max(bounds.left - event.clientX, 0, event.clientX - bounds.right);
+            const pointerX = Math.min(100, Math.max(0, ((event.clientX - bounds.left) / bounds.width) * 100));
+            const topDistance = Math.hypot(horizontalDistance, event.clientY - bounds.top);
+            const dividerDistance = Math.hypot(horizontalDistance, event.clientY - dividerBounds.top);
+            const topGlowIntensity = Math.max(0, 0.3 * (1 - topDistance / 80));
+            const dividerGlowIntensity = Math.max(0, 0.3 * (1 - dividerDistance / 80));
+
+            footer.style.setProperty('--pointer-x', `${pointerX}%`);
+            footer.style.setProperty('--pointer-glow-top', `${topGlowIntensity}`);
+            footer.style.setProperty('--pointer-glow-divider', `${dividerGlowIntensity}`);
+        }
+
+        function handlePointerOut(event) {
+            if (event.relatedTarget === null) {
+                clearGlow();
+            }
+        }
+
+        window.addEventListener('pointermove', handlePointerMove);
+        window.addEventListener('pointerout', handlePointerOut);
+        window.addEventListener('blur', clearGlow);
+
+        return () => {
+            window.removeEventListener('pointermove', handlePointerMove);
+            window.removeEventListener('pointerout', handlePointerOut);
+            window.removeEventListener('blur', clearGlow);
+        };
+    }, []);
+
     return (
-        <footer className={styles.footer} aria-label='Footer'>
+        <footer ref={footerRef} className={styles.footer} aria-label='Footer'>
             <div className={styles.firstRow}>
                 <div className={styles.brandWrap}>
                     <Link href='/' className={styles.logoLink} aria-label='Homepage'>

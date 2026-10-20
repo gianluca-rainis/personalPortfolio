@@ -6,16 +6,22 @@
     display: flex;
     flex-direction: row;
     background: linear-gradient(135deg, #0a110b 0%, #0c301a 100%);
+    transition: --pointer-glow 350ms ease-out;
 }
 
 .nav::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -6px;
     left: 0;
     width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--theme-accent-soft) 25%, var(--theme-accent-soft-strong) 50%, var(--theme-accent-soft) 75%, transparent 100%);
+    height: 13px;
+    background:
+        radial-gradient(ellipse 90px 8px at var(--pointer-x, 50%) 50%, rgba(var(--theme-accent-rgb), var(--pointer-glow, 0)) 0%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, var(--theme-accent-soft) 25%, var(--theme-accent-soft-strong) 50%, var(--theme-accent-soft) 75%, transparent 100%);
+    background-size: 100% 13px, 100% 1px;
+    background-position: center, center;
+    background-repeat: no-repeat;
     pointer-events: none;
 }
 

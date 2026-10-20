@@ -8,7 +8,7 @@
     padding-top: 20px;
     padding-bottom: 20px;
     background: linear-gradient(135deg, #0a110b 0%, #0c301a 100%);
-    transition: --pointer-glow-top 350ms ease-out, --pointer-glow-divider 350ms ease-out;
+    transition: --pointer-glow-top 10ms ease-out, --pointer-glow-divider 10ms ease-out;
 }
 
 .footer::before {

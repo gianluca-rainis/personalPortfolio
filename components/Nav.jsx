@@ -83,10 +83,10 @@ export default function Nav() {
                         Docs
                     </Link>
                     <a href='https://github.com/gianluca-rainis' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
-                        GitHub <img src="/Arrow.svg" alt='Arrow' />
+                        GitHub <span className={styles.arrowIcon} aria-hidden='true' />
                     </a>
                     <a href='https://gianlucarainis.com' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
-                        About Me <img src="/Arrow.svg" alt='Arrow' />
+                        About Me <span className={styles.arrowIcon} aria-hidden='true' />
                     </a>
                 </div>
                 <div className={styles.mobileLinks}>
@@ -110,10 +110,10 @@ export default function Nav() {
                     Docs
                 </Link>
                 <a href='https://github.com/gianluca-rainis' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
-                    GitHub <img src="/Arrow.svg" alt='Arrow' />
+                    GitHub <span className={styles.arrowIcon} aria-hidden='true' />
                 </a>
                 <a href='https://gianlucarainis.com' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
-                    About Me <img src="/Arrow.svg" alt='Arrow' />
+                    About Me <span className={styles.arrowIcon} aria-hidden='true' />
                 </a>
             </div>
         </nav>

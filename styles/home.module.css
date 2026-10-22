@@ -29,7 +29,18 @@
         linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
         radial-gradient(ellipse at 75% 42%, rgba(32, 255, 68, 0.11), transparent 38%);
     background-size: 64px 64px, 64px 64px, auto;
-    animation: reveal 700ms ease-out both;
+}
+
+.heroLabel, .hero h1, .heroFooter {
+    animation: reveal 600ms ease-out both;
+}
+
+.hero h1 {
+    animation-delay: 100ms;
+}
+
+.heroFooter {
+    animation-delay: 180ms;
 }
 
 .heroLabel, .sectionEyebrow, .sectionCount, .heroIndex {
@@ -81,6 +92,11 @@
 .allProjectView a {
     display: flex;
     padding-bottom: 10px;
+    transition: color 180ms ease;
+}
+
+.allProjectView a:hover {
+    color: var(--theme-accent-bright);
 }
 
 .arrowIcon {
@@ -92,6 +108,11 @@
     background-color: currentColor;
     -webkit-mask: url('/Arrow.svg') center / 100% 100% no-repeat;
     mask: url('/Arrow.svg') center / 100% 100% no-repeat;
+    transition: transform 180ms ease;
+}
+
+.allProjectView a:hover .arrowIcon {
+    transform: translateX(3px);
 }
 
 .sectionHeading {
@@ -131,6 +152,27 @@
 .project {
     min-width: 0;
     scroll-snap-align: start;
+    animation: reveal 600ms ease-out both;
+}
+
+.project:nth-child(2) {
+    animation-delay: 80ms;
+}
+
+.project:nth-child(3) {
+    animation-delay: 160ms;
+}
+
+.project:nth-child(4) {
+    animation-delay: 240ms;
+}
+
+.project:nth-child(5) {
+    animation-delay: 320ms;
+}
+
+.project:nth-child(6) {
+    animation-delay: 400ms;
 }
 
 .projectImage {
@@ -150,6 +192,12 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+    transition: filter 180ms ease, border-color 180ms ease;
+}
+
+.project:hover .projectImage {
+    filter: brightness(1.08);
+    border-color: var(--surface-border-strong);
 }
 
 .projectImage::after {
@@ -277,7 +325,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero {
+    .heroLabel, .hero h1, .heroFooter, .project {
         animation: none;
+    }
+
+    .allProjectView a, .arrowIcon, .projectImage {
+        transition: none;
     }
 }

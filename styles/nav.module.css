@@ -29,11 +29,13 @@
 .brandWrap {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .logoLink {
     display: flex;
     justify-content: center;
+    width: fit-content;
 }
 
 .logo {
@@ -51,6 +53,7 @@
     padding-left: 10px;
     text-decoration: none;
     color: var(--text-primary);
+    width: fit-content;
 }
 
 .brand:hover, .brandWrap:hover {
@@ -68,6 +71,7 @@
     align-items: center;
     text-align: center;
     margin-left: auto;
+    width: fit-content;
 }
 
 .computerLinks {
@@ -197,10 +201,18 @@
     .mobileLinks {
         display: flex;
     }
+
+    .logoLink {
+        display: block;
+    }
 }
 @media screen and (max-width: 400px) {
     .mobileMenu {
         width: 200px;
         left: auto;
+    }
+
+    .logoLink {
+        display: block;
     }
 }

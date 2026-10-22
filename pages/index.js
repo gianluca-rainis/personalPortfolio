@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -60,7 +61,7 @@ export default function HomePage({ pageTitle }) {
             <main className={styles.main}>
                 <section className={styles.hero} aria-labelledby='home-title'>
                     <p className={styles.heroLabel}>Selected work / {new Date().getFullYear()}</p>
-                    <h1>
+                    <h1 id='home-title'>
                         <span>Engineering Ideas</span>
                         <span className={styles.heroSecondLine}>into Reality</span>
                     </h1>
@@ -108,9 +109,14 @@ export default function HomePage({ pageTitle }) {
                     <div className={styles.sectionHeading}>
                         <div>
                             <p className={styles.sectionEyebrow}>The complete archive</p>
-                            <h2>All projects</h2>
+                            <h2 id='all-projects-title'>All projects</h2>
                         </div>
-                        <span className={styles.sectionCount}>01 — {allProjects.at(allProjects.length-1).number}</span>
+                        <div className={styles.allProjectView}>
+                            <Link href='/projects' aria-label='All Projects'>
+                                View all Projects <span className={styles.arrowIcon} aria-hidden='true' />
+                            </Link>
+                            <span className={styles.sectionCount}>01 — {allProjects.at(allProjects.length-1).number}</span>
+                        </div>
                     </div>
                     <div className={styles.projectRail}>
                         {allProjects.map((project) => (

@@ -9,14 +9,17 @@ import { usePathname } from 'next/navigation';
 const featuredProjects = [
     {
         number: '01', title: 'Project One', description: 'Description',
+        link: '',
         tags: ['tag1', 'tag2']
     },
     {
         number: '02', title: 'Project Two', description: 'Description',
+        link: '',
         tags: ['tag1', 'tag2']
     },
     {
         number: '03', title: 'Project Three', description: 'Description',
+        link: '',
         tags: ['tag1', 'tag2']
     },
 ];
@@ -25,14 +28,17 @@ const allProjects = [
     ...featuredProjects,
     {
         number: '04', title: 'Project Four', description: 'Description',
+        link: '',
         tags: ['tag1', 'tag2']
     },
     {
         number: '05', title: 'Project Five', description: 'Description',
+        link: '',
         tags: ['tag1', 'tag2']
     },
     {
         number: '06', title: 'Project Six', description: 'Description',
+        link: '',
         tags: ['tag1', 'tag2']
     },
 ];
@@ -82,24 +88,26 @@ export default function HomePage({ pageTitle }) {
                     <div className={styles.projectRail}>
                         {featuredProjects.map((project) => (
                             <article className={styles.project} key={project.number}>
-                                <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`}>
-                                    <span>Image to come</span>
-                                    <span className={styles.imageNumber}>{project.number}</span>
-                                </div>
-                                <div className={styles.projectInfo}>
-                                    <div className={styles.projectTitleRow}>
-                                        <h3>{project.title}</h3>
-                                        <span>{project.number}</span>
+                                <Link href={project.link} className={styles.project} aria-label={project.title}>
+                                    <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`}>
+                                        <span>Image to come</span>
+                                        <span className={styles.imageNumber}>{project.number}</span>
                                     </div>
-                                    <p className={styles.projectDescription}>
-                                        {project.description}
-                                    </p>
-                                    <ul className={styles.tags} aria-label='Project tags'>
-                                        {project.tags.map((tag) => (
-                                            <li>{tag}</li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                    <div className={styles.projectInfo}>
+                                        <div className={styles.projectTitleRow}>
+                                            <h3>{project.title}</h3>
+                                            <span>{project.number}</span>
+                                        </div>
+                                        <p className={styles.projectDescription}>
+                                            {project.description}
+                                        </p>
+                                        <ul className={styles.tags} aria-label='Project tags'>
+                                            {project.tags.map((tag) => (
+                                                <li>{tag}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </Link>
                             </article>
                         ))}
                     </div>
@@ -121,24 +129,26 @@ export default function HomePage({ pageTitle }) {
                     <div className={styles.projectRail}>
                         {allProjects.map((project) => (
                             <article className={styles.project} key={project.number}>
-                                <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`}>
-                                    <span>Image to come</span>
-                                    <span className={styles.imageNumber}>{project.number}</span>
-                                </div>
-                                <div className={styles.projectInfo}>
-                                    <div className={styles.projectTitleRow}>
-                                        <h3>{project.title}</h3>
-                                        <span>{project.number}</span>
+                                <Link href={project.link} className={styles.project} aria-label={project.title}>
+                                    <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`}>
+                                        <span>Image to come</span>
+                                        <span className={styles.imageNumber}>{project.number}</span>
                                     </div>
-                                    <p className={styles.projectDescription}>
-                                        {project.description}
-                                    </p>
-                                    <ul className={styles.tags} aria-label='Project tags'>
-                                        {project.tags.map((tag) => (
-                                            <li>{tag}</li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                    <div className={styles.projectInfo}>
+                                        <div className={styles.projectTitleRow}>
+                                            <h3>{project.title}</h3>
+                                            <span>{project.number}</span>
+                                        </div>
+                                        <p className={styles.projectDescription}>
+                                            {project.description}
+                                        </p>
+                                        <ul className={styles.tags} aria-label='Project tags'>
+                                            {project.tags.map((tag) => (
+                                                <li>{tag}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </Link>
                             </article>
                         ))}
                     </div>

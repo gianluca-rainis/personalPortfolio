@@ -121,6 +121,7 @@
     align-items: end;
     gap: 24px;
     margin-bottom: 26px;
+    animation: reveal 600ms ease-out both;
 }
 
 .sectionEyebrow {
@@ -153,6 +154,11 @@
     min-width: 0;
     scroll-snap-align: start;
     animation: reveal 600ms ease-out both;
+    transition: transform 200ms ease;
+}
+
+.project:hover {
+    transform: translateY(-4px);
 }
 
 .project:nth-child(2) {
@@ -325,11 +331,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .heroLabel, .hero h1, .heroFooter, .project {
+    .heroLabel, .hero h1, .heroFooter, .sectionHeading, .project {
         animation: none;
     }
 
-    .allProjectView a, .arrowIcon, .projectImage {
+    .allProjectView a, .arrowIcon, .project, .projectImage {
         transition: none;
     }
 }

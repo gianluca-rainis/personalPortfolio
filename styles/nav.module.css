@@ -46,7 +46,7 @@
 .brand {
     display: flex;
     flex-direction: column;
-    text-align: left;
+    text-align: right;
     justify-content: center;
     padding-left: 10px;
     text-decoration: none;
@@ -67,6 +67,7 @@
     flex-direction: row;
     align-items: center;
     text-align: center;
+    margin-left: auto;
 }
 
 .computerLinks {

@@ -56,7 +56,7 @@ export default function Footer() {
             <div className={styles.firstRow}>
                 <div className={styles.brandWrap}>
                     <Link href='/' className={styles.logoLink} aria-label='Homepage'>
-                        <img className={styles.logo} src='/icon.png' alt='Gianluca Rainis Projects Logo' aria-hidden='true' />
+                        <img className={styles.logo} src='/GRProjects.png' alt='Gianluca Rainis Projects Logo' aria-hidden='true' />
                     </Link>
                     <p className={styles.motto}>Engineering Ideas into Reality.</p>
                 </div>

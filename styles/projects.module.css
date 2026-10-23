@@ -1,0 +1,5 @@
+.projects {
+    width: min(100%, 1600px);
+    margin: 0 auto;
+    overflow: hidden;
+}

@@ -1,0 +1,148 @@
+.card {
+    min-width: 0;
+    animation: appear 500ms ease-out both;
+}
+
+.projectLink {
+    display: block;
+    color: inherit;
+}
+
+.imageFrame {
+    aspect-ratio: 1.65;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--surface-border);
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        radial-gradient(ellipse at 50% 50%, rgba(32, 255, 68, 0.11), rgba(6, 12, 8, 0.96) 70%);
+    background-size: 32px 32px, 32px 32px, auto;
+    transition: border-color 180ms ease;
+}
+
+.image {
+    object-fit: contain;
+    transition: transform 250ms ease;
+}
+
+.imageMeta {
+    position: absolute;
+    inset: 12px 14px auto;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: var(--theme-accent);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.imageMeta span:last-child {
+    padding: 5px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(8, 12, 9, 0.72);
+    color: var(--text-secondary);
+}
+
+.content {
+    padding-top: 15px;
+}
+
+.titleRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 14px;
+}
+
+.titleRow h2 {
+    min-width: 0;
+    font-size: 1.08rem;
+    font-weight: 400;
+}
+
+.status {
+    flex: 0 0 auto;
+    color: var(--theme-accent);
+    font-size: 0.65rem;
+}
+
+.description {
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.65;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 13px;
+    list-style: none;
+}
+
+.tags li {
+    padding: 5px 7px;
+    border: 1px solid var(--surface-border-strong);
+    color: var(--text-muted);
+    font-size: 0.63rem;
+    line-height: 1;
+}
+
+.viewLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    color: var(--theme-accent);
+    font-size: 0.75rem;
+}
+
+.projectLink:hover .viewLink {
+    color: var(--theme-accent-bright);
+}
+
+.projectLink:hover .imageFrame {
+    border-color: var(--theme-accent-bright);
+}
+
+.arrowIcon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding-left: 1px;
+    flex-shrink: 0;
+    background-color: currentColor;
+    -webkit-mask: url('/Arrow.svg') center / 100% 100% no-repeat;
+    mask: url('/Arrow.svg') center / 100% 100% no-repeat;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 540px) {
+    .titleRow h2 {
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card, .image {
+        animation: none;
+        transition: none;
+    }
+}

@@ -3,3 +3,198 @@
     margin: 0 auto;
     overflow: hidden;
 }
+
+.compactHeader {
+    min-height: 150px;
+    box-sizing: border-box;
+    padding: 38px 7vw 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    border-bottom: 1px solid var(--surface-border);
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        radial-gradient(ellipse at 78% 50%, rgba(32, 255, 68, 0.09), transparent 42%);
+    background-size: 64px 64px, auto;
+}
+
+.pageEyebrow, .projectTotal, .resultsLine, .selectControl > span {
+    color: var(--theme-accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.pageEyebrow {
+    margin-bottom: 12px;
+}
+
+.headerTitle h1 {
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+    line-height: 1;
+    font-weight: 400;
+}
+
+.projectTotal {
+    padding-bottom: 5px;
+    color: var(--text-muted);
+}
+
+.archive {
+    padding: 28px 7vw 76px;
+}
+
+.toolbar {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(145px, 190px) minmax(145px, 190px);
+    gap: 12px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--surface-border);
+}
+
+.searchField, .selectControl {
+    min-height: 46px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 14px;
+    border: 1px solid var(--surface-border-strong);
+    background: rgba(0, 0, 0, 0.16);
+}
+
+.searchField {
+    color: var(--text-muted);
+}
+
+.searchIcon {
+    width: 14px;
+    height: 14px;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    position: relative;
+}
+
+.searchIcon::after {
+    content: '';
+    width: 5px;
+    border-top: 1px solid currentColor;
+    position: absolute;
+    right: -4px;
+    bottom: -2px;
+    transform: rotate(45deg);
+}
+
+.searchField input, .selectControl select {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.78rem;
+}
+
+.searchField input::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+.searchField input:disabled {
+    cursor: not-allowed;
+}
+
+.selectControl {
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.selectControl > span {
+    color: var(--text-muted);
+    font-size: 0.62rem;
+}
+
+.selectControl select {
+    cursor: pointer;
+    text-align: right;
+}
+
+.selectControl option {
+    background: #101510;
+    color: var(--text-primary);
+}
+
+.resultsLine {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 0 14px;
+    color: var(--text-muted);
+    font-size: 0.65rem;
+}
+
+.projectGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 22px;
+}
+
+.emptyState {
+    padding: 44px 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.visuallyHidden {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    position: absolute;
+}
+
+@media (max-width: 800px) {
+    .compactHeader {
+        padding-right: 6vw;
+        padding-left: 6vw;
+    }
+
+    .archive {
+        padding-right: 6vw;
+        padding-left: 6vw;
+    }
+
+    .projectGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 540px) {
+    .compactHeader {
+        min-height: 132px;
+        padding: 30px 22px 22px;
+    }
+
+    .archive {
+        padding: 20px 22px 56px;
+    }
+
+    .toolbar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .searchField {
+        grid-column: 1 / -1;
+    }
+
+    .projectGrid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}

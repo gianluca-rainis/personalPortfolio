@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import styles from '@/styles/home.module.css';
+import styles from '@/styles/projects.module.css';
 import { usePathname } from 'next/navigation';
 
 export async function getStaticProps() {

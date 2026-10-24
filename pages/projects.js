@@ -18,6 +18,7 @@ export async function getStaticProps() {
 
 export default function Projects({ pageTitle }) {
     const path = usePathname();
+    const [searched, setSearched] = useState('');
     const [selectedTag, setSelectedTag] = useState('all');
     const [sortOrder, setSortOrder] = useState('number-desc');
     const tags = [...new Set(projects.flatMap((project) => project.tags))].sort();
@@ -48,7 +49,7 @@ export default function Projects({ pageTitle }) {
                         <p className={styles.pageEyebrow}>01 / Selected work</p>
                         <h1>Projects</h1>
                     </div>
-                    <span className={styles.projectTotal}>{String(projects.length).padStart(2, '0')} projects</span>
+                    <p className={styles.projectTotal}>{String(projects.length).padStart(2, '0')} projects</p>
                 </header>
 
                 <section className={styles.archive} aria-label='Project archive'>
@@ -56,11 +57,11 @@ export default function Projects({ pageTitle }) {
                         <label className={styles.searchField}>
                             <span aria-hidden='true' className={styles.searchIcon} />
                             <span className={styles.visuallyHidden}>Search projects by keyword</span>
-                            <input type='search' placeholder='Search projects' disabled />
+                            <input type='search' placeholder='Search projects' onChange={(event) => setSearched(event.target.value)} />
                         </label>
 
                         <label className={styles.selectControl}>
-                            <span>Tag</span>
+                            <p>Tag</p>
                             <select value={selectedTag} onChange={(event) => setSelectedTag(event.target.value)}>
                                 <option value='all'>All tags</option>
                                 {tags.map((tag) => 
@@ -70,7 +71,7 @@ export default function Projects({ pageTitle }) {
                         </label>
 
                         <label className={styles.selectControl}>
-                            <span>Sort</span>
+                            <p>Sort</p>
                             <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value)}>
                                 <option value='number-desc'>Newest</option>
                                 <option value='number-asc'>Oldest</option>
@@ -80,14 +81,24 @@ export default function Projects({ pageTitle }) {
                     </div>
 
                     <div className={styles.resultsLine} aria-live='polite'>
-                        <span>Archive</span>
-                        <span>{String(visibleProjects.length).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</span>
+                        <p>Archive</p>
+                        <p>01 / {String(projects.length).padStart(2, '0')}</p>
                     </div>
 
                     {visibleProjects.length > 0 ? (
                         <div className={styles.projectGrid}>
                             {visibleProjects.map((project) => 
-                                <ProjectCard project={project} key={project.number} />
+                                searched ? (
+                                    (project.number.includes(searched) || project.category.includes(searched) || project.title.includes(searched) ||
+                                    project.description.includes(searched) || project.image.includes(searched) || project.imageAlt.includes(searched) ||
+                                    project.tags.includes(searched) || project.status.includes(searched) || project.href.includes(searched)) ? (
+                                        <ProjectCard project={project} key={project.number} />
+                                    ) : (
+                                        null
+                                    )
+                                ) : (
+                                    <ProjectCard project={project} key={project.number} />
+                                )
                             )}
                         </div>
                     ) : (

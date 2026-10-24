@@ -8,9 +8,9 @@ export default function Head({ pageTitle="", pageUrl="https://projects.gianlucar
                 <title>{pageTitle ? `Gianluca Rainis Projects - ${pageTitle}` : 'Gianluca Rainis Projects'}</title>
                 <link rel="canonical" href={pageUrl} />
 
-                <meta name="description" content="Gianluca Rainis is a student of Computer Science who is passionate about software development, hardware design and innovation." />
+                <meta name="description" content="Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games." />
                 <meta name="author" content="Gianluca Rainis" />
-                <meta name="keywords" content="Gianluca Rainis - Student, Developer, Projects" />
+                <meta name="keywords" content="Gianluca Rainis Projects" />
                 <meta name="application-name" content="Gianluca Rainis Projects" lang="en" />
                 
                 {/* Open Graph */}
@@ -18,9 +18,9 @@ export default function Head({ pageTitle="", pageUrl="https://projects.gianlucar
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="Gianluca Rainis Projects" />
                 <meta property="og:title" content={pageTitle || 'Gianluca Rainis Projects'} />
-                <meta property="og:description" content="Gianluca Rainis is a student of Computer Science who is passionate about software development, hardware design and innovation." />
-                <meta property="og:image" content="https://projects.gianlucarainis.com/gianlucarainisPreview.png" />
-                <meta property="og:image:secure_url" content="https://projects.gianlucarainis.com/gianlucarainisPreview.png" />
+                <meta property="og:description" content="Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games." />
+                <meta property="og:image" content="https://projects.gianlucarainis.com/GRProjectsPreview.png" />
+                <meta property="og:image:secure_url" content="https://projects.gianlucarainis.com/GRProjectsPreview.png" />
                 <meta property="og:image:type" content="image/png" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
@@ -31,8 +31,8 @@ export default function Head({ pageTitle="", pageUrl="https://projects.gianlucar
                 <meta property="twitter:domain" content="projects.gianlucarainis.com" />
                 <meta name="twitter:url" content={pageUrl} />
                 <meta name="twitter:title" content={pageTitle || 'Gianluca Rainis Projects'} />
-                <meta name="twitter:description" content="Gianluca Rainis is a student of Computer Science who is passionate about software development, hardware design and innovation." />
-                <meta name="twitter:image" content="https://projects.gianlucarainis.com/gianlucarainisPreview.png" />
+                <meta name="twitter:description" content="Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games." />
+                <meta name="twitter:image" content="https://projects.gianlucarainis.com/GRProjectsPreview.png" />
                 
                 {/* Favicon and CSS are in _document.js */}
                 

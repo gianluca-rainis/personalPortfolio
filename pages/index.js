@@ -53,10 +53,10 @@ export default function HomePage({ pageTitle }) {
                         <span className={styles.sectionCount}>01 — {featuredProjects.at(-1)?.number ?? '00'}</span>
                     </div>
                     <div className={styles.projectRail}>
-                        {featuredProjects.map((project) => (
+                        {featuredProjects.reverse().map((project) => (
                             <article className={styles.project} key={project.number}>
                                 <Link href={project.href} className={styles.project} aria-label={project.title}>
-                                    <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`} 
+                                    <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 
                                         style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
                                         { (project.image && project.image != "") ? 
                                             <Image src={project.image} alt={project.imageAlt} fill className={styles.image} />
@@ -101,10 +101,10 @@ export default function HomePage({ pageTitle }) {
                         </div>
                     </div>
                     <div className={styles.projectRail}>
-                        {projects.map((project) => (
+                        {projects.reverse().map((project) => (
                             <article className={styles.project} key={project.number}>
                                 <Link href={project.href} className={styles.project} aria-label={project.title}>
-                                    <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`} 
+                                    <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 
                                         style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
                                         { (project.image && project.image != "") ? 
                                             <Image src={project.image} alt={project.imageAlt} fill className={styles.image} />

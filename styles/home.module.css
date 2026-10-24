@@ -218,6 +218,10 @@
     pointer-events: none;
 }
 
+.projectImageWithImage::after {
+    content: none;
+}
+
 .imageNumber {
     position: absolute;
     z-index: 1;

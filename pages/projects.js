@@ -24,7 +24,23 @@ export default function Projects({ pageTitle }) {
     const tags = [...new Set(projects.flatMap((project) => project.tags))].sort();
 
     const visibleProjects = useMemo(() => {
-        const filteredProjects = selectedTag === 'all' ? [...projects] : projects.filter((project) => project.tags.includes(selectedTag));
+        const query = searched.trim().toLowerCase();
+
+        const filteredProjects = projects.filter((project) => {
+            const matchesTag = selectedTag === 'all' || project.tags.includes(selectedTag);
+            
+            const searchableText = [
+                project.number,
+                project.category,
+                project.title,
+                project.description,
+                project.imageAlt,
+                project.status,
+                ...project.tags
+            ].join(' ').toLowerCase();
+
+            return matchesTag && searchableText.includes(query);
+        });
 
         return filteredProjects.sort((first, second) => {
             if (sortOrder === 'title-asc') {
@@ -35,7 +51,7 @@ export default function Projects({ pageTitle }) {
 
             return sortOrder === 'number-asc' ? numberDifference : -numberDifference;
         });
-    }, [selectedTag, sortOrder]);
+    }, [searched, selectedTag, sortOrder]);
     
     return (
         <>
@@ -57,7 +73,7 @@ export default function Projects({ pageTitle }) {
                         <label className={styles.searchField}>
                             <span aria-hidden='true' className={styles.searchIcon} />
                             <span className={styles.visuallyHidden}>Search projects by keyword</span>
-                            <input type='search' placeholder='Search projects' onChange={(event) => setSearched(event.target.value)} />
+                            <input type='search' placeholder='Search projects' onChange={(event) => setSearched(event.target.value.toLowerCase())} />
                         </label>
 
                         <label className={styles.selectControl}>
@@ -82,27 +98,17 @@ export default function Projects({ pageTitle }) {
 
                     <div className={styles.resultsLine} aria-live='polite'>
                         <p>Archive</p>
-                        <p>01 / {String(projects.length).padStart(2, '0')}</p>
+                        <p>{String(visibleProjects.length).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</p>
                     </div>
 
                     {visibleProjects.length > 0 ? (
                         <div className={styles.projectGrid}>
-                            {visibleProjects.map((project) => 
-                                searched ? (
-                                    (project.number.includes(searched) || project.category.includes(searched) || project.title.includes(searched) ||
-                                    project.description.includes(searched) || project.image.includes(searched) || project.imageAlt.includes(searched) ||
-                                    project.tags.includes(searched) || project.status.includes(searched) || project.href.includes(searched)) ? (
-                                        <ProjectCard project={project} key={project.number} />
-                                    ) : (
-                                        null
-                                    )
-                                ) : (
-                                    <ProjectCard project={project} key={project.number} />
-                                )
+                            {visibleProjects.map((project) =>
+                                <ProjectCard project={project} key={project.number} />
                             )}
                         </div>
                     ) : (
-                        <p className={styles.emptyState}>No projects match this tag.</p>
+                        <p className={styles.emptyState}>No projects match your search and filters.</p>
                     )}
                 </section>
             </main>

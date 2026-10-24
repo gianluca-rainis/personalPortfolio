@@ -5,43 +5,9 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/home.module.css';
 import { usePathname } from 'next/navigation';
+import projects from '@/data/projects.json';
 
-const featuredProjects = [
-    {
-        number: '01', title: 'Project One', description: 'Description',
-        link: '',
-        tags: ['tag1', 'tag2']
-    },
-    {
-        number: '02', title: 'Project Two', description: 'Description',
-        link: '',
-        tags: ['tag1', 'tag2']
-    },
-    {
-        number: '03', title: 'Project Three', description: 'Description',
-        link: '',
-        tags: ['tag1', 'tag2']
-    },
-];
-
-const allProjects = [
-    ...featuredProjects,
-    {
-        number: '04', title: 'Project Four', description: 'Description',
-        link: '',
-        tags: ['tag1', 'tag2']
-    },
-    {
-        number: '05', title: 'Project Five', description: 'Description',
-        link: '',
-        tags: ['tag1', 'tag2']
-    },
-    {
-        number: '06', title: 'Project Six', description: 'Description',
-        link: '',
-        tags: ['tag1', 'tag2']
-    },
-];
+const featuredProjects = projects.filter((project) => project.featured);
 
 export async function getStaticProps() {
     return {
@@ -83,12 +49,12 @@ export default function HomePage({ pageTitle }) {
                             <p className={styles.sectionEyebrow}>A closer look</p>
                             <h2 id='featured-title'>Featured projects</h2>
                         </div>
-                        <span className={styles.sectionCount}>01 — {featuredProjects.at(featuredProjects.length-1).number}</span>
+                        <span className={styles.sectionCount}>01 — {featuredProjects.at(-1)?.number ?? '00'}</span>
                     </div>
                     <div className={styles.projectRail}>
                         {featuredProjects.map((project) => (
                             <article className={styles.project} key={project.number}>
-                                <Link href={project.link} className={styles.project} aria-label={project.title}>
+                                <Link href={project.href} className={styles.project} aria-label={project.title}>
                                     <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`}>
                                         <span>Image to come</span>
                                         <span className={styles.imageNumber}>{project.number}</span>
@@ -103,7 +69,7 @@ export default function HomePage({ pageTitle }) {
                                         </p>
                                         <ul className={styles.tags} aria-label='Project tags'>
                                             {project.tags.map((tag) => (
-                                                <li>{tag}</li>
+                                                <li key={tag}>{tag}</li>
                                             ))}
                                         </ul>
                                     </div>
@@ -123,13 +89,13 @@ export default function HomePage({ pageTitle }) {
                             <Link href='/projects' aria-label='All Projects'>
                                 View all Projects <span className={styles.arrowIcon} aria-hidden='true' />
                             </Link>
-                            <span className={styles.sectionCount}>01 — {allProjects.at(allProjects.length-1).number}</span>
+                            <span className={styles.sectionCount}>01 — {projects.at(-1)?.number ?? '00'}</span>
                         </div>
                     </div>
                     <div className={styles.projectRail}>
-                        {allProjects.map((project) => (
+                        {projects.map((project) => (
                             <article className={styles.project} key={project.number}>
-                                <Link href={project.link} className={styles.project} aria-label={project.title}>
+                                <Link href={project.href} className={styles.project} aria-label={project.title}>
                                     <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`}>
                                         <span>Image to come</span>
                                         <span className={styles.imageNumber}>{project.number}</span>
@@ -144,7 +110,7 @@ export default function HomePage({ pageTitle }) {
                                         </p>
                                         <ul className={styles.tags} aria-label='Project tags'>
                                             {project.tags.map((tag) => (
-                                                <li>{tag}</li>
+                                                <li key={tag}>{tag}</li>
                                             ))}
                                         </ul>
                                     </div>

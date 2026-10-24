@@ -6,53 +6,7 @@ import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import styles from '@/styles/projects.module.css';
 import { usePathname } from 'next/navigation';
-
-const projects = [
-    {
-        number: '01',
-        category: 'Category',
-        title: 'Title',
-        description: 'Description',
-        image: '/icon.png',
-        imageAlt: 'Image Alt',
-        tags: ['tags'],
-        status: 'status',
-        href: '/',
-    },
-    {
-        number: '02',
-        category: 'Category',
-        title: 'Title',
-        description: 'Description',
-        image: '/icon.png',
-        imageAlt: 'Image Alt',
-        tags: ['tags'],
-        status: 'status',
-        href: '/',
-    },
-    {
-        number: '03',
-        category: 'Category',
-        title: 'Title',
-        description: 'Description',
-        image: '/icon.png',
-        imageAlt: 'Image Alt',
-        tags: ['tags'],
-        status: 'status',
-        href: '/',
-    },
-    {
-        number: '04',
-        category: 'Category',
-        title: 'Title',
-        description: 'Description',
-        image: '/icon.png',
-        imageAlt: 'Image Alt',
-        tags: ['tags'],
-        status: 'status',
-        href: '/',
-    },
-];
+import projects from '@/data/projects.json';
 
 export async function getStaticProps() {
     return {

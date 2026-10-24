@@ -1,0 +1,74 @@
+[
+    {
+        "number": "01",
+        "category": "Category",
+        "title": "Project One",
+        "description": "Description",
+        "image": "/icon.png",
+        "imageAlt": "Image of Project One",
+        "tags": ["tag1", "tag2"],
+        "status": "status",
+        "href": "/",
+        "featured": true
+    },
+    {
+        "number": "02",
+        "category": "Category",
+        "title": "Project Two",
+        "description": "Description",
+        "image": "/icon.png",
+        "imageAlt": "Image of Project Two",
+        "tags": ["tag1", "tag2"],
+        "status": "status",
+        "href": "/",
+        "featured": true
+    },
+    {
+        "number": "03",
+        "category": "Category",
+        "title": "Project Three",
+        "description": "Description",
+        "image": "/icon.png",
+        "imageAlt": "Image of Project Three",
+        "tags": ["tag1", "tag2"],
+        "status": "status",
+        "href": "/",
+        "featured": true
+    },
+    {
+        "number": "04",
+        "category": "Category",
+        "title": "Project Four",
+        "description": "Description",
+        "image": "/icon.png",
+        "imageAlt": "Image of Project Four",
+        "tags": ["tag1", "tag2"],
+        "status": "status",
+        "href": "/",
+        "featured": false
+    },
+    {
+        "number": "05",
+        "category": "Category",
+        "title": "Project Five",
+        "description": "Description",
+        "image": "/icon.png",
+        "imageAlt": "Image of Project Five",
+        "tags": ["tag1", "tag2"],
+        "status": "status",
+        "href": "/",
+        "featured": false
+    },
+    {
+        "number": "06",
+        "category": "Category",
+        "title": "Project Six",
+        "description": "Description",
+        "image": "/icon.png",
+        "imageAlt": "Image of Project Six",
+        "tags": ["tag1", "tag2"],
+        "status": "status",
+        "href": "/",
+        "featured": false
+    }
+]

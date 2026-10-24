@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -55,9 +56,16 @@ export default function HomePage({ pageTitle }) {
                         {featuredProjects.map((project) => (
                             <article className={styles.project} key={project.number}>
                                 <Link href={project.href} className={styles.project} aria-label={project.title}>
-                                    <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`}>
-                                        <span>Image to come</span>
-                                        <span className={styles.imageNumber}>{project.number}</span>
+                                    <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`} 
+                                        style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
+                                        { (project.image && project.image != "") ? 
+                                            <Image src={project.image} alt={project.imageAlt} fill className={styles.image} />
+                                            :
+                                            <>
+                                                <span>Image to come</span>
+                                                <span className={styles.imageNumber}>{project.number}</span>
+                                            </>
+                                        }
                                     </div>
                                     <div className={styles.projectInfo}>
                                         <div className={styles.projectTitleRow}>
@@ -96,9 +104,16 @@ export default function HomePage({ pageTitle }) {
                         {projects.map((project) => (
                             <article className={styles.project} key={project.number}>
                                 <Link href={project.href} className={styles.project} aria-label={project.title}>
-                                    <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`}>
-                                        <span>Image to come</span>
-                                        <span className={styles.imageNumber}>{project.number}</span>
+                                    <div className={styles.projectImage} role='img' aria-label={`Image of ${project.title}`} 
+                                        style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
+                                        { (project.image && project.image != "") ? 
+                                            <Image src={project.image} alt={project.imageAlt} fill className={styles.image} />
+                                            :
+                                            <>
+                                                <span>Image to come</span>
+                                                <span className={styles.imageNumber}>{project.number}</span>
+                                            </>
+                                        }
                                     </div>
                                     <div className={styles.projectInfo}>
                                         <div className={styles.projectTitleRow}>

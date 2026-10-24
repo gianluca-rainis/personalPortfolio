@@ -201,6 +201,10 @@
     transition: filter 180ms ease, border-color 180ms ease;
 }
 
+.projectImage img {
+    object-fit: contain;
+}
+
 .project:hover .projectImage {
     filter: brightness(1.08);
     border-color: var(--surface-border-strong);

@@ -158,7 +158,7 @@
     position: absolute;
 }
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .compactHeader {
         padding-right: 6vw;
         padding-left: 6vw;
@@ -174,7 +174,7 @@
     }
 }
 
-@media (max-width: 540px) {
+@media screen and (max-width: 540px) {
     .compactHeader {
         min-height: 132px;
         padding: 30px 22px 22px;

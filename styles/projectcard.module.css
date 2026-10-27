@@ -134,13 +134,13 @@
     }
 }
 
-@media (max-width: 540px) {
+@media screen and (max-width: 540px) {
     .titleRow h2 {
         font-size: 1rem;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media screen and (prefers-reduced-motion: reduce) {
     .card, .image {
         animation: none;
         transition: none;

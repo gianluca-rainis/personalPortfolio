@@ -286,7 +286,7 @@
     }
 }
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .hero {
         min-height: 420px;
         padding: 64px 6vw 24px;
@@ -305,7 +305,7 @@
     }
 }
 
-@media (max-width: 540px) {
+@media screen and (max-width: 540px) {
     .hero {
         min-height: 390px;
         padding: 52px 22px 22px;
@@ -338,7 +338,7 @@
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media screen and (prefers-reduced-motion: reduce) {
     .heroLabel, .hero h1, .heroFooter, .sectionHeading, .project {
         animation: none;
     }

@@ -66,11 +66,11 @@ export default function Nav() {
         <nav ref={navRef} className={styles.nav} aria-label='Primary navigation'>
             <div className={styles.brandWrap}>
                 <Link href='/' className={styles.logoLink} aria-label='Homepage'>
-                    <img className={styles.logo} src='/GRProjects.png' alt='Gianluca Rainis Projects Logo' aria-hidden='true' />
+                    <img className={styles.logo} src='/GRLabs.png' alt='Gianluca Rainis Labs Logo' aria-hidden='true' />
                 </Link>
                 <Link href='/' className={styles.brand} aria-label='Homepage'>
                     <p>Gianluca Rainis</p>
-                    <p className={styles.projectsP}>Projects</p>
+                    <p className={styles.projectsP}>Labs</p>
                 </Link>
             </div>
 

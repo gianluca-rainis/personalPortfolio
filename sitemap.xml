@@ -9,4 +9,8 @@
     <loc>https://projects.gianlucarainis.com/projects</loc>
     <priority>0.80</priority>
   </url>
+  <url>
+    <loc>https://projects.gianlucarainis.com/docs</loc>
+    <priority>0.80</priority>
+  </url>
 </urlset>

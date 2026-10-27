@@ -39,7 +39,7 @@ export default function HomePage({ pageTitle }) {
                         <span className={styles.heroSecondLine}>into Reality</span>
                     </h1>
                     <div className={styles.heroFooter}>
-                        <span>Curiosity, design, and code.</span>
+                        <span>Imagine. Design. Code. Experiment.</span>
                         <span className={styles.heroIndex}>GR / 01</span>
                     </div>
                 </section>

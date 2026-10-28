@@ -158,8 +158,8 @@
 
 .arrowIcon {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     padding-left: 1px;
     flex-shrink: 0;
     background-color: currentColor;

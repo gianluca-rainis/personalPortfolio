@@ -49,6 +49,12 @@ body {
     background: var(--page-bg);
     color: var(--text-primary);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 a {

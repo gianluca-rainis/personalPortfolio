@@ -45,7 +45,7 @@ export default function DocPage({ mdxSource, title, description, type, date, upd
             <Nav />
 
             <main className={styles.docPage}>
-                <Link href='/docs' className={styles.backLink}>← All docs</Link>
+                <Link href='/docs' className={styles.backLink}><span className={styles.arrowIcon} aria-hidden='true' /> All docs</Link>
                 <header className={styles.docHeader}>
                     <p className={styles.pageEyebrow}>{type}</p>
                     <p className={styles.docMeta}>

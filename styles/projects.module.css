@@ -14,9 +14,10 @@
     gap: 24px;
     border-bottom: 1px solid var(--surface-border);
     background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        radial-gradient(ellipse at 78% 50%, rgba(32, 255, 68, 0.09), transparent 42%);
-    background-size: 64px 64px, auto;
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(ellipse at 75% 42%, rgba(32, 255, 68, 0.11), transparent 38%);
+    background-size: 64px 64px, 64px 64px, auto;
 }
 
 .pageEyebrow, .projectTotal, .resultsLine, .selectControl > p {

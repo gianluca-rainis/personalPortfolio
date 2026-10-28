@@ -78,9 +78,12 @@ export default function Projects({ pageTitle }) {
 
                         <label className={styles.selectControl}>
                             <p>Tag</p>
+                            <span className={styles.selectValue} aria-hidden='true'>
+                                {selectedTag === 'all' ? 'All tags' : selectedTag}
+                            </span>
                             <select value={selectedTag} onChange={(event) => setSelectedTag(event.target.value)}>
                                 <option value='all'>All tags</option>
-                                {tags.map((tag) => 
+                                {tags.map((tag) =>
                                     <option value={tag} key={tag}>{tag}</option>
                                 )}
                             </select>
@@ -88,6 +91,9 @@ export default function Projects({ pageTitle }) {
 
                         <label className={styles.selectControl}>
                             <p>Sort</p>
+                            <span className={styles.selectValue} aria-hidden='true'>
+                                {sortOrder === 'number-desc' ? 'Newest' : sortOrder === 'number-asc' ? 'Oldest' : 'A to Z'}
+                            </span>
                             <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value)}>
                                 <option value='number-desc'>Newest</option>
                                 <option value='number-asc'>Oldest</option>

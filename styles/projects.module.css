@@ -110,18 +110,59 @@
 }
 
 .selectControl {
-    justify-content: space-between;
-    gap: 10px;
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 4px;
+    padding-right: 36px;
 }
 
 .selectControl > p {
     color: var(--text-muted);
-    font-size: 0.62rem;
+    font-size: 0.6rem;
+    line-height: 1;
+}
+
+.selectValue {
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.selectControl select {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+}
+
+.selectControl::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 1px solid var(--theme-accent);
+    border-bottom: 1px solid var(--theme-accent);
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.selectControl:focus-within {
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 0 1px var(--theme-accent);
 }
 
 .selectControl select {
     cursor: pointer;
-    text-align: right;
 }
 
 .selectControl option {

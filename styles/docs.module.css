@@ -19,7 +19,7 @@
     background-size: 64px 64px, auto;
 }
 
-.pageEyebrow, .docTotal, .resultsLine, .selectControl > span {
+.pageEyebrow, .docTotal, .resultsLine {
     color: var(--theme-accent);
     font-size: 0.7rem;
     letter-spacing: 0.08em;
@@ -47,10 +47,14 @@
 
 .toolbar {
     display: grid;
-    grid-template-columns: minmax(220px, 1fr) minmax(145px, 190px);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
     padding-bottom: 22px;
     border-bottom: 1px solid var(--surface-border);
+}
+
+.searchField {
+    grid-column: span 2;
 }
 
 .searchField, .selectControl {
@@ -110,13 +114,59 @@
 }
 
 .selectControl {
-    justify-content: space-between;
-    gap: 10px;
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 4px;
+    padding-right: 36px;
+}
+
+.selectControl > span:first-child {
+    color: var(--text-muted);
+    font-size: 0.6rem;
+    line-height: 1;
+}
+
+.selectValue {
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.selectControl select {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+}
+
+.selectControl::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 1px solid var(--theme-accent);
+    border-bottom: 1px solid var(--theme-accent);
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.selectControl:focus-within {
+    border-color: var(--theme-accent);
+    box-shadow: 0 0 0 1px var(--theme-accent);
 }
 
 .selectControl select {
     cursor: pointer;
-    text-align: right;
 }
 
 .selectControl option {
@@ -350,6 +400,14 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .toolbar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .searchField {
+        grid-column: span 2;
+    }
+
     .docPage {
         width: min(100% - 12vw, 1000px);
     }
@@ -375,6 +433,10 @@
     .toolbar {
         grid-template-columns: minmax(0, 1fr);
         gap: 9px;
+    }
+
+    .searchField {
+        grid-column: auto;
     }
 
     .docGrid {

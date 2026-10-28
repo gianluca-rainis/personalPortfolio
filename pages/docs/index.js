@@ -21,20 +21,40 @@ export default function Docs({ pageTitle, docs }) {
     const path = usePathname();
     const [searched, setSearched] = useState('');
     const [selectedTag, setSelectedTag] = useState('all');
+    const [selectedType, setSelectedType] = useState('all');
+    const [selectedStatus, setSelectedStatus] = useState('all');
+    const [selectedProject, setSelectedProject] = useState('all');
+    const [sortOrder, setSortOrder] = useState('date-desc');
     const tags = [...new Set(docs.flatMap((doc) => doc.tags))].sort();
+    const types = [...new Set(docs.flatMap((doc) => doc.type))].sort();
+    const statuses = [...new Set(docs.flatMap((doc) => doc.status))].sort();
+    const projects = [...new Set(docs.map((doc) => doc.project).filter(Boolean))].sort();
 
     const visibleDocs = useMemo(() => {
         const query = searched.trim().toLowerCase();
 
-        return docs.filter((doc) => {
+        const filteredDocs = docs.filter((doc) => {
             const matchesTag = selectedTag === 'all' || doc.tags.includes(selectedTag);
-            const searchableText = [doc.title, doc.description, ...doc.tags]
+            const matchesType = selectedType === 'all' || doc.type === selectedType;
+            const matchesStatus = selectedStatus === 'all' || doc.status === selectedStatus;
+            const matchesProject = selectedProject === 'all' || doc.project === selectedProject;
+            const searchableText = [doc.title, doc.description, doc.type, doc.status, doc.project, ...doc.tags]
                 .join(' ')
                 .toLowerCase();
 
-            return matchesTag && searchableText.includes(query);
+            return matchesTag && matchesType && matchesStatus && matchesProject && searchableText.includes(query);
         });
-    }, [docs, searched, selectedTag]);
+
+        return filteredDocs.sort((first, second) => {
+            if (sortOrder === 'title-asc') {
+                return first.title.localeCompare(second.title);
+            }
+
+            const dateDifference = first.date.localeCompare(second.date);
+
+            return sortOrder === 'date-asc' ? dateDifference : -dateDifference;
+        });
+    }, [docs, searched, selectedTag, selectedType, selectedStatus, selectedProject, sortOrder]);
     
     return (
         <>
@@ -61,11 +81,61 @@ export default function Docs({ pageTitle, docs }) {
 
                         <label className={styles.selectControl}>
                             <span>Tag</span>
+                            <span className={styles.selectValue} aria-hidden='true'>
+                                {selectedTag === 'all' ? 'All tags' : selectedTag}
+                            </span>
                             <select value={selectedTag} onChange={(event) => setSelectedTag(event.target.value)}>
                                 <option value='all'>All tags</option>
-                                {tags.map((tag) => 
+                                {tags.map((tag) =>
                                     <option value={tag} key={tag}>{tag}</option>
                                 )}
+                            </select>
+                        </label>
+                        <label className={styles.selectControl}>
+                            <span>Type</span>
+                            <span className={styles.selectValue} aria-hidden='true'>
+                                {selectedType === 'all' ? 'All types' : selectedType}
+                            </span>
+                            <select value={selectedType} onChange={(event) => setSelectedType(event.target.value)}>
+                                <option value='all'>All types</option>
+                                {types.map((type) =>
+                                    <option value={type} key={type}>{type}</option>
+                                )}
+                            </select>
+                        </label>
+                        <label className={styles.selectControl}>
+                            <span>Status</span>
+                            <span className={styles.selectValue} aria-hidden='true'>
+                                {selectedStatus === 'all' ? 'All status' : selectedStatus}
+                            </span>
+                            <select value={selectedStatus} onChange={(event) => setSelectedStatus(event.target.value)}>
+                                <option value='all'>All status</option>
+                                {statuses.map((status) =>
+                                    <option value={status} key={status}>{status}</option>
+                                )}
+                            </select>
+                        </label>
+                        <label className={styles.selectControl}>
+                            <span>Project</span>
+                            <span className={styles.selectValue} aria-hidden='true'>
+                                {selectedProject === 'all' ? 'All projects' : selectedProject}
+                            </span>
+                            <select value={selectedProject} onChange={(event) => setSelectedProject(event.target.value)}>
+                                <option value='all'>All projects</option>
+                                {projects.map((project) =>
+                                    <option value={project} key={project}>{project}</option>
+                                )}
+                            </select>
+                        </label>
+                        <label className={styles.selectControl}>
+                            <span>Sort</span>
+                            <span className={styles.selectValue} aria-hidden='true'>
+                                {sortOrder === 'date-desc' ? 'Newest' : sortOrder === 'date-asc' ? 'Oldest' : 'A to Z'}
+                            </span>
+                            <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value)}>
+                                <option value='date-desc'>Newest</option>
+                                <option value='date-asc'>Oldest</option>
+                                <option value='title-asc'>A to Z</option>
                             </select>
                         </label>
                     </div>

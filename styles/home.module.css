@@ -1,5 +1,5 @@
 .main {
-    width: min(100%, 1600px);
+    width: min(100%, 100rem);
     margin: 0 auto;
     overflow: hidden;
 }
@@ -55,7 +55,7 @@
 }
 
 .hero h1 {
-    max-width: 1000px;
+    max-width: 62.5rem;
     font-size: 5rem;
     line-height: 1.12;
     font-weight: 400;

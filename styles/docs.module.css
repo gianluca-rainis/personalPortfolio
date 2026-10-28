@@ -1,5 +1,5 @@
 .docs {
-    width: min(100%, 1600px);
+    width: min(100%, 100rem);
     margin: 0 auto;
     overflow: hidden;
 }
@@ -274,7 +274,7 @@
 }
 
 .docPage {
-    width: min(100% - 14vw, 1000px);
+    width: min(100% - 14vw, 62.5rem);
     margin: 0 auto;
     padding: 25px 0 80px;
 }
@@ -309,7 +309,7 @@
 }
 
 .docDescription {
-    max-width: 700px;
+    max-width: 43.75rem;
     margin-bottom: 18px;
 }
 
@@ -418,7 +418,7 @@
     }
 
     .docPage {
-        width: min(100% - 12vw, 1000px);
+        width: min(100% - 12vw, 62.5rem);
     }
 }
 

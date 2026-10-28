@@ -6,7 +6,7 @@
 
 :root {
     color-scheme: dark;
-    font-size: clamp(14px, calc(12px + 0.25vw), 18px);
+    font-size: clamp(16px, calc(14px + 0.4vw), 22px);
     --page-bg: linear-gradient(135deg, #0a0a0a 0%, #16300c 100%);
     --surface-bg: rgba(18, 18, 18, 0.95);
     --surface-border: rgba(255, 255, 255, 0.12);

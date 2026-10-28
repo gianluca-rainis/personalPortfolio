@@ -14,3 +14,33 @@ Designing an ASIC from scratch isn't a common task; it may seem like an \"engine
 In this guide, I'll explain how I designed my first ASIC, so you can do it too.
 
 ![ASILUC 2D Image](/projects/ASILUCPreview.png)
+
+## Why design an ASIC
+Have you ever whised to have a special chip that performs a specific operation for one of your projects?
+If the answer is yes, designing an ASIC is the answer!
+In fact, an ASIC is an *Application Specific Integrated Circuit*, this mean that is literally a chip designed to do one thing.
+
+Designing an ASIC may not only be fun and educative, but also a real challenge!
+You have to handle binary operations, logic functions, phisical connection between inputs, modules and outputs, and much more!
+
+## The idea
+I started designing ASICs with a really easy project: develop one to works as an ALU!
+
+I'm joking, it wasn't easy, but it wouldn't be funny if i started from an ASIC that made a led blink or something similar.
+
+The goal was to design an ASIC *from skatch* in **Verilog HDL** (for the ones who don't know, an HDL is an *Hardware Description Language*).
+
+My first ASIC project is ASILUC: a simple ALU that may fit in a calculator.
+The ASILUC perform 16 bit operations from two 8 bit numbers given in input.
+It supports some elementar commands like `SUM`, `SUB`, `MUL` and `DIV`.
+
+I recommand starting (whether is your first project) from just a few simple functions, and then add other functions.
+
+## Where to start
+If you are still reading, this means that you are interested to learn how to design you first ASIC!
+
+First of all, you'll need some basics of electronics, in particular about digital signals and logic gates.
+
+Once you have this basics, you can start by learning an HDL.
+I recommand Verilog HDL, but you can use others too!
+

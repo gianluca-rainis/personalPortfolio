@@ -44,3 +44,46 @@ First of all, you'll need some basics of electronics, in particular about digita
 Once you have this basics, you can start by learning an HDL.
 I recommand Verilog HDL, but you can use others too!
 
+To learn Verilog, I've learned by doing the exercises on [https://hdlbits.01xz.net/wiki/Problem_sets#Verilog_Language](https://hdlbits.01xz.net/wiki/Problem_sets#Verilog_Language).
+I strongly recommand to take confidence with those exercises before to continue.
+
+It's now time to create the GitHub repo.
+I reccomand using [TinyTapeout/ttgf-verilog-template](https://github.com/TinyTapeout/ttgf-verilog-template) as template.
+
+Now you should setup the environment.
+I reccomand installing [yosyshq/oss-cad-suite-build](https://github.com/yosyshq/oss-cad-suite-build) for the compilation and the simulation tools.
+
+Now you are ready to start designing your first ASIC!
+
+## Architecture and Design
+Ok, now you should have learned how Verilog works and how to develop with it.
+
+A good project should have a simple and clear main file and a lot of little modules made to be used inside the main or in other modules.
+
+The main file in the *TinyTapeout* template has the following inputs and outputs:
+```verilog
+input  wire [7:0] ui_in,    // Dedicated inputs
+output wire [7:0] uo_out,   // Dedicated outputs
+input  wire [7:0] uio_in,   // IOs: Input path
+output wire [7:0] uio_out,  // IOs: Output path
+output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
+input  wire       ena,      // always 1 when the design is powered, so you can ignore it
+input  wire       clk,      // clock
+input  wire       rst_n     // reset_n - low to reset
+```
+
+Here the description to all the pins:
+- `ui_in`: 8 bit input
+- `ui_out`: 8 bit output
+- `uio_in`: 8 bit I/O pins that will be used as inputs
+- `uio_out`: 8 bit I/O pins that will be used as outputs
+- `uio_oe`: 8 bit pins that decide which pins of the `uio_in` and the `uio_out` are inputs or outputs
+- `ena`: ASIC enable, is always 1 when the design is powered
+- `clk`: The clock
+- `rst_n`: Reset, active low
+
+The ASILUC uses the `ui_in` pins to take in input the numbers to elaborate, the `ui_out` for the result of the operation (a 16 bit number split in 2), the `uio_oe` fixed at `00001111` to have available to `uio_in` the highest 4 bits for the command input and to `uio_out` the lowest 4 bits for the status output.
+
+The chip can be syncronous or asyncronous.
+It's recommanded to made it syncronous if the ASIC made complex operations.
+

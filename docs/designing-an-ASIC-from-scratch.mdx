@@ -4,61 +4,42 @@ description: "Designing an ASIC from scratch isn't a common task; it may seem li
 type: "guide"
 date: "2026-10-28"
 updated: "2026-10-28"
-tags: ["ASIC", "guide", "how-to"]
+tags: ["ASIC", "ALU", "blog"]
 project: "ASILUC"
 status: "Work in Progress"
 ---
 
 # Designing an ASIC from scratch
 Designing an ASIC from scratch isn't a common task; it may seem like an \"engineer's thing\", but it's actually much more accessible than it seems.
-In this guide, I'll explain how I designed my first ASIC, so you can do it too.
+To design my first ASIC I started with the idea, for then move to learn an HDL (I've used Verilog) and then start designing the project.
 
 ![ASILUC 2D Image](/projects/ASILUCPreview.png)
-
-## Why design an ASIC
-Have you ever whised to have a special chip that performs a specific operation for one of your projects?
-If the answer is yes, designing an ASIC is the answer!
-In fact, an ASIC is an *Application Specific Integrated Circuit*, this mean that is literally a chip designed to do one thing.
-
-Designing an ASIC may not only be fun and educative, but also a real challenge!
-You have to handle binary operations, logic functions, phisical connection between inputs, modules and outputs, and much more!
 
 ## The idea
 I started designing ASICs with a really easy project: develop one to works as an ALU!
 
 I'm joking, it wasn't easy, but it wouldn't be funny if i started from an ASIC that made a led blink or something similar.
 
-The goal was to design an ASIC *from skatch* in **Verilog HDL** (for the ones who don't know, an HDL is an *Hardware Description Language*).
-
 My first ASIC project is ASILUC: a simple ALU that may fit in a calculator.
-The ASILUC perform 16 bit operations from two 8 bit numbers given in input.
+ASILUC performs operations from two 8 bit numbers given in input, and returns a 16 bit number in output.
 It supports some elementar commands like `SUM`, `SUB`, `MUL` and `DIV`.
 
-I recommand starting (whether is your first project) from just a few simple functions, and then add other functions.
+My idea was to start from just a few simple functions, but prepare the field to eventually add other functions if the project grows.
 
-## Where to start
-If you are still reading, this means that you are interested to learn how to design you first ASIC!
+## Where I started
+I already had some basics of electronics, in particular about digital signals and logic gates.
 
-First of all, you'll need some basics of electronics, in particular about digital signals and logic gates.
-
-Once you have this basics, you can start by learning an HDL.
-I recommand Verilog HDL, but you can use others too!
+Then I started by learning Verilog HDL, that to me looked quite easy and intuitive.
 
 To learn Verilog, I've learned by doing the exercises on [https://hdlbits.01xz.net/wiki/Problem_sets#Verilog_Language](https://hdlbits.01xz.net/wiki/Problem_sets#Verilog_Language).
-I strongly recommand to take confidence with those exercises before to continue.
+I found them not easy, but really funny and educative.
 
-It's now time to create the GitHub repo.
-I reccomand using [TinyTapeout/ttgf-verilog-template](https://github.com/TinyTapeout/ttgf-verilog-template) as template.
+Once I felt secure about my Verilog, so when I understood how it works and I made an idea about where to start, I created the GitHub repo, based on [TinyTapeout/ttgf-verilog-template](https://github.com/TinyTapeout/ttgf-verilog-template) as template.
 
-Now you should setup the environment.
-I reccomand installing [yosyshq/oss-cad-suite-build](https://github.com/yosyshq/oss-cad-suite-build) for the compilation and the simulation tools.
-
-Now you are ready to start designing your first ASIC!
+After preparing the repo, I setted up the environment by installing [yosyshq/oss-cad-suite-build](https://github.com/yosyshq/oss-cad-suite-build) to get the compilation and the simulation tools.
 
 ## Architecture and Design
-Ok, now you should have learned how Verilog works and how to develop with it.
-
-A good project should have a simple and clear main file and a lot of little modules made to be used inside the main or in other modules.
+I decided to project the ASILUC to have a simple and clear main file and some little modules made to be used inside the main or in other modules.
 
 The main file in the *TinyTapeout* template has the following inputs and outputs:
 ```verilog
@@ -72,18 +53,26 @@ input  wire       clk,      // clock
 input  wire       rst_n     // reset_n - low to reset
 ```
 
-Here the description to all the pins:
-- `ui_in`: 8 bit input
-- `ui_out`: 8 bit output
-- `uio_in`: 8 bit I/O pins that will be used as inputs
-- `uio_out`: 8 bit I/O pins that will be used as outputs
-- `uio_oe`: 8 bit pins that decide which pins of the `uio_in` and the `uio_out` are inputs or outputs
+I decided to use those pins as following:
+- `ui_in`: 8 bit input for the 2 numbers
+- `uo_out`: 8 bit output for the result of the operation (or the error code)
+- `uio_in`: uses only the lowest 4 bits for the operation code
+- `uio_out`: uses only the highest 4 bits for the ASILUC status
+- `uio_oe`: 8 bit pins that decide which pins of the `uio_in` and the `uio_out` are inputs or outputs, fixed at `8'b11110000`
 - `ena`: ASIC enable, is always 1 when the design is powered
-- `clk`: The clock
+- `clk`: The clock, ASILUC is sincronous
 - `rst_n`: Reset, active low
 
-The ASILUC uses the `ui_in` pins to take in input the numbers to elaborate, the `ui_out` for the result of the operation (a 16 bit number split in 2), the `uio_oe` fixed at `00001111` to have available to `uio_in` the highest 4 bits for the command input and to `uio_out` the lowest 4 bits for the status output.
+ASILUC is sincronous because the operations that executes need to be precise and is sensible to an eventual difference of time needed to effectuate different operations.
 
-The chip can be syncronous or asyncronous.
-It's recommanded to made it syncronous if the ASIC made complex operations.
+The ASILUC is devided in 3 modules:
+- The main module
+- The calculation module
+- The clock counter module
+
+The main module takes and validates the inputs, handles the clock timing and the outputs.
+The calculation module do the selected operation on the given numbers and return the result of the operation.
+The clock module simply counts when 3 clock cycles passes.
+
+The coice of the 3 clocks is to allow the master to stabilize the signals (in input) and to read the outputs without the need to be perfectly sincronized to the ASILUC's clock.
 

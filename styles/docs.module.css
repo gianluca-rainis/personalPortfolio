@@ -349,6 +349,7 @@
 }
 
 .mdxContent a {
+    line-break: anywhere;
     color: var(--theme-accent);
 }
 

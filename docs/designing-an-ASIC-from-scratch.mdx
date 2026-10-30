@@ -76,3 +76,85 @@ The clock module simply counts when 3 clock cycles passes.
 
 The coice of the 3 clocks is to allow the master to stabilize the signals (in input) and to read the outputs without the need to be perfectly sincronized to the ASILUC's clock.
 
+## ASILUC states
+ASILUC has 9 states:
+- *Idle* - ASILUC does `NOP` unthil it reads a command on `uio_in`
+- *Command Reading* - ASILUC is reading the command on `uio_in`
+- *Command Accepted* - ASILUC accepted the command and is going to read the first number in input
+- *Input (first number)* - ASILUC is reading the first 8 bit number on `ui_in`
+- *Input (second number)* - ASILUC is reading the second 8 bit number on `ui_in`
+- *Calculating* - ASILUC is performing the operation
+- *Output (lowest byte)* - ASILUC is printing on `uo_out` the lowest 8 bit of the result
+- *Output (highest byte)* - ASILUC is printing on `uo_out` the highest 8 bit of the result
+- *Error* - An error occuried, on `uo_out` is printed the error code
+
+### ASILUC status codes table
+|Sequence|Operation|Duration (clk)|busy|status|highByte|error|
+|---|---|---|---|---|---|---|
+|Ø|Idle|∞|0|0|0|0|
+|0|Command Reading|0-2|0|0|0|0|
+|1|Command Accepted / Input (first number)|3-5|0|1|0|0|
+|2|Input (second number)|6-8|0|1|1|0|
+|3|Calculating|Variable|1|0|0|0|
+|4|Output (lowest byte)|0-2 (After Calculating)|1|1|0|0|
+|5|Output (highest byte)|3-5 (After Calculating)|1|1|1|0|
+|Ø|Error|0-2|0|0|0|1|
+
+This is the table that describes the order of the ASILUC's states (Idle and Error are out of the order because Idle is the default status and Error is a special status).
+
+Every state has a fixed duration:
+Idle persists unthil a command is given in input;
+Command Reading is 3 clock long;
+Command Accepted / Input (first number) are 3 clock long, and they happens together;
+Input (second number) is 3 clock long;
+Calculating is variable;
+Output (lowest byte) is 3 clock long;
+Output (highest byte) is 3 clock long;
+Error is 3 clock long.
+
+## How it works
+ASILUC's default behavior is `NOP`.
+In this status, all inputs (`ui_in`) are ignored.
+
+When `uio_in` strictly changes from `NOP` to one of the operations, ASILUC starts the command reading: it waits **three clock cycles** to read the command associated with the operation to be executed, so the signal has time to stabilize, preventing errors.
+Once ASILUC reads the command, it reads the first 8-bit number from `ui_in` for **3 cycles** (the value saved is the one on the third cycle), and then, it reads the second 8-bit number for **3 cycles**.
+
+`uio_in` ignores any unexpected command changes: the command read on the third cycle after the change from `NOP` is the one executed.
+If the command returns to `NOP` before the third cycle, the reading is aborted.
+
+Meanwhile, `uio_out` uses the 4 bits to signal the status of ASILUC:
+- `uio_out[7]`: *busy* - 1 if ASILUC is executing operations or if ASILUC put a result byte on `uo_out`.
+- `uio_out[6]`: *status* - 1 if ASILUC put a result byte on `uo_out`, if ASILUC is reading a number on `ui_in`, or if the given command has been accepted.
+- `uio_out[5]`: *highByte* - indicates whether the byte on `uo_out` is the high byte (2nd byte of out) or the low byte (1st byte of out), or indicates whether the read number on `ui_in` is the second or the first.
+- `uio_out[4]`: *error* - 1 if an error occurred.
+
+ASILUC processes the operation in the time it needs, maintaining *busy* at 1.
+Once ASILUC finishes processing the operation, it sets *status* to 1 and puts the low byte of the result on `uo_out` (which, until this point, has always been `0x00`) (*highByte* at 0) (keeps the low byte stable for **3 cycles**), and then the high byte of the result (*highByte* at 1) (keeps it stable for **3 cycles**).
+
+Afterwards, it returns with *busy* at 0, *status* at 0, *highByte* at 0, *error* at 0, and `uo_out` at `0x00`.
+
+The process restarts, listening to `uio_in` again.
+
+## How I tested it
+To test ASILUC I first tested the submodules calculation and clock counter.
+Thanks to the *OSS CAD Suite* I was able to run some tests (that I wrote in a specific Verilog file) to see the behaviour of the modules and visualiza the waveforms.
+
+For the phase timer it was really easy to test, just see if the last cycle bit is set when the clock is at the thirth iteration.
+
+The calculation module was a little more complex to test, it effectuate some operations on the given numbers and check the result.
+
+Testing the entire ASILUC was easyer because the TinyTapeout template provides a testing template in python to edit, so I just had to write in python the tests.
+
+Also the TinyTapeout template provides some GitHub Actions that compile the gds and provide 2D preview; 3D viewer and the Explorer (that I used a lot to test ASILUC).
+
+![ASILUC 3D Image](/projects/ASILUCPreview3D.png)
+
+Here is the video of a simple `SUM` operation performed by ASILUC on the TinyTapeout Explorer:
+
+<video controls>
+  <source src="/projects/ASILUCSumExample.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+You can try ASILUC here: [ASILUC TinyTapeout Explorer](https://gds-explorer.tinytapeout.com/viewer?file=https://gianluca-rainis.github.io/ASILUC/tinytapeout.oas&pdk=gf180mcuD)
+

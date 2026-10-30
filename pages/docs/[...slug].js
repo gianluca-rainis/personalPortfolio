@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import styles from '@/styles/docs.module.css';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import remarkGfm from 'remark-gfm';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { usePathname } from 'next/navigation';
@@ -25,7 +26,10 @@ export async function getStaticProps({ params }) {
     const slug = params.slug.join('/');
     const filePath = path.join(DOCS_DIRECTORY, ...params.slug) + '.mdx';
     const source = await readFile(filePath, 'utf8');
-    const mdxSource = await serialize(source, { parseFrontmatter: true });
+    const mdxSource = await serialize(source, {
+        parseFrontmatter: true,
+        mdxOptions: { remarkPlugins: [remarkGfm] }
+    });
     const metadata = getDocMetadata(mdxSource.frontmatter, slug);
 
     return {

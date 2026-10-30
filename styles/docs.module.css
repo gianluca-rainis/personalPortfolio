@@ -369,6 +369,16 @@
     background: rgba(255, 255, 255, 0.08);
 }
 
+.mdxContent table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.mdxContent table td, .mdxContent table th {
+    padding: 10px;
+}
+
 .emptyState {
     padding: 44px 0;
     color: var(--text-muted);
@@ -427,6 +437,10 @@
     .docContent .docContentHeader {
         flex-direction: column-reverse;
         width: 100%;
+    }
+
+    .mdxContent table td, .mdxContent table th {
+        padding: 5px;
     }
 }
 

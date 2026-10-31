@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from '@/components/Head';
@@ -9,6 +9,11 @@ import { usePathname } from 'next/navigation';
 import projects from '@/data/projects.json';
 
 const featuredProjects = projects.filter((project) => project.featured);
+const featuredProjectsInDisplayOrder = [...featuredProjects].reverse();
+const projectsInDisplayOrder = [...projects].reverse();
+const heroFirstLine = 'Engineering Ideas';
+const heroSecondLine = 'into Reality';
+const heroTitle = `${heroFirstLine} ${heroSecondLine}`;
 
 export async function getStaticProps() {
     return {
@@ -20,6 +25,28 @@ export async function getStaticProps() {
 
 export default function HomePage({ pageTitle }) {
     const path = usePathname();
+    const [typedCharacters, setTypedCharacters] = useState(0);
+
+    useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setTypedCharacters(heroTitle.length);
+
+            return;
+        }
+
+        let characters = 0;
+
+        const typingInterval = window.setInterval(() => {
+            characters += 1;
+            setTypedCharacters(characters);
+
+            if (characters === heroTitle.length) {
+                window.clearInterval(typingInterval);
+            }
+        }, 65);
+
+        return () => window.clearInterval(typingInterval);
+    }, []);
 
     return (
         <>
@@ -34,9 +61,19 @@ export default function HomePage({ pageTitle }) {
             <main className={styles.main}>
                 <section className={styles.hero} aria-labelledby='home-title'>
                     <p className={styles.heroLabel}>Selected work / {new Date().getFullYear()}</p>
-                    <h1 id='home-title'>
-                        <span>Engineering Ideas</span>
-                        <span className={styles.heroSecondLine}>into Reality</span>
+                    <h1 id='home-title' aria-label={heroTitle}>
+                        <span aria-hidden='true'>
+                            {heroTitle.slice(0, Math.min(typedCharacters, heroFirstLine.length))}
+                            {typedCharacters <= heroFirstLine.length + 1 && (
+                                <span className={styles.typingCursor}>_</span>
+                            )}
+                        </span>
+                        <span className={styles.heroSecondLine} aria-hidden='true'>
+                            {heroTitle.slice(heroFirstLine.length + 1, typedCharacters)}
+                            {typedCharacters > heroFirstLine.length + 1 && (
+                                <span className={styles.typingCursor}>_</span>
+                            )}
+                        </span>
                     </h1>
                     <div className={styles.heroFooter}>
                         <span>Imagine. Design. Code. Experiment.</span>
@@ -53,7 +90,7 @@ export default function HomePage({ pageTitle }) {
                         <span className={styles.sectionCount}>01 — {featuredProjects.at(-1)?.number ?? '00'}</span>
                     </div>
                     <div className={styles.projectRail}>
-                        {featuredProjects.reverse().map((project) => (
+                        {featuredProjectsInDisplayOrder.map((project) => (
                             <article className={styles.project} key={project.number}>
                                 <Link href={project.href} className={styles.project} aria-label={project.title}>
                                     <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 
@@ -101,7 +138,7 @@ export default function HomePage({ pageTitle }) {
                         </div>
                     </div>
                     <div className={styles.projectRail}>
-                        {projects.reverse().map((project) => (
+                        {projectsInDisplayOrder.map((project) => (
                             <article className={styles.project} key={project.number}>
                                 <Link href={project.href} className={styles.project} aria-label={project.title}>
                                     <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 

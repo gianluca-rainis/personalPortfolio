@@ -63,10 +63,23 @@
 
 .hero h1 span {
     display: block;
+    min-height: 1.12em;
 }
 
 .heroSecondLine {
     color: var(--theme-text);
+}
+
+.hero h1 .typingCursor {
+    display: inline-block;
+    color: var(--theme-accent);
+    animation: cursorBlink 700ms steps(2, start) infinite;
+}
+
+@keyframes cursorBlink {
+    to {
+        visibility: hidden;
+    }
 }
 
 .heroFooter {
@@ -342,6 +355,10 @@
 
 @media screen and (prefers-reduced-motion: reduce) {
     .heroLabel, .hero h1, .heroFooter, .sectionHeading, .project {
+        animation: none;
+    }
+
+    .hero h1 .typingCursor {
         animation: none;
     }
 

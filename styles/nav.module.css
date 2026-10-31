@@ -1,28 +1,33 @@
 .nav {
-    width: 100%;
+    width: calc(100% - 32px);
     max-height: 80px;
-    position: sticky;
-    z-index: 1;
-    top: 0;
+    position: fixed;
+    z-index: 10;
+    top: 12px;
+    margin: 10px 16px;
     display: flex;
     flex-direction: row;
-    background: linear-gradient(135deg, #0a110b 0%, #0c301a 100%);
+    border: 1px solid var(--surface-border);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(10, 17, 11, 0.78) 0%, rgba(12, 48, 26, 0.72) 100%);
+    backdrop-filter: blur(10px) saturate(140%);
     transition: --pointer-glow 10ms ease-out;
 }
 
 .nav::after {
     content: '';
     position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 100%;
-    height: 13px;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
     background:
-        radial-gradient(ellipse 90px 8px at var(--pointer-x, 50%) 50%, rgba(var(--theme-accent-rgb), var(--pointer-glow, 0)) 0%, transparent 100%),
-        linear-gradient(90deg, transparent 0%, var(--theme-accent-soft) 25%, var(--theme-accent-soft-strong) 50%, var(--theme-accent-soft) 75%, transparent 100%);
-    background-size: 100% 13px, 100% 1px;
-    background-position: center, center;
-    background-repeat: no-repeat;
+        radial-gradient(ellipse 90px 8px at var(--pointer-x, 50%) var(--pointer-y, 100%), rgba(var(--theme-accent-rgb), var(--pointer-glow, 0)) 0%, transparent 100%),
+        radial-gradient(ellipse 8px 90px at var(--pointer-x, 50%) var(--pointer-y, 100%), rgba(var(--theme-accent-rgb), var(--pointer-glow, 0)) 0%, transparent 100%),
+        linear-gradient(90deg, transparent 0%, rgba(var(--theme-accent-rgb), 0.04) 25%, rgba(var(--theme-accent-rgb), 0.08) 50%, rgba(var(--theme-accent-rgb), 0.04) 75%, transparent 100%),
+        linear-gradient(180deg, transparent 0%, rgba(var(--theme-accent-rgb), 0.04) 25%, rgba(var(--theme-accent-rgb), 0.08) 50%, rgba(var(--theme-accent-rgb), 0.04) 75%, transparent 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
     pointer-events: none;
 }
 
@@ -173,21 +178,8 @@
         gap: 20px;
     }
 }
-@media screen and (max-width: 700px) and (min-width: 600px) {
-    .brand {
-        font-size: small;
-    }
 
-    .projectsP {
-        font-size: 0.75rem;
-    }
-
-    .computerLinks {
-        font-size: 0.75rem;
-        gap: 10px;
-    }
-}
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .brand {
         font-size: small;
     }
@@ -208,6 +200,7 @@
         display: block;
     }
 }
+
 @media screen and (max-width: 400px) {
     .mobileMenu {
         width: 200px;

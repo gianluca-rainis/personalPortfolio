@@ -114,6 +114,7 @@
         font-size: 0.75rem;
     }
 }
+
 @media screen and (max-width: 700px) and (min-width: 600px) {
     .motto {
         font-size: small;
@@ -127,6 +128,7 @@
         padding-left: 25px;
     }
 }
+
 @media screen and (max-width: 600px) {
     .footer {
         box-sizing: border-box;

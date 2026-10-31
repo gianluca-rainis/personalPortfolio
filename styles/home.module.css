@@ -2,23 +2,49 @@
     width: min(100%, 100rem);
     margin: 0 auto;
     overflow: hidden;
+    position: relative;
+    isolation: isolate;
+}
+
+.main::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background-color: #305d30;
+    -webkit-mask-image: url('/backgroundPattern.svg');
+    mask-image: url('/backgroundPattern.svg');
+    -webkit-mask-size: 95px 95px;
+    mask-size: 95px 95px;
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+    opacity: 0.07;
 }
 
 .header {
-    width: 100%;
-    padding: 15px 0;
-    margin: 0;
+    position: absolute;
+    z-index: 1;
+    width: calc(100% - 32px);
+    padding: 15px 0 15px;
+    margin: 110px 16px 0;
     overflow: hidden;
     text-align: center;
     align-items: center;
+    border: 1px solid var(--surface-border);
+    border-radius: 16px;
     color: var(--theme-accent);
     background: linear-gradient(135deg, #0d1f14 0%, #0b1c18 100%);
+}
+
+.header h1 {
+    font-size: clamp(1rem, 4vw, 1.75rem);
 }
 
 .hero {
     min-height: 490px;
     box-sizing: border-box;
-    padding: 78px 7vw 28px;
+    padding: 200px 7vw 28px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,8 +53,13 @@
     background:
         linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        radial-gradient(ellipse at 75% 42%, rgba(32, 255, 68, 0.11), transparent 38%);
-    background-size: 64px 64px, 64px 64px, auto;
+        radial-gradient(ellipse at 75% 42%, rgba(32, 255, 68, 0.11), transparent 38%),
+        var(--page-bg);
+    background-size: 64px 64px, 64px 64px, auto, auto;
+}
+
+.header:not([hidden]) + .main .hero {
+    padding-top: 250px;
 }
 
 .heroLabel, .hero h1, .heroFooter {
@@ -304,7 +335,11 @@
 @media screen and (max-width: 800px) {
     .hero {
         min-height: 420px;
-        padding: 64px 6vw 24px;
+        padding: 130px 6vw 24px;
+    }
+
+    .header:not([hidden]) + .main .hero {
+        padding-top: 230px;
     }
 
     .hero h1 {
@@ -323,7 +358,11 @@
 @media screen and (max-width: 540px) {
     .hero {
         min-height: 390px;
-        padding: 52px 22px 22px;
+        padding: 120px 22px 22px;
+    }
+
+    .header:not([hidden]) + .main .hero {
+        padding-top: 200px;
     }
 
     .hero h1 {

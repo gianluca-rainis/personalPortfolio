@@ -5,9 +5,9 @@
 }
 
 .compactHeader {
-    min-height: 150px;
+    min-height: 220px;
     box-sizing: border-box;
-    padding: 38px 7vw 28px;
+    padding: 120px 7vw 28px;
     display: flex;
     justify-content: space-between;
     align-items: end;
@@ -218,8 +218,8 @@
 
 @media screen and (max-width: 540px) {
     .compactHeader {
-        min-height: 132px;
-        padding: 30px 22px 22px;
+        min-height: 210px;
+        padding: 110px 22px 22px;
     }
 
     .archive {

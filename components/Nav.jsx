@@ -37,11 +37,20 @@ export default function Nav() {
         function handlePointerMove(event) {
             const bounds = nav.getBoundingClientRect();
             const horizontalDistance = Math.max(bounds.left - event.clientX, 0, event.clientX - bounds.right);
-            const distanceFromBorder = Math.hypot(horizontalDistance, event.clientY - bounds.bottom);
+            const verticalDistance = Math.max(bounds.top - event.clientY, 0, event.clientY - bounds.bottom);
+            const isInsideNav = (horizontalDistance === 0 && verticalDistance === 0);
+            const distanceFromBorder = isInsideNav ? Math.min(
+                    event.clientX - bounds.left,
+                    bounds.right - event.clientX,
+                    event.clientY - bounds.top,
+                    bounds.bottom - event.clientY
+                ) : Math.hypot(horizontalDistance, verticalDistance);
             const pointerX = Math.min(100, Math.max(0, ((event.clientX - bounds.left) / bounds.width) * 100));
-            const glowIntensity = Math.max(0, 0.3 * (1 - distanceFromBorder / 80));
+            const pointerY = Math.min(100, Math.max(0, ((event.clientY - bounds.top) / bounds.height) * 100));
+            const glowIntensity = Math.max(0, 0.65 * (1 - distanceFromBorder / 100));
 
             nav.style.setProperty('--pointer-x', `${pointerX}%`);
+            nav.style.setProperty('--pointer-y', `${pointerY}%`);
             nav.style.setProperty('--pointer-glow', `${glowIntensity}`);
         }
 

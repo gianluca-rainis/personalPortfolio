@@ -24,7 +24,7 @@ I'm joking, it wasn't simple, but where would be the fun in starting with an ASI
 
 My first ASIC project is ASILUC, a simple ALU (Arithmetic Logic Unit) that may serve as the core of a simple calculator.
 
-ASILUC accepts two 8-bit operands and returns a 16-bit result, transmitted as two 8-bit outputs.
+ASILUC accepts two 8-bit operands and return a 16-bit result, transmitted as two 8-bit outputs.
 It supports some basic arithmetic operations like `SUM`, `SUB`, `MUL` and `DIV`.
 
 My idea was to start from just a few simple operations, but leaving room for eventually add additional features in future versions.
@@ -32,9 +32,9 @@ My idea was to start from just a few simple operations, but leaving room for eve
 ## Where I started
 I already had some basics of electronics, in particular about digital signals and logic gates.
 
-Then I started by learning Verilog HDL, that to me looked quite easy and intuitive.
+Then I started by learning Verilog HDL, which looked quite easy and intuitive to me.
 
-To learn Verilog, I've learned by doing the exercises on [https://hdlbits.01xz.net/wiki/Problem_sets#Verilog_Language](https://hdlbits.01xz.net/wiki/Problem_sets#Verilog_Language).
+I learned Verilog by doing the exercises on [https://hdlbits.01xz.net/wiki/Problem_sets#Verilog_Language](https://hdlbits.01xz.net/wiki/Problem_sets#Verilog_Language).
 I found them challenging, but also fun and educational.
 
 Once I felt confident enough with Verilog, so when I understood how it works and I made an idea about where to start, I created the GitHub repo, based on [TinyTapeout/ttgf-verilog-template](https://github.com/TinyTapeout/ttgf-verilog-template) as template.
@@ -76,10 +76,10 @@ ASILUC is divided into three modules:
 
 The main module takes and validates the inputs, handles the clock timing and the outputs.
 The calculation module performs the selected operation on the given numbers and return the result of the operation.
-The clock module simply counts when 3 clock cycles passes.
+The clock module simply counts when 3 clock cycles pass.
 
 I chose three clock cycle phases to provide a timing window for input acquisition and output reading.
-This makes communication with the controlling device easier, allowing the master to stabilize the signals in input and to read the outputs without the need to be perfectly sincronized to the ASILUC's clock.
+This makes communication with the controlling device easier, allowing the master to stabilize the signals in input and to read the outputs without the need to be perfectly synchronized to the ASILUC's clock.
 
 ## ASILUC states
 ASILUC has 9 states:
@@ -89,8 +89,8 @@ ASILUC has 9 states:
 - *Input (first number)* - ASILUC is reading the first 8 bit number on `ui_in`
 - *Input (second number)* - ASILUC is reading the second 8 bit number on `ui_in`
 - *Calculating* - ASILUC is performing the operation
-- *Output (lowest byte)* - ASILUC is printing on `uo_out` the lowest 8 bit of the result
-- *Output (highest byte)* - ASILUC is printing on `uo_out` the highest 8 bit of the result
+- *Output (lowest byte)* - ASILUC outputs on `uo_out` the lowest 8 bit of the result
+- *Output (highest byte)* - ASILUC outputs on `uo_out` the highest 8 bit of the result
 - *Error* - An error occurred, on `uo_out` is printed the error code
 
 ### ASILUC status codes table
@@ -107,15 +107,15 @@ ASILUC has 9 states:
 
 This is the table that describes the order of the ASILUC's states (Idle and Error are out of the order because Idle is the default status and Error is a special status).
 
-Every state has a fixed duration:
-- Idle persists unthil a command is given in input
-- Command Reading is 3 clock long
-- Command Accepted / Input (first number) are 3 clock long, and they happens together
-- Input (second number) is 3 clock long
+Most states have a fixed duration:
+- Idle persists until a command is given in input
+- Command Reading is 3 clock cycles long
+- Command Accepted / Input (first number) are 3 clock cycles long, and they happen together
+- Input (second number) is 3 clock cycles long
 - Calculating is variable
-- Output (lowest byte) is 3 clock long
-- Output (highest byte) is 3 clock long
-- Error is 3 clock long
+- Output (lowest byte) is 3 clock cycles long
+- Output (highest byte) is 3 clock cycles long
+- Error is 3 clock cycles long
 
 ## How it works
 ASILUC's default behavior is `NOP`.
@@ -163,7 +163,7 @@ Thanks to the *OSS CAD Suite* I was able to run some tests (that I wrote in a sp
 
 For the phase timer it was really easy to test, just see if the last cycle bit is set when the clock is on the third cycle.
 
-The calculation module was a little more complex to test, it effectuate some operations on the given numbers and check the result.
+The calculation module was a little more complex to test, it performs some operations on the given numbers and check the result.
 
 Testing the entire ASILUC was easier because the TinyTapeout template provides a testing template in python to edit, so I just had to write in python the tests.
 
@@ -198,11 +198,11 @@ At the end of the 3 clocks interval the module sets `last_cycle`, which is check
 Thanks to this project, I'd the opportunity to learn how to design an ASIC from scratch.
 I had never really thought before about how a chip works from inside, even if I designed PCBs before and made a lot of electronic projects.
 
-It was also the first time that I developed using an HDL, that after learning the Assembly, it didn't seem too difficult.
+It was also the first time that I developed using an HDL, which after learning the Assembly, didn't seem too difficult.
 
 In the future I'd like to add more functions to ASILUC or even evolve it and turn it into a CPU.
 
-Here some links:
+Here are some links:
 - [GitHub](https://github.com/gianluca-rainis/ASILUC)
 - [Documentation](https://github.com/gianluca-rainis/ASILUC/blob/main/docs/info.md)
 - [GDS Viewer](https://gds-viewer.tinytapeout.com/?model=https://gianluca-rainis.github.io/ASILUC/tinytapeout.oas&pdk=gf180mcuD)

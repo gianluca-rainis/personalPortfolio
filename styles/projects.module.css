@@ -257,15 +257,25 @@
     align-items: center;
     min-height: 28px;
     margin: 20px 8px 0 0;
-    padding: 0 9px;
+    padding: 3px 10px;
     border: 1px solid var(--surface-border-strong);
     color: var(--text-secondary);
-    font-size: 0.65rem;
+    font-size: 0.9rem;
     line-height: 1.3;
 }
 
 .projectHeader div div ul {
     justify-self: flex-end;
+}
+
+.projectTags li {
+    border: 0 !important;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(var(--theme-accent-rgb), 0.3) 0%,
+        rgba(var(--theme-accent-rgb), 0.1) 60%,
+        #0000001f 100%
+    );
 }
 
 .projectHeader .projectStatus {
@@ -279,7 +289,7 @@
     padding-left: 14px;
     border-left: 2px solid var(--theme-accent);
     color: var(--text-secondary);
-    font-size: 0.82rem;
+    font-size: 1rem;
     line-height: 1.7;
 }
 
@@ -295,23 +305,87 @@
     padding: 6px 8px;
     border: 1px solid var(--surface-border-strong);
     color: var(--text-muted);
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     line-height: 1;
+    border-radius: 10px;
 }
 
-.projectHeader img {
+.projectImage {
     display: block;
-    max-height: 400px;
+    max-height: 300px;
     width: 100%;
     aspect-ratio: 1.3;
     object-fit: cover;
+}
+
+.projectLinks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.projectLink {
+    box-sizing: border-box;
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--theme-accent-soft-strong);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.12);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: background 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.projectLink:hover, .projectLink:focus-visible {
+    border-color: var(--theme-accent);
+    background: radial-gradient(ellipse at center, rgba(var(--theme-accent-rgb), 0.12), rgba(0, 0, 0, 0.12) 75%);
+    box-shadow: 0 0 14px rgba(var(--theme-accent-rgb), 0.12);
+}
+
+.projectLink > img {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    transition: filter 180ms ease;
+}
+
+.projectLink:hover > img, .projectLink:focus-visible > img {
+    filter: drop-shadow(0 0 7px var(--theme-accent-soft-strong));
+}
+
+.projectLinkText {
+    min-width: 0;
+}
+
+.projectLinkText p {
+    margin: 0;
+}
+
+.projectLinkText p:first-child {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.projectLinkText p + p {
+    margin-top: 3px;
+    color: var(--text-secondary);
+    font-size: 0.65rem;
 }
 
 .backLink:hover {
     color: var(--theme-accent);
 }
 
-.arrowIcon {
+.backarrowIcon {
     display: inline-block;
     width: 12px;
     height: 12px;
@@ -320,6 +394,29 @@
     background-color: currentColor;
     -webkit-mask: url('/ArrowLeft.svg') center / 100% 100% no-repeat;
     mask: url('/ArrowLeft.svg') center / 100% 100% no-repeat;
+}
+
+.forwardarrowIcon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding-left: 1px;
+    flex-shrink: 0;
+    background-color: currentColor;
+    transform: scaleX(-1);
+    -webkit-mask: url('/ArrowLeft.svg') center / 100% 100% no-repeat;
+    mask: url('/ArrowLeft.svg') center / 100% 100% no-repeat;
+}
+
+.arrowIcon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    padding-left: 1px;
+    flex-shrink: 0;
+    background-color: currentColor;
+    -webkit-mask: url('/Arrow.svg') center / 100% 100% no-repeat;
+    mask: url('/Arrow.svg') center / 100% 100% no-repeat;
 }
 
 @media screen and (max-width: 800px) {
@@ -332,11 +429,30 @@
         padding-right: 6vw;
         padding-left: 6vw;
     }
+
+    .projectHeader div div ul li {
+        font-size: 0.7rem;
+        padding: 1px 6px;
+    }
 }
 
 @media screen and (max-width: 540px) {
-    .projectHeader img {
+    .backLink {
+        margin-bottom: 10px;
+    }
+
+    .projectImage {
         aspect-ratio: 1.45;
+    }
+
+    .projectHeaderInfo {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .projectHeader div div ul {
+        margin: 0;
     }
 
     .compactHeader {

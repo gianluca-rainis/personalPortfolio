@@ -231,6 +231,123 @@
     background-size: 40px 40px, 40px 40px, auto, auto;
 }
 
+.projectContent {
+    display: grid;
+    grid-template-columns: 25vw minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 72px);
+    padding: clamp(28px, 5vw, 64px);
+}
+
+.aside {
+    min-width: 0;
+    align-self: stretch;
+    padding-right: clamp(16px, 2vw, 28px);
+    border-right: 1px solid var(--surface-border);
+}
+
+.desktopAside {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.asideMenu {
+    display: none;
+}
+
+.desktopAside a, .asideMenu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-left: 2px solid transparent;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.desktopAside a:hover, .desktopAside a:focus-visible, .asideMenu a:hover, .asideMenu a:focus-visible {
+    border-left-color: var(--theme-accent);
+    color: var(--theme-accent);
+    background: rgba(var(--theme-accent-rgb), 0.08);
+}
+
+.desktopAside a img, .asideMenu a img {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
+.projectArticle {
+    min-width: 0;
+    padding-top: 24px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.projectArticle h2, .projectArticle h3, .projectArticle h4 {
+    margin: 1.8em 0 0.6em;
+    color: var(--text-primary);
+    font-weight: 400;
+    line-height: 1.3;
+    scroll-margin-top: 24px;
+}
+
+.projectArticle h2 {
+    font-size: 1.65rem;
+}
+
+.projectArticle h3 {
+    font-size: 1.3rem;
+}
+
+.projectArticle p, .projectArticle ul, .projectArticle ol, .projectArticle blockquote {
+    margin: 0 0 1.2em;
+}
+
+.projectArticle ul, .projectArticle ol {
+    padding-left: 1.5em;
+}
+
+.projectArticle a {
+    color: var(--theme-accent);
+    line-break: anywhere;
+}
+
+.projectArticle pre, .projectArticle code {
+    font-family: var(--font-monospace, monospace);
+}
+
+.projectArticle pre {
+    overflow-x: auto;
+    padding: 16px;
+    border: 1px solid var(--surface-border);
+    background: rgba(0, 0, 0, 0.28);
+}
+
+.projectArticle :not(pre) > code {
+    padding: 2px 5px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.projectArticle img, .projectArticle video {
+    max-width: 100%;
+    max-height: 80vh;
+}
+
+.projectArticle table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.projectArticle table td, .projectArticle table th {
+    padding: 10px;
+}
+
 .projectHeader > div {
     min-width: 0;
 }
@@ -434,6 +551,74 @@
         font-size: 0.7rem;
         padding: 1px 6px;
     }
+
+    .projectContent {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding: 28px 6vw;
+    }
+
+    .aside {
+        padding-right: 0;
+        border-right: 0;
+    }
+
+    .desktopAside {
+        display: none;
+    }
+
+    .asideMenu {
+        display: block;
+    }
+
+    .asideMenu > summary {
+        display: flex;
+        min-height: 46px;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14px;
+        border: 1px solid var(--surface-border-strong);
+        color: var(--text-primary);
+        cursor: pointer;
+        font-size: 0.85rem;
+        list-style: none;
+    }
+
+    .asideMenu > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .asideMenu > summary::after {
+        width: 7px;
+        height: 7px;
+        border-right: 1px solid var(--theme-accent);
+        border-bottom: 1px solid var(--theme-accent);
+        content: '';
+        transform: rotate(45deg) translateY(-2px);
+        transition: transform 180ms ease;
+    }
+
+    .asideMenu[open] > summary::after {
+        transform: rotate(225deg) translate(-2px, -1px);
+    }
+
+    .asideMenu > nav {
+        display: none;
+        gap: 0;
+        padding: 6px 0;
+        border: 1px solid var(--surface-border-strong);
+        border-top: 0;
+    }
+
+    .asideMenu[open] > nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .asideMenu a {
+        padding: 10px 14px;
+    }
 }
 
 @media screen and (max-width: 540px) {
@@ -443,6 +628,14 @@
 
     .projectImage {
         aspect-ratio: 1.45;
+    }
+
+    .projectContent {
+        padding: 24px 22px 40px;
+    }
+
+    .projectArticle table td, .projectArticle table th {
+        padding: 5px;
     }
 
     .projectHeaderInfo {

@@ -64,9 +64,44 @@ export default function ProjectPage({ pageTitle }) {
                         </a>
                     </div>
                 </header>
-                <article className={styles.projectContent}>
-                    
-                </article>
+                <section className={styles.projectContent}>
+                    <aside className={styles.aside}>
+                        <nav className={styles.desktopAside} aria-label="Project sections">
+                            <Link href="#overview"><img src="/book.svg" alt="" aria-hidden="true" /> Overview</Link>
+                            <Link href="#architecture"><img src="/book.svg" alt="" aria-hidden="true" /> Architecture</Link>
+                            <Link href="#code"><img src="/book.svg" alt="" aria-hidden="true" /> Code</Link>
+                            <Link href="#resources"><img src="/book.svg" alt="" aria-hidden="true" /> Resources</Link>
+                            <Link href="#support"><img src="/book.svg" alt="" aria-hidden="true" /> Support</Link>
+                        </nav>
+                        <details className={styles.asideMenu}>
+                            <summary>On this page</summary>
+                            <nav aria-label="Project sections">
+                                <Link href="#overview"><img src="/book.svg" alt="" aria-hidden="true" /> Overview</Link>
+                                <Link href="#architecture"><img src="/book.svg" alt="" aria-hidden="true" /> Architecture</Link>
+                                <Link href="#code"><img src="/book.svg" alt="" aria-hidden="true" /> Code</Link>
+                                <Link href="#resources"><img src="/book.svg" alt="" aria-hidden="true" /> Resources</Link>
+                                <Link href="#support"><img src="/book.svg" alt="" aria-hidden="true" /> Support</Link>
+                            </nav>
+                        </details>
+                    </aside>
+                    <article className={styles.projectArticle}>
+                        <section id="overview">
+                            <h2>Overview</h2>
+                        </section>
+                        <section id="architecture">
+                            <h2>Architecture</h2>
+                        </section>
+                        <section id="code">
+                            <h2>Code</h2>
+                        </section>
+                        <section id="resources">
+                            <h2>Resources</h2>
+                        </section>
+                        <section id="support">
+                            <h2>Support</h2>
+                        </section>
+                    </article>
+                </section>
             </main>
 
             <Footer />

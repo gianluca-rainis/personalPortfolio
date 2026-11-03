@@ -279,6 +279,10 @@
     padding: 130px 0 80px;
 }
 
+.docPage strong {
+    color: var(--theme-accent-bright);
+}
+
 .backLink {
     display: flex;
     text-align: center;

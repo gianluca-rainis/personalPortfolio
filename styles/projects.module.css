@@ -308,6 +308,10 @@
     margin: 0 0 1.2em;
 }
 
+.projectArticle strong {
+    color: var(--theme-accent-bright);
+}
+
 .projectArticle ul, .projectArticle ol {
     padding-left: 1.5em;
 }
@@ -429,7 +433,7 @@
 
 .projectImage {
     display: block;
-    max-height: 300px;
+    max-height: 500px;
     width: 100%;
     aspect-ratio: 1.3;
     object-fit: cover;

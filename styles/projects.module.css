@@ -288,6 +288,10 @@
     line-height: 1.8;
 }
 
+.projectArticle section {
+    scroll-margin-top: 100px;
+}
+
 .projectArticle h2, .projectArticle h3, .projectArticle h4 {
     margin: 1.8em 0 0.6em;
     color: var(--text-primary);

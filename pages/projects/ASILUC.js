@@ -133,6 +133,116 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 The process restarts, listening to <code>uio_in</code> again.
                             </p>
+                            <h3>Additional Informations</h3>
+                            <p>
+                                <strong>Some additional details</strong>:
+                            </p>
+                            <ul>
+                                <li>While the command is <code>NOP</code>, ASILUC stays in the Idle phase.</li>
+                                <li>In Idle ASILUC looks for changes on <code>uio_in[3:0]</code>.</li>
+                                <li>If the command read in the third cycle is <code>NOP</code> or <code>Reserved</code>, ASILUC returns to Idle without starting any transaction or operation.</li>
+                                <li>If an error occurs during execution, <i>busy</i> goes to 0, <i>status</i> goes to 0, <i>highByte</i> to 0, and <i>error</i> to 1. The error code, associated with the type of error that occurred, is set to <code>uo_out[3:0]</code>. It waits <i>3 clock cycles</i> like this and then returns to normal.</li>
+                                <li>The <code>SUB</code> result is <code>A - B</code> in <strong>16-bit two’s complement</strong>. High byte is: <code>0x00</code> if <code>A ≥ B</code>; <code>0xFF</code> if <code>A &lt; B</code>. In case the result is a negative number, <code>|A - B| = 256 - low byte</code>.</li>
+                            </ul>
+                            <p>
+                                <strong>For the master</strong>:
+                            </p>
+                            <ul>
+                                <li>Hold the command stable until <code>status</code> rises.</li>
+                                <li>Reset the command to <code>0000</code> between operations.</li>
+                                <li>Use a timeout to handle the case where <code>status</code> does not rise.</li>
+                                <li><strong>Count clocks from the rising edge of <code>status</code></strong>: the first number must be stable in the first <i>3 cycles</i> (sampled last), the second in the next 3.</li>
+                                <li>Once <code>status</code> has risen, the command can return to <code>0000</code> at any time, as ASILUC no longer reads it.</li>
+                            </ul>
+                            <h3>ASILUC's tables</h3>
+                            <h4>ASILUC behavior Table</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sequence</th>
+                                        <th>Operation</th>
+                                        <th>Duration (clk)</th>
+                                        <th>busy</th>
+                                        <th>status</th>
+                                        <th>highByte</th>
+                                        <th>error</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ø</td>
+                                        <td>Idle</td>
+                                        <td>∞</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>Command Reading</td>
+                                        <td>0-2</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Command Accepted / Input (first number)</td>
+                                        <td>3-5</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Input (second number)</td>
+                                        <td>6-8</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Calculating</td>
+                                        <td>Variable</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Output (lowest byte)</td>
+                                        <td>0-2 (After Calculating)</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Output (highest byte)</td>
+                                        <td>3-5 (After Calculating)</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ø</td>
+                                        <td>Error</td>
+                                        <td>0-2</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </section>
                         <section id="code">
                             <h2>Code</h2>

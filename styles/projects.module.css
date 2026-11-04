@@ -273,7 +273,7 @@
     background: rgba(var(--theme-accent-rgb), 0.08);
 }
 
-.desktopAside a img, .asideMenu a img {
+.desktopAside a img, .asideMenu a img, .desktopAside a svg, .asideMenu a svg {
     width: 18px;
     height: 18px;
     flex: 0 0 auto;
@@ -472,7 +472,7 @@
     box-shadow: 0 0 14px rgba(var(--theme-accent-rgb), 0.12);
 }
 
-.projectLink > img {
+.projectLink > img, .projectLink > svg {
     width: 30px;
     height: 30px;
     flex: 0 0 auto;

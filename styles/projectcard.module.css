@@ -113,13 +113,12 @@
 
 .arrowIcon {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    align-self: center;
+    width: 16px;
+    height: 16px;
     padding-left: 1px;
     flex-shrink: 0;
-    background-color: currentColor;
-    -webkit-mask: url('/Arrow.svg') center / 100% 100% no-repeat;
-    mask: url('/Arrow.svg') center / 100% 100% no-repeat;
+    color: currentColor;
 }
 
 @keyframes appear {

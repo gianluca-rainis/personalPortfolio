@@ -163,13 +163,12 @@
 
 .arrowIcon {
     display: inline-block;
+    align-self: center;
     width: 16px;
     height: 16px;
     padding-left: 1px;
     flex-shrink: 0;
-    background-color: currentColor;
-    -webkit-mask: url('/Arrow.svg') center / 100% 100% no-repeat;
-    mask: url('/Arrow.svg') center / 100% 100% no-repeat;
+    color: currentColor;
 }
 
 @media screen and (max-width: 850px) and (min-width: 700px) {

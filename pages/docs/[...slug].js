@@ -9,6 +9,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { MoveLeft } from 'lucide-react';
 import { DOCS_DIRECTORY, getAllDocs, getDocMetadata } from '@/lib/docs';
 
 export async function getStaticPaths() {
@@ -49,7 +50,7 @@ export default function DocPage({ mdxSource, title, description, type, date, upd
             <Nav />
 
             <main className={styles.docPage}>
-                <Link href='/docs' className={styles.backLink}><span className={styles.arrowIcon} aria-hidden='true' /> All docs</Link>
+                <Link href='/docs' className={styles.backLink}><MoveLeft className={styles.backArrowIcon} /> All docs</Link>
                 <header className={styles.docHeader}>
                     <p className={styles.pageEyebrow}>{type}</p>
                     <p className={styles.docMeta}>

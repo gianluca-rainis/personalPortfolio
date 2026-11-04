@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { MoveUpRight } from 'lucide-react';
 import styles from '@/styles/projectcard.module.css';
 
 export default function ProjectCard({ project }) {
@@ -27,7 +28,7 @@ export default function ProjectCard({ project }) {
                         )}
                     </ul>
                     <p className={styles.viewLink}>
-                        View project <span className={styles.arrowIcon} aria-hidden='true' />
+                        View project <MoveUpRight className={styles.arrowIcon} />
                     </p>
                 </div>
             </Link>

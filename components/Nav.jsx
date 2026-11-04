@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { MoveUpRight } from 'lucide-react';
 import styles from '@/styles/nav.module.css';
 
 export default function Nav() {
@@ -92,10 +93,10 @@ export default function Nav() {
                         Docs
                     </Link>
                     <a href='https://github.com/gianluca-rainis' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
-                        GitHub <span className={styles.arrowIcon} aria-hidden='true' />
+                        GitHub <MoveUpRight className={styles.arrowIcon} />
                     </a>
                     <a href='https://gianlucarainis.com' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
-                        About Me <span className={styles.arrowIcon} aria-hidden='true' />
+                        About Me <MoveUpRight className={styles.arrowIcon} />
                     </a>
                 </div>
                 <div className={styles.mobileLinks}>
@@ -119,10 +120,10 @@ export default function Nav() {
                     Docs
                 </Link>
                 <a href='https://github.com/gianluca-rainis' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
-                    GitHub <span className={styles.arrowIcon} aria-hidden='true' />
+                    GitHub <MoveUpRight className={styles.arrowIcon} />
                 </a>
                 <a href='https://gianlucarainis.com' target='_blank' rel='noopener noreferrer' className={styles.externalLink}>
-                    About Me <span className={styles.arrowIcon} aria-hidden='true' />
+                    About Me <MoveUpRight className={styles.arrowIcon} />
                 </a>
             </div>
         </nav>

@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { MoveLeft, MoveRight } from 'lucide-react';
 
 export async function getStaticProps() {
     return {
@@ -23,7 +24,7 @@ export default function ProjectPage({ pageTitle }) {
 
             <main className={styles.projectPage}>
                 <header className={styles.projectHeader}>
-                    <Link href='/projects' className={styles.backLink}><span className={styles.backarrowIcon} aria-hidden='true' /> All projects</Link>
+                    <Link href='/projects' className={styles.backLink}><MoveLeft className={styles.backarrowIcon} /> All projects</Link>
                     <div>
                         <div className={styles.projectHeaderInfo}>
                             <h1>ASILUC</h1>
@@ -44,28 +45,28 @@ export default function ProjectPage({ pageTitle }) {
                         <a href="https://github.com/gianluca-rainis/ASILUC" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
                             <div className={styles.projectLinkText}>
-                                <p>View on GitHub <span className={styles.forwardarrowIcon} aria-hidden='true' /></p>
+                                <p>View on GitHub <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Source Code, Documentation & More</p>
                             </div>
                         </a>
                         <a href="https://github.com/gianluca-rainis/ASILUC/blob/main/docs/info.md" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/book.svg" alt="Documentation icon" />
                             <div className={styles.projectLinkText}>
-                                <p>Read the Documentation <span className={styles.forwardarrowIcon} aria-hidden='true' /></p>
+                                <p>Read the Documentation <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Technical Informations, Guides, Tutorials & Examples</p>
                             </div>
                         </a>
                         <a href="https://gds-viewer.tinytapeout.com/?model=https://gianluca-rainis.github.io/ASILUC/tinytapeout.oas&pdk=gf180mcuD" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/link.svg" alt="Link icon" />
                             <div className={styles.projectLinkText}>
-                                <p>GDS Viewer <span className={styles.forwardarrowIcon} aria-hidden='true' /></p>
+                                <p>GDS Viewer <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Look at the ASILUC's 3D model</p>
                             </div>
                         </a>
                         <a href="https://gds-explorer.tinytapeout.com/viewer?file=https://gianluca-rainis.github.io/ASILUC/tinytapeout.oas&pdk=gf180mcuD" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/link.svg" alt="Link icon" />
                             <div className={styles.projectLinkText}>
-                                <p>TinyTapeout Simulator <span className={styles.forwardarrowIcon} aria-hidden='true' /></p>
+                                <p>TinyTapeout Simulator <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Try ASILUC in the TinyTapeout Simulator</p>
                             </div>
                         </a>
@@ -154,6 +155,9 @@ export default function ProjectPage({ pageTitle }) {
                                 <li><strong>Count clocks from the rising edge of <code>status</code></strong>: the first number must be stable in the first <i>3 cycles</i> (sampled last), the second in the next 3.</li>
                                 <li>Once <code>status</code> has risen, the command can return to <code>0000</code> at any time, as ASILUC no longer reads it.</li>
                             </ul>
+                            <img src="/projects/ASILUCPreview3D.png" alt="ASILUC 3D Render" />
+                            <citation>ASILUC 3D Render</citation>
+
                             <h3>ASILUC's tables</h3>
                             <h4>ASILUC behavior Table</h4>
                             <table>
@@ -243,9 +247,138 @@ export default function ProjectPage({ pageTitle }) {
                                     </tr>
                                 </tbody>
                             </table>
+                            <h4>ASILUC status bits Table</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Operation</th>
+                                        <th>busy (<code>uio_out[7]</code>)</th>
+                                        <th>status (<code>uio_out[6]</code>)</th>
+                                        <th>highByte (<code>uio_out[5]</code>)</th>
+                                        <th>error (<code>uio_out[4]</code>)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Idle</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Command Accepted</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input (first number)</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Input (second number)</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calculating</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Output (lowest byte)</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Output (highest byte)</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Error</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>ASILUC command bits Table</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Command</td>
+                                        <td><code>uio_in[3:0]</code></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>NOP</code></td>
+                                        <td><code>0000</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>SUM</code></td>
+                                        <td><code>0001</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>SUB</code></td>
+                                        <td><code>0010</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>MUL</code></td>
+                                        <td><code>0011</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>DIV</code></td>
+                                        <td><code>0100</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>Reserved</code> (handled as <code>NOP</code>)</td>
+                                        <td><code>0101</code>-<code>1111</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>ASILUC error codes Table</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Error</td>
+                                        <td><code>uo_out[3:0]</code></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Generic Error</td>
+                                        <td><code>0000</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Div 0</td>
+                                        <td><code>0001</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unused (if one occurs, it is treated as Generic Error)</td>
+                                        <td><code>0010</code>-<code>1111</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </section>
                         <section id="code">
                             <h2>Code</h2>
+
                         </section>
                         <section id="resources">
                             <h2>Resources</h2>

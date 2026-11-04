@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { MoveLeft, MoveRight } from 'lucide-react';
 
 export async function getStaticProps() {
     return {
@@ -23,7 +24,7 @@ export default function ProjectPage({ pageTitle }) {
 
             <main className={styles.projectPage}>
                 <header className={styles.projectHeader}>
-                    <Link href='/projects' className={styles.backLink}><span className={styles.backarrowIcon} aria-hidden='true' /> All projects</Link>
+                    <Link href='/projects' className={styles.backLink}><MoveLeft className={styles.backarrowIcon} /> All projects</Link>
                     <div>
                         <div className={styles.projectHeaderInfo}>
                             <h1>Title</h1>
@@ -44,21 +45,21 @@ export default function ProjectPage({ pageTitle }) {
                         <a href="https://github.com/" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
                             <div className={styles.projectLinkText}>
-                                <p>View on GitHub <span className={styles.forwardarrowIcon} aria-hidden='true' /></p>
+                                <p>View on GitHub <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Source Code, Documentation & More</p>
                             </div>
                         </a>
                         <a href="https://github.com/" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/book.svg" alt="Documentation icon" />
                             <div className={styles.projectLinkText}>
-                                <p>Read the Documentation <span className={styles.forwardarrowIcon} aria-hidden='true' /></p>
+                                <p>Read the Documentation <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Technical Informations, Guides, Tutorials & Examples</p>
                             </div>
                         </a>
                         <a href="https://gianlucarainis.com/" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/link.svg" alt="Link icon" />
                             <div className={styles.projectLinkText}>
-                                <p>Live demo <span className={styles.forwardarrowIcon} aria-hidden='true' /></p>
+                                <p>Live demo <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Try the application</p>
                             </div>
                         </a>

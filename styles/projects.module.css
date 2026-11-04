@@ -512,36 +512,32 @@
 
 .backarrowIcon {
     display: inline-block;
+    align-self: center;
     width: 12px;
     height: 12px;
     padding-left: 1px;
     flex-shrink: 0;
-    background-color: currentColor;
-    -webkit-mask: url('/ArrowLeft.svg') center / 100% 100% no-repeat;
-    mask: url('/ArrowLeft.svg') center / 100% 100% no-repeat;
+    color: currentColor;
 }
 
 .forwardarrowIcon {
     display: inline-block;
+    align-self: center;
     width: 20px;
     height: 20px;
     padding-left: 1px;
     flex-shrink: 0;
-    background-color: currentColor;
-    transform: scaleX(-1);
-    -webkit-mask: url('/ArrowLeft.svg') center / 100% 100% no-repeat;
-    mask: url('/ArrowLeft.svg') center / 100% 100% no-repeat;
+    color: currentColor;
 }
 
 .arrowIcon {
     display: inline-block;
+    align-self: center;
     width: 16px;
     height: 16px;
     padding-left: 1px;
     flex-shrink: 0;
-    background-color: currentColor;
-    -webkit-mask: url('/Arrow.svg') center / 100% 100% no-repeat;
-    mask: url('/Arrow.svg') center / 100% 100% no-repeat;
+    color: currentColor;
 }
 
 @media screen and (max-width: 800px) {

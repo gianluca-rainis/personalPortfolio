@@ -6,6 +6,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/home.module.css';
 import { usePathname } from 'next/navigation';
+import { MoveUpRight } from 'lucide-react';
 import projects from '@/data/projects.json';
 
 const featuredProjects = projects.filter((project) => project.featured);
@@ -132,7 +133,7 @@ export default function HomePage({ pageTitle }) {
                         </div>
                         <div className={styles.allProjectView}>
                             <Link href='/projects' aria-label='All Projects'>
-                                View all Projects <span className={styles.arrowIcon} aria-hidden='true' />
+                                View all Projects  <MoveUpRight className={styles.arrowIcon} />
                             </Link>
                             <span className={styles.sectionCount}>01 — {projects.at(-1)?.number ?? '00'}</span>
                         </div>

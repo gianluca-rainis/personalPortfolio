@@ -5,6 +5,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/docs.module.css';
 import Link from 'next/link';
+import { MoveUpRight } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { getAllDocs } from '@/lib/docs';
 
@@ -164,7 +165,7 @@ export default function Docs({ pageTitle, docs }) {
                                                 </ul>
                                             )}
                                             {doc.project && <p className={styles.docProject}>Project: {doc.project}</p>}
-                                            <span className={styles.readLink}>Read document <span className={styles.arrowIcon} aria-hidden='true' /></span>
+                                            <span className={styles.readLink}>Read document  <MoveUpRight className={styles.arrowIcon} /></span>
                                         </div>
                                     </Link>
                                 </article>

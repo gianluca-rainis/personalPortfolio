@@ -5,6 +5,7 @@ import styles from '@/styles/projects.module.css';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
+import { useState } from 'react';
 
 export async function getStaticProps() {
     return {
@@ -16,6 +17,43 @@ export async function getStaticProps() {
 
 export default function ProjectPage({ pageTitle }) {
     const path = usePathname();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formStatus, setFormStatus] = useState('');
+
+    async function handleSupportSubmit(event) {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setFormStatus('');
+
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    senderName: formData.get('senderName'),
+                    replyEmail: formData.get('replyEmail'),
+                    subject: formData.get('subject'),
+                    message: formData.get('message')
+                })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Unable to send your message.');
+            }
+
+            form.reset();
+            setFormStatus('Your support message has been sent. Thank you!');
+        } catch (error) {
+            setFormStatus(error.message || 'Unable to send your message. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
 
     return (
         <>

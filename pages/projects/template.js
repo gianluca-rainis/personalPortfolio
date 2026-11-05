@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { MoveLeft, MoveRight } from 'lucide-react';
+import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 
 export async function getStaticProps() {
     return {
@@ -50,14 +50,14 @@ export default function ProjectPage({ pageTitle }) {
                             </div>
                         </a>
                         <a href="https://github.com/" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
-                            <img src="/book.svg" alt="Documentation icon" />
+                            <BookOpenText />
                             <div className={styles.projectLinkText}>
                                 <p>Read the Documentation <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Technical Informations, Guides, Tutorials & Examples</p>
                             </div>
                         </a>
                         <a href="https://gianlucarainis.com/" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
-                            <img src="/link.svg" alt="Link icon" />
+                            <LinkIcon />
                             <div className={styles.projectLinkText}>
                                 <p>Live demo <MoveRight className={styles.forwardArrowIcon} /></p>
                                 <p>Try the application</p>
@@ -68,20 +68,20 @@ export default function ProjectPage({ pageTitle }) {
                 <section className={styles.projectContent}>
                     <aside className={styles.aside}>
                         <nav className={styles.desktopAside} aria-label="Project sections">
-                            <Link href="#overview"><img src="/book.svg" alt="" aria-hidden="true" /> Overview</Link>
-                            <Link href="#architecture"><img src="/book.svg" alt="" aria-hidden="true" /> Architecture</Link>
-                            <Link href="#code"><img src="/book.svg" alt="" aria-hidden="true" /> Code</Link>
-                            <Link href="#resources"><img src="/book.svg" alt="" aria-hidden="true" /> Resources</Link>
-                            <Link href="#support"><img src="/book.svg" alt="" aria-hidden="true" /> Support</Link>
+                            <Link href="#overview"><BookOpenText /> Overview</Link>
+                            <Link href="#architecture"><BookOpenText /> Architecture</Link>
+                            <Link href="#code"><BookOpenText /> Code</Link>
+                            <Link href="#resources"><BookOpenText /> Resources</Link>
+                            <Link href="#support"><BookOpenText /> Support</Link>
                         </nav>
                         <details className={styles.asideMenu}>
                             <summary>On this page</summary>
                             <nav aria-label="Project sections">
-                                <Link href="#overview"><img src="/book.svg" alt="" aria-hidden="true" /> Overview</Link>
-                                <Link href="#architecture"><img src="/book.svg" alt="" aria-hidden="true" /> Architecture</Link>
-                                <Link href="#code"><img src="/book.svg" alt="" aria-hidden="true" /> Code</Link>
-                                <Link href="#resources"><img src="/book.svg" alt="" aria-hidden="true" /> Resources</Link>
-                                <Link href="#support"><img src="/book.svg" alt="" aria-hidden="true" /> Support</Link>
+                                <Link href="#overview"><BookOpenText /> Overview</Link>
+                                <Link href="#architecture"><BookOpenText /> Architecture</Link>
+                                <Link href="#code"><BookOpenText /> Code</Link>
+                                <Link href="#resources"><BookOpenText /> Resources</Link>
+                                <Link href="#support"><BookOpenText /> Support</Link>
                             </nav>
                         </details>
                     </aside>
@@ -100,6 +100,36 @@ export default function ProjectPage({ pageTitle }) {
                         </section>
                         <section id="support">
                             <h2>Support</h2>
+                            <p>
+                                Found a bug, have a question, or want to contribute to ASILUC?
+                                Send me a message and I will get back to you.
+                            </p>
+                            <form className={styles.supportForm} onSubmit={handleSupportSubmit}>
+                                <label>
+                                    Name <span>(optional)</span>
+                                    <input type="text" name="senderName" autoComplete="name" maxLength="100" />
+                                </label>
+                                <label>
+                                    Reply email <span>(optional)</span>
+                                    <input type="email" name="replyEmail" autoComplete="email" maxLength="254" />
+                                </label>
+                                <label>
+                                    Subject
+                                    <input type="text" name="subject" required maxLength="500" />
+                                </label>
+                                <label>
+                                    Message
+                                    <textarea name="message" required rows="7" maxLength="10000" />
+                                </label>
+                                <button className={styles.supportSubmit} type="submit" disabled={isSubmitting}>
+                                    {isSubmitting ? 'Sending...' : 'Send message'}
+                                </button>
+                                {formStatus && (
+                                    <p className={styles.supportStatus} role="status" aria-live="polite">
+                                        {formStatus}
+                                    </p>
+                                )}
+                            </form>
                         </section>
                     </article>
                 </section>

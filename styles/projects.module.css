@@ -312,6 +312,73 @@
     margin: 0 0 1.2em;
 }
 
+.supportForm {
+    display: grid;
+    gap: 16px;
+    max-width: 680px;
+}
+
+.supportForm label {
+    display: grid;
+    gap: 6px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.supportForm label span {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.supportForm input, .supportForm textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--surface-border-strong);
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.16);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.9rem;
+}
+
+.supportForm textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.supportForm input:focus-visible, .supportForm textarea:focus-visible {
+    border-color: var(--theme-accent);
+    outline: 1px solid var(--theme-accent);
+}
+
+.supportSubmit {
+    width: fit-content;
+    padding: 11px 18px;
+    border: 1px solid var(--theme-accent-soft-strong);
+    background: rgba(var(--theme-accent-rgb), 0.08);
+    color: var(--theme-accent);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+}
+
+.supportSubmit:hover, .supportSubmit:focus-visible {
+    border-color: var(--theme-accent);
+    background: rgba(var(--theme-accent-rgb), 0.14);
+}
+
+.supportSubmit:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.projectArticle .supportStatus {
+    margin: 0;
+    color: var(--theme-accent);
+    font-size: 0.85rem;
+}
+
 .projectArticle strong {
     color: var(--theme-accent-bright);
 }
@@ -508,6 +575,10 @@
 
 .backLink:hover {
     color: var(--theme-accent);
+}
+
+.projectPage a:hover, .projectPage a:focus-visible, .projectPage a:hover *, .projectPage a:focus-visible * {
+    color: var(--theme-accent-bright);
 }
 
 .backarrowIcon {

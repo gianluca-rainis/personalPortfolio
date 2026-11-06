@@ -139,7 +139,7 @@ export default function ProjectPage({ pageTitle }) {
                         <section id="support">
                             <h2>Support</h2>
                             <p>
-                                Found a bug, have a question, or want to contribute to ASILUC?
+                                Found a bug, have a question, or want to contribute to this project?
                                 Send me a message and I will get back to you.
                             </p>
                             <form className={styles.supportForm} onSubmit={handleSupportSubmit}>

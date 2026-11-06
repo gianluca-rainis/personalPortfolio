@@ -598,6 +598,17 @@ end`}
                                 Explore the resources available for ASILUC, including technical documentation, design files and tools to inspect and experiment with the ASIC.
                             </p>
 
+                            <h3>Articles</h3>
+                            <div className={styles.projectLinks}>
+                                <a href="/docs/designing-an-ASIC-from-scratch" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
+                                    <BookOpenText />
+                                    <div className={styles.projectLinkText}>
+                                        <p>Designing an ASIC from scratch <MoveRight className={styles.forwardArrowIcon} /></p>
+                                        <p>The Guide that describe how I designed ASILUC and how it works</p>
+                                    </div>
+                                </a>
+                            </div>
+
                             <h3>Documentation</h3>
                             <p>
                                 The project documentation provides additional technical information about ASILUC, explaining its architecture, operation, interface and implementation.

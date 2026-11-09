@@ -155,10 +155,6 @@
     color: currentColor;
 }
 
-.allProjectView a:hover .arrowIcon {
-    transform: translateX(3px);
-}
-
 .sectionHeading {
     display: flex;
     justify-content: space-between;

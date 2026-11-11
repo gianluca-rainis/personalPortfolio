@@ -112,6 +112,7 @@ export default function ProjectPage({ pageTitle }) {
                             <Link href="#architecture"><BookOpenText /> Architecture</Link>
                             <Link href="#code"><BookOpenText /> Code</Link>
                             <Link href="#resources"><BookOpenText /> Resources</Link>
+                            <Link href="#sponsor"><BookOpenText /> Sponsor</Link>
                             <Link href="#support"><BookOpenText /> Support</Link>
                         </nav>
                         <details className={styles.asideMenu}>
@@ -121,6 +122,7 @@ export default function ProjectPage({ pageTitle }) {
                                 <Link href="#architecture"><BookOpenText /> Architecture</Link>
                                 <Link href="#code"><BookOpenText /> Code</Link>
                                 <Link href="#resources"><BookOpenText /> Resources</Link>
+                                <Link href="#sponsor"><BookOpenText /> Sponsor</Link>
                                 <Link href="#support"><BookOpenText /> Support</Link>
                             </nav>
                         </details>
@@ -138,7 +140,7 @@ export default function ProjectPage({ pageTitle }) {
                             </p>
                             <p>
                                 The board was designed to be used in educational kits, and it was sponsored by PCBWay, which produced the PCB.
-                                The project development is currently paused.
+                                The project is currently paused.
                             </p>
                             <img src="/projects/Z80DevBoard3DFront.png" alt="Z80DevBoard 3D render" />
                             <citation>Z80DevBoard 3D Render</citation>
@@ -415,9 +417,32 @@ HALT             ; stop the CPU`}
 
                             <h3>Credits</h3>
                             <p>
-                                The Z80DevBoard was designed and developed by me, and the production of the PCB was sponsored by PCBWay.
-                                The board was also shown at Open Sauce 2026.
+                                The Z80DevBoard was designed and developed by me, and it was also shown at Open Sauce.
+                                No AI was used in the conception, design, engineering or development of the project: every circuit and every design decision is my own work.
+                                AI was used only as a writing assistant for some parts of the documentation, and everything was reviewed, verified and edited by me.
                             </p>
+                        </section>
+                        <section id="sponsor">
+                            <h2>Sponsor</h2>
+                            <p>
+                                The PCB prototyping for this project is sponsored by <a href="https://www.pcbway.com" target="_blank" rel="noopener noreferrer">PCBWay</a>.
+                            </p>
+                            <p>
+                                The <i>boards</i> were manufactured with <strong>high precision</strong>, faithfully <strong>following the PCB design down to the smallest details</strong>.
+                                The <i>silkscreen</i> is <strong>crisp and perfectly readable</strong>, with <strong>no errors or misalignments</strong>.
+                                The <i>board edges</i> and corner's holes were <strong>cut cleanly and accurately</strong>.
+                                The <i>drill holes</i> <strong>match the component footprints exactly</strong>, making placement and soldering straightforward.
+                                The <i>SMD pads</i> are <strong>precise and clean</strong>, even for the most challenging footprints, and solder beautifully.
+                            </p>
+                            <p>
+                                The <i>PCBWay website</i> is <strong>intuitive, even for first-time users</strong>. <strong>Placing an order is simple</strong>, and before proceeding to payment <strong>the design is reviewed by their technical staff</strong>, who catch and communicate <strong>any potential manufacturing issues</strong> promptly and professionally, avoiding problems before production even begins.
+                            </p>
+                            <p>
+                                <i>If you are looking for a reliable, high-quality PCB manufacturer for your own projects, <a href="https://www.pcbway.com" target="_blank" rel="noopener noreferrer"><strong>PCBWay</strong></a> is highly recommended!</i>
+                            </p>
+                            <a href="https://www.pcbway.com" target="_blank" rel="noopener noreferrer">
+                                <img src="/projects/PCBWayLogo.png" alt="PCBWay logo" />
+                            </a>
                         </section>
                         <section id="support">
                             <h2>Support</h2>

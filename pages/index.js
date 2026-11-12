@@ -55,8 +55,8 @@ export default function HomePage({ pageTitle }) {
 
             <Nav />
 
-            <header className={styles.header}>
-                <h1>Site Currently in Development</h1>
+            <header className={styles.header} style={{ display: 'none' }}>
+                <h1></h1>
             </header>
 
             <main className={styles.main}>

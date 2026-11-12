@@ -4,20 +4,29 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/gianluca-rainis/personalPortfolio)
 ![GitHub watchers](https://img.shields.io/github/watchers/gianluca-rainis/personalPortfolio)
 
-My personal portfolio, with a high-tech inspired interface.
+This is my personal portfolio, a high-tech inspired site designed to showcase my projects, with documentation, research and guides all in one place.
 
-The site includes:
-- A home page, where are displayed the featured projects and all the projects, working also as a manifesto for the website.
-- A projects page, where are displayed all the projects with filters and search functions.
-- A docs page, where are available all the documentations, the documents, the researches and the guides about the projects.
-- A page for every document, with integrated mdx rendering and document metadata.
+The **home page** of the site is the first thing that the visitor sees.
+That's why I consider it important to display the current **featured projects** and all my other projects, so a visitor can have a preview of my projects.
+It also works as a **manifesto** for the website, showing the motto "*Engineering Ideas into Reality*", transmitting the philosophy of my projects and of the website.
 
-![Home Page Preview](/public/GRLabsPreview.png)
+Other important pages are the **projects page**, where all my projects are displayed, with filters, sorting and search functions and the **docs page**, where all the documentation, documents, research and guides about the projects are available.
+
+The **project pages** are the most important parts of the website, in fact those are the pages that have the role to show and explain a project to the visitor, with both technical and practical information.
+
+Another important page is the **document page**, with integrated *mdx rendering* and *document metadata*, that allows you to write the documentation in markdown, adding additional information for the header of the document and for the filters of the docs page.
 
 > **Live site**: [https://projects.gianlucarainis.com](https://projects.gianlucarainis.com)
 
+![Home Page Preview](public/GRLabsPreview.png)
+
+## Tech Stack
+- **Next.js**
+- **React**
+- **MDX** (for the documentation)
+
 ## Author
-The author of the whole project is: 
+The author of the whole project is:
 **Gianluca Rainis** - [gianluca-rainis](https://github.com/gianluca-rainis) on GitHub.
 
 ## AI Disclaimer
@@ -32,7 +41,7 @@ This project is under the MIT License.
 ```
 personalPortfolio/
 ├── components/               # UI pieces of the site
-├── data/                     # The projects informations
+├── data/                     # Project information
 ├── docs/                     # The documentation to show in the Docs section
 ├── lib/                      # Implementation of internal functions
 ├── pages/                    # Site pages
@@ -50,4 +59,18 @@ personalPortfolio/
 ├── README.md                 # This file
 ├── robots.txt                # Robots file
 └── sitemap.xml               # The Sitemap
+```
+
+## Development and Production
+### Development
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Production build
+```bash
+npm run build
+npm start
 ```

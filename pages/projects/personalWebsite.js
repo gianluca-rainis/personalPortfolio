@@ -57,7 +57,11 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+                name: 'Personal Website',
+                description: 'My personal website, built with Next.js and React with a terminal-inspired theme.',
+                codeRepository: 'https://github.com/gianluca-rainis/personalWebsite'
+            }} />
             <Nav />
 
             <main className={styles.projectPage}>

@@ -57,7 +57,12 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+                name: 'ASILUC',
+                description: 'An ASIC designed to function as an ALU.',
+                codeRepository: 'https://github.com/gianluca-rainis/ASILUC'
+            }} />
+
             <Nav />
 
             <main className={styles.projectPage}>

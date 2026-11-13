@@ -1,54 +1,78 @@
-import React from 'react'
-import HeadNext from 'next/head'
+import React from 'react';
+import HeadNext from 'next/head';
+import { useRouter } from 'next/router';
 
-export default function Head({ pageTitle="", pageUrl="https://projects.gianlucarainis.com/" }) {
+const siteUrl = 'https://projects.gianlucarainis.com';
+const mainSiteUrl = 'https://www.gianlucarainis.com';
+const siteName = 'Gianluca Rainis Labs';
+const description = 'Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games.';
+const previewImage = `${siteUrl}/GRLabsPreview.png`;
+const authorRef = {
+    '@type': 'Person',
+    '@id': `${mainSiteUrl}/#person`,
+    name: 'Gianluca Rainis',
+    url: mainSiteUrl
+};
+
+export default function Head({ pageTitle='', pageUrl, projectData=null }) {
+    const router = useRouter();
+    const path = router.asPath.split('?')[0].split('#')[0];
+    const canonicalUrl = pageUrl || `${siteUrl}${path === '/' ? '' : path}`;
+    const fullTitle = pageTitle ? `${siteName} - ${pageTitle}` : siteName;
+    const finalDescription = projectData?.description || description;
+
+    const jsonLd = [
+        {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: siteName,
+            alternateName: ['GRLabs', 'GR Labs'],
+            url: siteUrl,
+            author: authorRef,
+            publisher: authorRef
+        }
+    ];
+
+    if (projectData) {
+        jsonLd.push({
+            '@context': 'https://schema.org',
+            '@type': projectData.codeRepository ? 'SoftwareSourceCode' : 'CreativeWork',
+            name: projectData.name,
+            description: projectData.description,
+            url: canonicalUrl,
+            author: authorRef,
+            ...(projectData.codeRepository && { codeRepository: projectData.codeRepository })
+        });
+    }
+
     return (
-        <>
-            <HeadNext>
-                <title>{pageTitle ? `Gianluca Rainis Labs - ${pageTitle}` : 'Gianluca Rainis Labs'}</title>
-                <link rel="canonical" href={pageUrl} />
+        <HeadNext>
+            <title>{fullTitle}</title>
+            <link rel="canonical" href={canonicalUrl} />
+            <meta name="description" content={finalDescription} />
+            <meta name="author" content="Gianluca Rainis" />
+            <meta name="robots" content="index, follow, max-image-preview:large" />
 
-                <meta name="description" content="Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games." />
-                <meta name="author" content="Gianluca Rainis" />
-                <meta name="keywords" content="Gianluca Rainis Labs" />
-                <meta name="application-name" content="Gianluca Rainis Labs" lang="en" />
-                
-                {/* Open Graph */}
-                <meta property="og:url" content={pageUrl} />
-                <meta property="og:type" content="website" />
-                <meta property="og:site_name" content="Gianluca Rainis Labs" />
-                <meta property="og:title" content={pageTitle || 'Gianluca Rainis Labs'} />
-                <meta property="og:description" content="Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games." />
-                <meta property="og:image" content="https://projects.gianlucarainis.com/GRLabsPreview.png" />
-                <meta property="og:image:secure_url" content="https://projects.gianlucarainis.com/GRLabsPreview.png" />
-                <meta property="og:image:type" content="image/png" />
-                <meta property="og:image:width" content="1200" />
-                <meta property="og:image:height" content="630" />
-                <meta property="og:image:alt" content="Gianluca Rainis Labs preview image" />
+            <meta property="og:url" content={canonicalUrl} />
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content={siteName} />
+            <meta property="og:title" content={fullTitle} />
+            <meta property="og:description" content={finalDescription} />
+            <meta property="og:image" content={previewImage} />
+            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt" content="Gianluca Rainis Labs preview image" />
 
-                {/* Twitter */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta property="twitter:domain" content="projects.gianlucarainis.com" />
-                <meta name="twitter:url" content={pageUrl} />
-                <meta name="twitter:title" content={pageTitle || 'Gianluca Rainis Labs'} />
-                <meta name="twitter:description" content="Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games." />
-                <meta name="twitter:image" content="https://projects.gianlucarainis.com/GRLabsPreview.png" />
-                
-                {/* Favicon and CSS are in _document.js */}
-                
-                {/* JSON-LD Schema */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@type": "WebSite",
-                            "@context": "https://schema.org",
-                            "name": "Gianluca Rainis Labs",
-                            "url": "https://projects.gianlucarainis.com"
-                        })
-                    }}
-                />
-            </HeadNext>
-        </>
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={fullTitle} />
+            <meta name="twitter:description" content={finalDescription} />
+            <meta name="twitter:image" content={previewImage} />
+
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+        </HeadNext>
     )
 }

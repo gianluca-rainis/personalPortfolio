@@ -57,7 +57,11 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+                name: 'UHBadge',
+                description: 'Universal Hacker Badge - The ultimate badge for hackers. It\'s a PCB badge with an RP2350, an e-Ink display, NFC, microSD, WiFi, Bluetooth, and more!',
+                codeRepository: 'https://github.com/gianluca-rainis/UHBadge'
+            }} />
             <Nav />
 
             <main className={styles.projectPage}>

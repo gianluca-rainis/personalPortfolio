@@ -57,7 +57,11 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+                name: 'FreeIdeas',
+                description: 'FreeIdeas - A place where your Ideas can be Free | FreeIdeas is a site where you can publish your ideas about any type of projects, and where you can find inspiration for your next project.',
+                codeRepository: 'https://github.com/gianluca-rainis/FreeIdeas'
+            }} />
             <Nav />
 
             <main className={styles.projectPage}>

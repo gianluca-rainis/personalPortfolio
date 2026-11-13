@@ -57,7 +57,11 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+                name: 'Z80DevBoard',
+                description: 'The Z80DevBoard is an advanced development board for the Z80 microprocessor, based on the RP2040.',
+                codeRepository: 'https://github.com/gianluca-rainis/Z80DevBoard'
+            }} />
             <Nav />
 
             <main className={styles.projectPage}>

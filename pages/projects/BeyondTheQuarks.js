@@ -57,7 +57,11 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+                name: 'Beyond the Quarks',
+                description: 'Beyond the Quarks is a 2D sci-fi exploration and adventure game developed in Unity. You have to fix your wormhole device piece by piece, hopping across alien realities until you can finally return home.',
+                codeRepository: 'https://github.com/gianluca-rainis/BeyondTheQuarks'
+            }} />
             <Nav />
 
             <main className={styles.projectPage}>

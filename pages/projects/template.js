@@ -57,7 +57,11 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+                name: 'Project Title',
+                description: 'Project Description',
+                codeRepository: 'https://github.com/gianluca-rainis/project-repo'
+            }} />
             <Nav />
 
             <main className={styles.projectPage}>

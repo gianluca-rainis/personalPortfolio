@@ -57,7 +57,11 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+                name: 'MagicExplorer',
+                description: 'MagicExplorer is an action 2D game made with Unity, where you play as a wizard that\'s exploring a dungeon full of enemies.',
+                codeRepository: 'https://github.com/gianluca-rainis/MagicExplorer'
+            }} />
             <Nav />
 
             <main className={styles.projectPage}>

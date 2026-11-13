@@ -34,17 +34,22 @@ export default function Docs({ pageTitle, docs }) {
     const visibleDocs = useMemo(() => {
         const query = searched.trim().toLowerCase();
 
-        const filteredDocs = docs.filter((doc) => {
-            const matchesTag = selectedTag === 'all' || doc.tags.includes(selectedTag);
-            const matchesType = selectedType === 'all' || doc.type === selectedType;
-            const matchesStatus = selectedStatus === 'all' || doc.status === selectedStatus;
-            const matchesProject = selectedProject === 'all' || doc.project === selectedProject;
-            const searchableText = [doc.title, doc.description, doc.type, doc.status, doc.project, ...doc.tags]
-                .join(' ')
-                .toLowerCase();
+        const filteredDocs = 
+        (query === '' && selectedTag === 'all' && selectedType === 'all' && selectedStatus === 'all' && selectedProject === 'all')
+        ?
+            docs.filter((doc) => Boolean(doc.listed) !== false)
+        :
+            docs.filter((doc) => {
+                const matchesTag = selectedTag === 'all' || doc.tags.includes(selectedTag);
+                const matchesType = selectedType === 'all' || doc.type === selectedType;
+                const matchesStatus = selectedStatus === 'all' || doc.status === selectedStatus;
+                const matchesProject = selectedProject === 'all' || doc.project === selectedProject;
+                const searchableText = [doc.title, doc.description, doc.type, doc.status, doc.project, ...doc.tags]
+                    .join(' ')
+                    .toLowerCase();
 
-            return matchesTag && matchesType && matchesStatus && matchesProject && searchableText.includes(query);
-        });
+                return matchesTag && matchesType && matchesStatus && matchesProject && searchableText.includes(query);
+            });
 
         return filteredDocs.sort((first, second) => {
             if (sortOrder === 'title-asc') {

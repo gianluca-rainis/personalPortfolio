@@ -62,6 +62,16 @@ personalPortfolio/
 ```
 
 ## Development and Production
+### Environment Variables
+The contact api requires two Environment Variables: `EMAIL_NODE_MAILER`, that's the email connected to the gmail mail service provider and `PASSWORD_NODE_MAILER`, that's the password of the mail service provider.
+
+Those credentials are used by *nodemailer* to send the email throwght the contact form.
+
+```env
+EMAIL_NODE_MAILER
+PASSWORD_NODE_MAILER
+```
+
 ### Development
 ```bash
 npm run dev

@@ -14,10 +14,10 @@ const authorRef = {
     url: mainSiteUrl
 };
 
-export default function Head({ pageTitle='', pageUrl, projectData=null }) {
+export default function Head({ pageTitle='', projectData=null }) {
     const router = useRouter();
     const path = router.asPath.split('?')[0].split('#')[0];
-    const canonicalUrl = `${siteUrl}${pageUrl}` || `${siteUrl}${path === '/' ? '' : path}`;
+    const canonicalUrl = `${siteUrl}${path === '/' ? '' : path}`;
     const fullTitle = pageTitle ? `${siteName} - ${pageTitle}` : siteName;
     const finalDescription = projectData?.description || description;
 
@@ -59,7 +59,7 @@ export default function Head({ pageTitle='', pageUrl, projectData=null }) {
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={finalDescription} />
             <meta property="og:image" content={previewImage} />
-            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:type" content="image/webp" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content="Gianluca Rainis Labs preview image" />

@@ -5,7 +5,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/home.module.css';
-import { usePathname } from 'next/navigation';
 import { MoveUpRight } from 'lucide-react';
 import projects from '@/data/projects.json';
 
@@ -43,7 +42,6 @@ function StatusBadge({ status }) {
 }
 
 export default function HomePage({ pageTitle }) {
-    const path = usePathname();
     const [typedCharacters, setTypedCharacters] = useState(0);
 
     useEffect(() => {
@@ -69,7 +67,7 @@ export default function HomePage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} />
 
             <Nav />
 

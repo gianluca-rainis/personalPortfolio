@@ -2,7 +2,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export async function getStaticProps() {
 }
 
 export default function ProjectPage({ pageTitle }) {
-    const path = usePathname();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formStatus, setFormStatus] = useState('');
 
@@ -57,7 +55,7 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+            <Head pageTitle={pageTitle} projectData={{
                 name: 'Beyond the Quarks',
                 description: 'Beyond the Quarks is a 2D sci-fi exploration and adventure game developed in Unity. You have to fix your wormhole device piece by piece, hopping across alien realities until you can finally return home.',
                 codeRepository: 'https://github.com/gianluca-rainis/BeyondTheQuarks'

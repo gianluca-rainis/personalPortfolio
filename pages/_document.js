@@ -5,7 +5,7 @@ export default function Document() {
         <Html lang="en-US">
             <Head>
                 {/* Favicon */}
-                <link rel="shortcut icon" type="image/png" href="/icon.webp" />
+                <link rel="shortcut icon" type="image/webp" href="/icon.webp" />
             </Head>
             <body>
                 <Main />

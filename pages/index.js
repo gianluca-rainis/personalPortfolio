@@ -45,13 +45,8 @@ export default function HomePage({ pageTitle }) {
     const [typedCharacters, setTypedCharacters] = useState(0);
 
     useEffect(() => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            setTypedCharacters(heroTitle.length);
-
-            return;
-        }
-
-        let characters = 0;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let characters = reducedMotion ? heroTitle.length - 1 : 0;
 
         const typingInterval = window.setInterval(() => {
             characters += 1;
@@ -60,7 +55,7 @@ export default function HomePage({ pageTitle }) {
             if (characters === heroTitle.length) {
                 window.clearInterval(typingInterval);
             }
-        }, 65);
+        }, reducedMotion ? 0 : 65);
 
         return () => window.clearInterval(typingInterval);
     }, []);

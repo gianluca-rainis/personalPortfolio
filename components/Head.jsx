@@ -6,7 +6,7 @@ const siteUrl = 'https://projects.gianlucarainis.com';
 const mainSiteUrl = 'https://www.gianlucarainis.com';
 const siteName = 'Gianluca Rainis Labs';
 const description = 'Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games.';
-const previewImage = `${siteUrl}/GRLabsPreview.webp`;
+const previewImage = `${siteUrl}/GRLabsPreview.jpg`;
 const authorRef = {
     '@type': 'Person',
     '@id': `${mainSiteUrl}/#person`,
@@ -59,7 +59,7 @@ export default function Head({ pageTitle='', projectData=null }) {
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={finalDescription} />
             <meta property="og:image" content={previewImage} />
-            <meta property="og:image:type" content="image/webp" />
+            <meta property="og:image:type" content="image/jpeg" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content="Gianluca Rainis Labs preview image" />

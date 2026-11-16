@@ -17,7 +17,7 @@ const authorRef = {
 export default function Head({ pageTitle='', pageUrl, projectData=null }) {
     const router = useRouter();
     const path = router.asPath.split('?')[0].split('#')[0];
-    const canonicalUrl = pageUrl || `${siteUrl}${path === '/' ? '' : path}`;
+    const canonicalUrl = `${siteUrl}${pageUrl}` || `${siteUrl}${path === '/' ? '' : path}`;
     const fullTitle = pageTitle ? `${siteName} - ${pageTitle}` : siteName;
     const finalDescription = projectData?.description || description;
 

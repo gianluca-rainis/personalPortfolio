@@ -195,15 +195,24 @@ export default function ProjectPage({ pageTitle }) {
                             <pre>
                                 <code>
                                     {String.raw`personalPortfolio/
-├── components/        # UI pieces of the site
-├── data/              # The projects informations
-├── docs/              # The documentation to show in the Docs section
-├── lib/               # Implementation of internal functions
-├── pages/             # Site pages
-├── public/            # Images and downloadable files
-├── styles/            # Global styles and CSS modules
-├── mdx-components.tsx # Component to support the mdx files rendering
-└── next.config.mjs    # Next.js Configuration to support the mdx files`}
+├── components/               # UI pieces of the site
+├── data/                     # Project information
+├── docs/                     # The documentation to show in the Docs section
+├── lib/                      # Implementation of internal functions
+├── pages/                    # Site pages
+├── public/                   # Images and downloadable files
+├── styles/                   # Global styles and CSS modules
+├── templates/                # Templates files
+├── .gitattributes            # Gitattributes file
+├── .gitignore                # Gitignore file
+├── eslint.config.mjs         # The lint configuration file
+├── icon.png                  # The website icon
+├── jsconfig.json             # JavaScript Configuration
+├── LICENSE                   # MIT License
+├── next.config.js            # Next.js Configuration
+├── package-lock.json         # Project Configuration
+├── package.json              # Project Configuration
+└── README.md                 # This file`}
                                 </code>
                             </pre>
                             <p>

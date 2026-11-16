@@ -93,7 +93,7 @@ export default function HomePage({ pageTitle }) {
                     <div className={styles.projectRail}>
                         {featuredProjectsInDisplayOrder.map((project) => (
                             <article className={styles.project} key={project.number}>
-                                <Link href={project.href} className={styles.project} aria-label={project.title}>
+                                <Link href={project.href} className={styles.projectLink} aria-label={project.title}>
                                     <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 
                                         style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
                                         { (project.image && project.image != "") ? 
@@ -141,7 +141,7 @@ export default function HomePage({ pageTitle }) {
                     <div className={styles.projectRail}>
                         {projectsInDisplayOrder.map((project) => (
                             <article className={styles.project} key={project.number}>
-                                <Link href={project.href} className={styles.project} aria-label={project.title}>
+                                <Link href={project.href} className={styles.projectLink} aria-label={project.title}>
                                     <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 
                                         style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
                                         { (project.image && project.image != "") ? 

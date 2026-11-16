@@ -221,6 +221,11 @@
     animation-delay: 400ms;
 }
 
+.projectLink {
+    display: block;
+    text-decoration: none;
+}
+
 .projectImage {
     aspect-ratio: 1.55;
     display: flex;

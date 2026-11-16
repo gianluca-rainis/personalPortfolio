@@ -117,7 +117,7 @@ export default function HomePage({ pageTitle }) {
                                     <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 
                                         style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
                                         { (project.image && project.image != "") ? 
-                                            <Image src={project.image} alt={project.imageAlt} fill className={styles.image} />
+                                            <Image src={project.image} alt={project.imageAlt} fill sizes='(max-width: 540px) 84vw, (max-width: 800px) 48vw, 32vw' className={styles.image} />
                                             :
                                             <>
                                                 <span>Image to come</span>

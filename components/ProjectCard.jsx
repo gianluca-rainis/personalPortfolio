@@ -9,7 +9,7 @@ export default function ProjectCard({ project }) {
         <article className={styles.card}>
             <Link href={project.href} className={styles.projectLink} aria-label={`View ${project.title}`}>
                 <div className={styles.imageFrame}>
-                    <Image src={project.image} alt={project.imageAlt} fill className={styles.image} />
+                    <Image src={project.image} alt={project.imageAlt} fill sizes='(max-width: 540px) 100vw, (max-width: 800px) 50vw, 33vw' className={styles.image} />
                     <div className={styles.imageMeta}>
                         <span>{project.number}</span>
                         <span>{project.category}</span>

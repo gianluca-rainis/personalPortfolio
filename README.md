@@ -35,7 +35,7 @@ The author of the whole project is:
 **All content has been carefully reviewed, tested, adapted, modified, and curated by the author.**
 
 ## License
-This project is under the MIT License.
+This project is under the [MIT License](LICENSE).
 
 ## Project Structure
 ```
@@ -49,9 +49,9 @@ personalPortfolio/
 ├── styles/                   # Global styles and CSS modules
 ├── .gitattributes            # Gitattributes file
 ├── .gitignore                # Gitignore file
-├── icon.webp                  # The website icon
+├── icon.webp                 # The website icon
 ├── jsconfig.json             # JavaScript Configuration
-├── LICENSE.md                # MIT License
+├── LICENSE.                  # MIT License
 ├── mdx-components.tsx        # Component to support the mdx files rendering
 ├── next.config.js            # Next.js Configuration
 ├── next.config.mjs           # Next.js Configuration to support the mdx files

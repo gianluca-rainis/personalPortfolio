@@ -138,8 +138,10 @@ export default function ProjectPage({ pageTitle }) {
                                 The idea behind the project is that <strong>all ideas are equal</strong>, and as such they deserve the same visibility.
                                 The goal is to create an international community of creatives who share their ideas and help each other to bring them to life.
                             </p>
-                            <img src="/projects/FreeIdeasHome.webp" alt="FreeIdeas home page" />
-                            <citation>The home page of FreeIdeas</citation>
+                            <figure>
+                                <img src="/projects/FreeIdeasHome.webp" alt="FreeIdeas home page" />
+                                <figcaption>The home page of FreeIdeas</figcaption>
+                            </figure>
 
                             <h3>Philosophy</h3>
                             <p>
@@ -236,8 +238,10 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 The author can also update or delete the idea whenever they want, and see who they are talking to through the username of the other authors, which links to their account if it is public.
                             </p>
-                            <img src="/projects/FreeIdeasIdea.webp" alt="FreeIdeas idea page" />
-                            <citation>The page of an idea</citation>
+                            <figure>
+                                <img src="/projects/FreeIdeasIdea.webp" alt="FreeIdeas idea page" />
+                                <figcaption>The page of an idea</figcaption>
+                            </figure>
 
                             <h3>Licenses</h3>
                             <p>
@@ -327,8 +331,10 @@ export default function ProjectPage({ pageTitle }) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <img src="/projects/FreeIdeasER.webp" alt="FreeIdeas entity relationship diagram" />
-                            <citation>The entity relationship diagram of the database</citation>
+                            <figure>
+                                <img src="/projects/FreeIdeasER.webp" alt="FreeIdeas entity relationship diagram" />
+                                <figcaption>The entity relationship diagram of the database</figcaption>
+                            </figure>
                         </section>
                         <section id="code">
                             <h2>Code</h2>

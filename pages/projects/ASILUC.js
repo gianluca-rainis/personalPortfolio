@@ -197,8 +197,10 @@ export default function ProjectPage({ pageTitle }) {
                                 <li><strong>Count clocks from the rising edge of <code>status</code></strong>: the first number must be stable in the first <i>3 cycles</i> (sampled last), the second in the next 3.</li>
                                 <li>Once <code>status</code> has risen, the command can return to <code>0000</code> at any time, as ASILUC no longer reads it.</li>
                             </ul>
-                            <img src="/projects/ASILUCPreview3D.webp" alt="ASILUC 3D Render" />
-                            <citation>ASILUC 3D Render</citation>
+                            <figure>
+                                <img src="/projects/ASILUCPreview3D.webp" alt="ASILUC 3D Render" />
+                                <figcaption>ASILUC 3D Render</figcaption>
+                            </figure>
 
                             <h3>ASILUC's tables</h3>
 

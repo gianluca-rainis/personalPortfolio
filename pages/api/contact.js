@@ -1,10 +1,20 @@
 import nodemailer from 'nodemailer';
 
+const rateLimitWindowMs = 60 * 1000;
+const rateLimitMaxRequests = 3;
+const requestsByIp = new Map();
+
 const CONTACT_RECEIVER = 'gianlucarainis@gmail.com';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
+
+    if (isRateLimited(ip)) {
+        return res.status(429).json({ error: 'Too many requests. Please try again later.' });
     }
 
     const body = req.body;
@@ -62,7 +72,7 @@ export default async function handler(req, res) {
             <html lang="en-US">
                 <head>
                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                    <title>[Support] ${safeSubject}</title>
+                    <title>[Support] ${escapeHtml(safeSubject)}</title>
                 </head>
 
                 <body style="
@@ -85,6 +95,16 @@ export default async function handler(req, res) {
         console.error('Error sending contact email: '+error);
         return res.status(500).json({ error: 'Failed to send message' });
     }
+}
+
+function isRateLimited(ip) {
+    const now = Date.now();
+    const recentRequests = (requestsByIp.get(ip) ?? []).filter((time) => now - time < rateLimitWindowMs);
+
+    recentRequests.push(now);
+    requestsByIp.set(ip, recentRequests);
+
+    return recentRequests.length > rateLimitMaxRequests;
 }
 
 function sanitizeText(value, options = {}) {

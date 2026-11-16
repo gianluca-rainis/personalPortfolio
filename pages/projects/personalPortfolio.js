@@ -132,8 +132,10 @@ export default function ProjectPage({ pageTitle }) {
                                 The projects are not just a list of links: every project has its own page, with an overview, the architecture, the most interesting parts of the code and the resources to try it or read more.
                                 The documents are written in MDX, so they are rendered directly inside the site, with their own metadata.
                             </p>
-                            <img src="/projects/personalPortfolioPreview.webp" alt="Personal portfolio home page" />
-                            <citation>The home page of the portfolio</citation>
+                            <figure>
+                                <img src="/projects/personalPortfolioPreview.webp" alt="Personal portfolio home page" />
+                                <figcaption>The home page of the portfolio</figcaption>
+                            </figure>
                         </section>
                         <section id="architecture">
                             <h2>Architecture</h2>
@@ -160,8 +162,10 @@ export default function ProjectPage({ pageTitle }) {
                                 Every project also has its own page, written separately from the data, usually with an overview, the architecture, the code and the resources.
                                 The projects page lets the visitor narrow the list of cards with filters and a search function, so even a long list stays easy to explore.
                             </p>
-                            <img src="/projects/personalPortfolioProjects.webp" alt="Personal portfolio projects page" />
-                            <citation>The projects page, with filters and search</citation>
+                            <figure>
+                                <img src="/projects/personalPortfolioProjects.webp" alt="Personal portfolio projects page" />
+                                <figcaption>The projects page, with filters and search</figcaption>
+                            </figure>
 
                             <h3>Documents</h3>
                             <p>
@@ -171,8 +175,10 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 Each document has its own metadata (for example title and description) that is shown with the content and used to list it in the docs page.
                             </p>
-                            <img src="/projects/personalPortfolioDocs.webp" alt="Personal portfolio docs page" />
-                            <citation>The docs page</citation>
+                            <figure>
+                                <img src="/projects/personalPortfolioDocs.webp" alt="Personal portfolio docs page" />
+                                <figcaption>The docs page</figcaption>
+                            </figure>
                         </section>
                         <section id="code">
                             <h2>Code</h2>

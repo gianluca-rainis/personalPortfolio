@@ -144,8 +144,10 @@ export default function ProjectPage({ pageTitle }) {
                                 The board was designed to be used in educational kits, and it was sponsored by PCBWay, which produced the PCB.
                                 The project is currently paused.
                             </p>
-                            <img src="/projects/Z80DevBoard3DFront.webp" alt="Z80DevBoard 3D render" />
-                            <citation>Z80DevBoard 3D Render</citation>
+                            <figure>
+                                <img src="/projects/Z80DevBoard3DFront.webp" alt="Z80DevBoard 3D render" />
+                                <figcaption>Z80DevBoard 3D Render</figcaption>
+                            </figure>
                         </section>
                         <section id="architecture">
                             <h2>Architecture</h2>
@@ -246,9 +248,11 @@ export default function ProjectPage({ pageTitle }) {
                                 Combined with the manual clock, the LEDs update at every step.
                                 This way it is possible to see how the Z80 reads from and writes to the memory, without an oscilloscope or a logic analyzer.
                             </p>
-                            <img src="/projects/Z80DevBoardLedsData.webp" alt="Z80DevBoard LED matrices" />
-                            <img src="/projects/Z80DevBoardLedsAddress.webp" alt="Z80DevBoard LED matrices" />
-                            <citation>The LED matrices showing the state of the buses</citation>
+                            <figure>
+                                <img src="/projects/Z80DevBoardLedsData.webp" alt="Z80DevBoard LED matrices" />
+                                <img src="/projects/Z80DevBoardLedsAddress.webp" alt="Z80DevBoard LED matrices" />
+                                <figcaption>The LED matrices showing the state of the buses</figcaption>
+                            </figure>
 
                             <h3>Expansion connectors</h3>
                             <p>
@@ -297,8 +301,10 @@ export default function ProjectPage({ pageTitle }) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <img src="/projects/Z80DevBoardPCB.webp" alt="Z80DevBoard PCB" />
-                            <citation>The PCB layout</citation>
+                            <figure>
+                                <img src="/projects/Z80DevBoardPCB.webp" alt="Z80DevBoard PCB" />
+                                <figcaption>The PCB layout</figcaption>
+                            </figure>
                         </section>
                         <section id="code">
                             <h2>Code</h2>

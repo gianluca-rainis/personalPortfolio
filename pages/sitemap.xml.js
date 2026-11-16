@@ -1,4 +1,5 @@
 import projects from '@/data/projects.json';
+import { getAllDocs } from '@/lib/docs';
 
 const SITE_URL = 'https://projects.gianlucarainis.com';
 
@@ -31,9 +32,17 @@ export async function getServerSideProps({ res }) {
         priority: 0.5,
     }));
 
+    const docs = await getAllDocs();
+    const docPages = docs.filter((doc) => doc.listed).map((doc) => ({
+        loc: `/docs/${doc.slug}`,
+        lastmod: new Date(doc.updated ?? doc.date).toISOString(),
+        changefreq: 'yearly',
+        priority: 0.5,
+    }));
+
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        ${pages.concat(dynamicPages).map((page) => `
+        ${pages.concat(dynamicPages, docPages).map((page) => `
             <url>
                 <loc>${SITE_URL}${page.loc}</loc>
                 <lastmod>${page.lastmod}</lastmod>

@@ -85,7 +85,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>dungeon</li>
                         </ul>
                     </div>
-                    <img src="/projects/MagicExplorerPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/MagicExplorerPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/magicExplorer" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -137,7 +137,7 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 All the graphics of the game were drawn by me, in a pixel art style.
                             </p>
-                            <img src="/projects/MagicExplorerGameplay.png" alt="MagicExplorer gameplay" />
+                            <img src="/projects/MagicExplorerGameplay.webp" alt="MagicExplorer gameplay" />
                             <citation>The wizard exploring the dungeon</citation>
                         </section>
                         <section id="architecture">
@@ -177,7 +177,7 @@ export default function ProjectPage({ pageTitle }) {
                                 A spell that gains a level becomes better in every aspect: it deals more damage, it moves faster if it is a moving spell, it has a stronger kickback on the enemies and the delay between one cast and the next one is shorter.
                                 Since the spell to upgrade is random, every run develops differently, and the player has to adapt the style of play to the spells that become stronger.
                             </p>
-                            <img src="/projects/MagicExplorerRoomWithPowerups.png" alt="A room with two powerups" />
+                            <img src="/projects/MagicExplorerRoomWithPowerups.webp" alt="A room with two powerups" />
                             <citation>A room with two powerups</citation>
 
                             <h3>Enemies</h3>
@@ -185,7 +185,7 @@ export default function ProjectPage({ pageTitle }) {
                                 The dungeon is populated by different types of enemies.
                                 Each type has its own damage, its own speed and its own bonus points, so the stronger or faster enemies are also the ones that give the best reward.
                             </p>
-                            <img src="/projects/MagicExplorerBlobTable.png" alt="MagicExplorer blob enemy sprite table" />
+                            <img src="/projects/MagicExplorerBlobTable.webp" alt="MagicExplorer blob enemy sprite table" />
                             <citation>The animation table of a blob</citation>
 
                             <h3>Bosses</h3>
@@ -210,7 +210,7 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 Unlike the other enemies, a boss that has been defeated does not respawn, so every one of them has to be beaten only once.
                             </p>
-                            <img src="/projects/MagicExplorerBoss.png" alt="A room with the boss" />
+                            <img src="/projects/MagicExplorerBoss.webp" alt="A room with the boss" />
                             <citation>A room with the boss</citation>
 
                             <h3>Controls</h3>

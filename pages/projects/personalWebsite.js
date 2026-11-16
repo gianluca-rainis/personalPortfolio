@@ -84,7 +84,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>terminal</li>
                         </ul>
                     </div>
-                    <img src="/projects/personalWebsitePreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/personalWebsitePreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/personalWebsite" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -136,7 +136,7 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 Besides the home page, the site has a page where you can view and download an updated copy of my CV (in English and in Italian), a contact page to send me a message directly, and a search page.
                             </p>
-                            <img src="/projects/personalWebsitePreview.png" alt="Personal website home page" />
+                            <img src="/projects/personalWebsitePreview.webp" alt="Personal website home page" />
                             <citation>The home page of the website</citation>
                         </section>
                         <section id="architecture">
@@ -265,7 +265,7 @@ export default function ProjectPage({ pageTitle }) {
                                 <li><strong>Theme manager</strong>: changes the colors of the home page.</li>
                                 <li><strong>Battery</strong>: a battery emulator, with even a Power Save mode.</li>
                             </ul>
-                            <img src="/projects/personalWebsiteThemes.png" alt="Personal website color themes" />
+                            <img src="/projects/personalWebsiteThemes.webp" alt="Personal website color themes" />
                             <citation>The home page in some of the available color themes</citation>
 
                             <h3>Other pages</h3>

@@ -86,7 +86,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>multiverse</li>
                         </ul>
                     </div>
-                    <img src="/projects/BeyondTheQuarksPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/BeyondTheQuarksPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/BeyondTheQuarks" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -147,7 +147,7 @@ export default function ProjectPage({ pageTitle }) {
                                 Every world you visit contains new environments, resources, dangers and mysteries.
                                 Some universes may hold the components you need, while others may reveal clues about the deepest secrets of the multiverse itself.
                             </p>
-                            <img src="/projects/BeyondTheQuarksPreview.png" alt="Beyond the Quarks cover" />
+                            <img src="/projects/BeyondTheQuarksPreview.webp" alt="Beyond the Quarks cover" />
                             <citation>The cover of Beyond the Quarks</citation>
                         </section>
                         <section id="architecture">
@@ -197,7 +197,7 @@ export default function ProjectPage({ pageTitle }) {
                                 The story is told through an opening sequence and a stage intro cutscene, where the text is shown with a typing effect and a typing sound.
                                 During the exploration the player can also talk with the characters of the universes through a dialogue system.
                             </p>
-                            <img src="/projects/BeyondTheQuarksGameplay.png" alt="Beyond the Quarks gameplay" />
+                            <img src="/projects/BeyondTheQuarksGameplay.webp" alt="Beyond the Quarks gameplay" />
                             <citation>A scene from the game</citation>
 
                             <h3>Controls</h3>

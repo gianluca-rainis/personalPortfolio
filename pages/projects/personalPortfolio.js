@@ -84,7 +84,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>high-tech</li>
                         </ul>
                     </div>
-                    <img src="/projects/personalPortfolioPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/personalPortfolioPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/personalPortfolio" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -134,7 +134,7 @@ export default function ProjectPage({ pageTitle }) {
                                 The projects are not just a list of links: every project has its own page, with an overview, the architecture, the most interesting parts of the code and the resources to try it or read more.
                                 The documents are written in MDX, so they are rendered directly inside the site, with their own metadata.
                             </p>
-                            <img src="/projects/personalPortfolioPreview.png" alt="Personal portfolio home page" />
+                            <img src="/projects/personalPortfolioPreview.webp" alt="Personal portfolio home page" />
                             <citation>The home page of the portfolio</citation>
                         </section>
                         <section id="architecture">
@@ -162,7 +162,7 @@ export default function ProjectPage({ pageTitle }) {
                                 Every project also has its own page, written separately from the data, usually with an overview, the architecture, the code and the resources.
                                 The projects page lets the visitor narrow the list of cards with filters and a search function, so even a long list stays easy to explore.
                             </p>
-                            <img src="/projects/personalPortfolioProjects.png" alt="Personal portfolio projects page" />
+                            <img src="/projects/personalPortfolioProjects.webp" alt="Personal portfolio projects page" />
                             <citation>The projects page, with filters and search</citation>
 
                             <h3>Documents</h3>
@@ -173,7 +173,7 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 Each document has its own metadata (for example title and description) that is shown with the content and used to list it in the docs page.
                             </p>
-                            <img src="/projects/personalPortfolioDocs.png" alt="Personal portfolio docs page" />
+                            <img src="/projects/personalPortfolioDocs.webp" alt="Personal portfolio docs page" />
                             <citation>The docs page</citation>
                         </section>
                         <section id="code">
@@ -218,7 +218,7 @@ export default function ProjectPage({ pageTitle }) {
         "category": "Website",
         "title": "Personal Portfolio",
         "description": "My personal portfolio, with a high-tech inspired interface.",
-        "image": "/projects/personalPortfolioPreview.png",
+        "image": "/projects/personalPortfolioPreview.webp",
         "imageAlt": "Image of my personal portfolio's home page",
         "tags": ["personal portfolio", "website", "nextjs", "react", "high-tech"],
         "status": "In Development",

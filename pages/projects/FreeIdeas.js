@@ -84,7 +84,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>react</li>
                         </ul>
                     </div>
-                    <img src="/projects/FreeIdeasPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/FreeIdeasPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/FreeIdeas" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -140,7 +140,7 @@ export default function ProjectPage({ pageTitle }) {
                                 The idea behind the project is that <strong>all ideas are equal</strong>, and as such they deserve the same visibility.
                                 The goal is to create an international community of creatives who share their ideas and help each other to bring them to life.
                             </p>
-                            <img src="/projects/FreeIdeasHome.png" alt="FreeIdeas home page" />
+                            <img src="/projects/FreeIdeasHome.webp" alt="FreeIdeas home page" />
                             <citation>The home page of FreeIdeas</citation>
 
                             <h3>Philosophy</h3>
@@ -238,7 +238,7 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 The author can also update or delete the idea whenever they want, and see who they are talking to through the username of the other authors, which links to their account if it is public.
                             </p>
-                            <img src="/projects/FreeIdeasIdea.png" alt="FreeIdeas idea page" />
+                            <img src="/projects/FreeIdeasIdea.webp" alt="FreeIdeas idea page" />
                             <citation>The page of an idea</citation>
 
                             <h3>Licenses</h3>
@@ -329,7 +329,7 @@ export default function ProjectPage({ pageTitle }) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <img src="/projects/FreeIdeasER.png" alt="FreeIdeas entity relationship diagram" />
+                            <img src="/projects/FreeIdeasER.webp" alt="FreeIdeas entity relationship diagram" />
                             <citation>The entity relationship diagram of the database</citation>
                         </section>
                         <section id="code">

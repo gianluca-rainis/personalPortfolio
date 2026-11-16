@@ -83,7 +83,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>hardware</li>
                         </ul>
                     </div>
-                    <img src="/projects/ASILUCPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/ASILUCPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/ASILUC" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -199,7 +199,7 @@ export default function ProjectPage({ pageTitle }) {
                                 <li><strong>Count clocks from the rising edge of <code>status</code></strong>: the first number must be stable in the first <i>3 cycles</i> (sampled last), the second in the next 3.</li>
                                 <li>Once <code>status</code> has risen, the command can return to <code>0000</code> at any time, as ASILUC no longer reads it.</li>
                             </ul>
-                            <img src="/projects/ASILUCPreview3D.png" alt="ASILUC 3D Render" />
+                            <img src="/projects/ASILUCPreview3D.webp" alt="ASILUC 3D Render" />
                             <citation>ASILUC 3D Render</citation>
 
                             <h3>ASILUC's tables</h3>

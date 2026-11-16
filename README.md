@@ -18,7 +18,7 @@ Another important page is the **document page**, with integrated *mdx rendering*
 
 > **Live site**: [https://projects.gianlucarainis.com](https://projects.gianlucarainis.com)
 
-![Home Page Preview](public/GRLabsPreview.png)
+![Home Page Preview](public/GRLabsPreview.webp)
 
 ## Tech Stack
 - **Next.js**
@@ -49,7 +49,7 @@ personalPortfolio/
 ├── styles/                   # Global styles and CSS modules
 ├── .gitattributes            # Gitattributes file
 ├── .gitignore                # Gitignore file
-├── icon.png                  # The website icon
+├── icon.webp                  # The website icon
 ├── jsconfig.json             # JavaScript Configuration
 ├── LICENSE.md                # MIT License
 ├── mdx-components.tsx        # Component to support the mdx files rendering

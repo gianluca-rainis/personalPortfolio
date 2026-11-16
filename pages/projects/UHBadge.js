@@ -83,7 +83,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>hacker tools</li>
                         </ul>
                     </div>
-                    <img src="/projects/UHBadgePreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/UHBadgePreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/UHBadge" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -135,7 +135,7 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 The project is currently in development, and the first version of the board is in the final steps of its design.
                             </p>
-                            <img src="/projects/UHBadge3DFront.png" alt="UHBadge 3D render, front" />
+                            <img src="/projects/UHBadge3DFront.webp" alt="UHBadge 3D render, front" />
                             <citation>UHBadge 3D Render, front</citation>
                         </section>
                         <section id="architecture">
@@ -197,7 +197,7 @@ export default function ProjectPage({ pageTitle }) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <img src="/projects/UHBadgeSchematics.png" alt="UHBadge schematic" />
+                            <img src="/projects/UHBadgeSchematics.webp" alt="UHBadge schematic" />
                             <citation>UHBadge schematic</citation>
 
                             <h3>Interface</h3>
@@ -259,7 +259,7 @@ export default function ProjectPage({ pageTitle }) {
                                 <li><strong>Custom programs</strong>: they can be loaded from the microSD card.</li>
                                 <li><strong>USB-C</strong>: used to charge the battery, to power the badge and to load a custom firmware.</li>
                             </ul>
-                            <img src="/projects/UHBadgePCB.png" alt="UHBadge PCB" />
+                            <img src="/projects/UHBadgePCB.webp" alt="UHBadge PCB" />
                             <citation>UHBadge PCB layout</citation>
                         </section>
                         <section id="code">
@@ -312,7 +312,7 @@ make -j$(sysctl -n hw.ncpu)`}
                             <p>
                                 This is how the board looks like from the back.
                             </p>
-                            <img src="/projects/UHBadge3DBack.png" alt="UHBadge 3D render, back" />
+                            <img src="/projects/UHBadge3DBack.webp" alt="UHBadge 3D render, back" />
                             <citation>UHBadge 3D Render, back</citation>
 
                             <h3>Source Repository</h3>

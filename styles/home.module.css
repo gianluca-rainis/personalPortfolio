@@ -123,6 +123,37 @@
     font-size: 0.85rem;
 }
 
+.statsSection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--surface-border);
+    background: var(--surface-bg);
+}
+
+.statsDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 28px 7vw;
+}
+
+.statsDiv + .statsDiv {
+    border-left: 1px solid var(--surface-border);
+}
+
+.statsDiv strong {
+    color: var(--theme-accent);
+    font-size: 2.2rem;
+    font-weight: 400;
+}
+
+.statsDiv span {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .projectSection {
     padding: 68px 7vw 18px;
 }
@@ -303,6 +334,47 @@
     line-height: 1.6;
 }
 
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 4px 9px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.statusActive {
+    color: var(--theme-text);
+}
+
+.statusPaused {
+    color: #ffb020;
+}
+
+.statusDone {
+    color: var(--text-muted);
+}
+
+.statusActive::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: statusPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+    50% {
+        opacity: 0.25;
+    }
+}
+
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -317,6 +389,77 @@
     color: var(--text-muted);
     font-size: 0.68rem;
     line-height: 1;
+}
+
+.archiveList {
+    list-style: none;
+    border-top: 1px solid var(--surface-border);
+}
+
+.archiveRow {
+    display: grid;
+    grid-template-columns: 3rem 1fr 8rem 10rem 1.5rem;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 8px;
+    border-bottom: 1px solid var(--surface-border);
+    color: var(--text-primary);
+    transition: background 180ms ease, padding-left 180ms ease, color 180ms ease;
+}
+
+.archiveRow:hover {
+    padding-left: 18px;
+    background: linear-gradient(90deg, var(--theme-accent-soft), transparent);
+    color: var(--theme-accent);
+}
+
+.archiveNumber, .archiveCategory {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.archiveTitle {
+    font-size: 1.05rem;
+}
+
+.archiveRow .status {
+    margin-top: 0;
+    justify-self: end;
+}
+
+.cta {
+    margin-top: 50px;
+    padding: 90px 7vw;
+    text-align: center;
+    border-top: 1px solid var(--surface-border);
+    background: radial-gradient(ellipse at 50% 100%, rgba(32, 255, 68, 0.1), transparent 60%);
+}
+
+.cta h2 {
+    margin: 12px 0 32px;
+    font-size: 2.4rem;
+    font-weight: 400;
+}
+
+.ctaLinks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 22px;
+    border: 1px solid var(--theme-accent);
+    border-radius: 999px;
+    transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.ctaButton:hover {
+    background: var(--theme-accent-soft);
 }
 
 @keyframes reveal {
@@ -345,12 +488,24 @@
         font-size: 3.5rem;
     }
 
+    .statsDiv {
+        padding: 22px 6vw;
+    }
+
     .projectSection {
         padding: 54px 6vw 12px;
     }
 
     .projectRail {
         grid-auto-columns: minmax(260px, 48%);
+    }
+
+    .archiveRow {
+        grid-template-columns: 2.5rem 1fr auto 1.5rem;
+    }
+
+    .archiveCategory {
+        display: none;
     }
 }
 
@@ -373,6 +528,14 @@
         font-size: 0.72rem;
     }
 
+    .statsDiv {
+        padding: 18px 14px;
+    }
+
+    .statsDiv strong {
+        font-size: 1.6rem;
+    }
+
     .projectSection {
         padding: 46px 22px 10px;
     }
@@ -389,6 +552,22 @@
         grid-auto-columns: 84%;
         gap: 16px;
     }
+
+    .cta h2 {
+        font-size: 1.7rem;
+    }
+
+    .archiveRow {
+        grid-template-columns: 1rem 0.4fr auto 1.5rem;
+    }
+
+    .archiveRow .status {
+        font-size: 0.5rem;
+    }
+
+    .status {
+        padding: 2px 5px;
+    }
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -396,11 +575,11 @@
         animation: none;
     }
 
-    .hero h1 .typingCursor {
+    .hero h1 .typingCursor, .statusActive::before {
         animation: none;
     }
 
-    .allProjectView a, .arrowIcon, .project, .projectImage {
+    .allProjectView a, .arrowIcon, .project, .projectImage, .archiveRow, .ctaButton {
         transition: none;
     }
 }

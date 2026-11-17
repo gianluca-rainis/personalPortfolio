@@ -2,6 +2,7 @@
 const nextConfig = {
     basePath: '', // No prefixs
     trailingSlash: false,
+    poweredByHeader: false,
     
     // Asset optimization
     images: {

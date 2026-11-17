@@ -82,7 +82,7 @@ export default async function handler(req, res) {
 
     try {
         await transporter.sendMail({
-            from: `GRLabs Support Form`,
+            from: `"GRLabs Support Form" <${process.env.EMAIL_NODE_MAILER}>`,
             to: CONTACT_RECEIVER,
             ...(safeReplyEmail && { replyTo: safeReplyEmail }),
             subject: `[Support] ${safeSubject}`,

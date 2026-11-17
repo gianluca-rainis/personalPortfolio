@@ -45,6 +45,8 @@ export default function Head({ pageTitle='', pageUrl, projectData=null }) {
         });
     }
 
+    const jsonLdScript = JSON.stringify(jsonLd).replace(/</g, '\\u003c');
+
     return (
         <HeadNext>
             <title>{fullTitle}</title>
@@ -71,7 +73,7 @@ export default function Head({ pageTitle='', pageUrl, projectData=null }) {
 
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: jsonLdScript }}
             />
         </HeadNext>
     )

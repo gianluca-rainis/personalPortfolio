@@ -1,8 +1,19 @@
+import { isIP } from 'node:net';
 import nodemailer from 'nodemailer';
+
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '64kb'
+        }
+    }
+};
 
 const rateLimitWindowMs = 60 * 1000;
 const rateLimitMaxRequests = 3;
+const rateLimitMaxTrackedIps = 10000;
 const requestsByIp = new Map();
+let lastRateLimitCleanup = 0;
 
 const CONTACT_RECEIVER = 'gianlucarainis@gmail.com';
 
@@ -11,7 +22,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
+    const ip = getClientIp(req);
 
     if (isRateLimited(ip)) {
         return res.status(429).json({ error: 'Too many requests. Please try again later.' });
@@ -99,12 +110,50 @@ export default async function handler(req, res) {
 
 function isRateLimited(ip) {
     const now = Date.now();
+    if (now - lastRateLimitCleanup >= rateLimitWindowMs) {
+        for (const [trackedIp, requests] of requestsByIp) {
+            const recentRequests = requests.filter((time) => now - time < rateLimitWindowMs);
+
+            if (recentRequests.length) {
+                requestsByIp.set(trackedIp, recentRequests);
+            }
+            else {
+                requestsByIp.delete(trackedIp);
+            }
+        }
+
+        lastRateLimitCleanup = now;
+    }
+
     const recentRequests = (requestsByIp.get(ip) ?? []).filter((time) => now - time < rateLimitWindowMs);
+
+    if (recentRequests.length >= rateLimitMaxRequests) {
+        return true;
+    }
+
+    if (!requestsByIp.has(ip) && requestsByIp.size >= rateLimitMaxTrackedIps) {
+        return true;
+    }
 
     recentRequests.push(now);
     requestsByIp.set(ip, recentRequests);
 
-    return recentRequests.length > rateLimitMaxRequests;
+    return false;
+}
+
+function getClientIp(req) {
+    const remoteAddress = req.socket.remoteAddress || 'unknown';
+    const trustedProxyHops = Number(process.env.CONTACT_TRUSTED_PROXY_HOPS || 0);
+    const forwardedFor = req.headers['x-forwarded-for'];
+
+    if (!Number.isInteger(trustedProxyHops) || trustedProxyHops < 1 || typeof forwardedFor !== 'string') {
+        return remoteAddress;
+    }
+
+    const forwardedIps = forwardedFor.split(',').map((address) => address.trim());
+    const clientIp = forwardedIps[forwardedIps.length - trustedProxyHops];
+
+    return clientIp && isIP(clientIp) ? clientIp : remoteAddress;
 }
 
 function sanitizeText(value, options = {}) {

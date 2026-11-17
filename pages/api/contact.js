@@ -12,7 +12,10 @@ export const config = {
 const rateLimitWindowMs = 60 * 1000;
 const rateLimitMaxRequests = 3;
 const rateLimitMaxTrackedIps = 10000;
+const globalLimitWindowMs = 60 * 60 * 1000;
+const globalLimitMaxRequests = 30;
 const requestsByIp = new Map();
+let globalRequests = [];
 let lastRateLimitCleanup = 0;
 
 const CONTACT_RECEIVER = 'gianlucarainis@gmail.com';
@@ -20,6 +23,14 @@ const CONTACT_RECEIVER = 'gianlucarainis@gmail.com';
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    if (!req.headers['content-type']?.startsWith('application/json')) {
+        return res.status(415).json({ error: 'Unsupported content type' });
+    }
+
+    if (!isSameOrigin(req)) {
+        return res.status(403).json({ error: 'Forbidden' });
     }
 
     const ip = getClientIp(req);
@@ -55,6 +66,10 @@ export default async function handler(req, res) {
         console.error('Missing email env vars.');
 
         return res.status(500).json({ success: false, error: 'Email service is not available yet' });
+    }
+
+    if (isGlobalLimited()) {
+        return res.status(429).json({ error: 'Too many requests. Please try again later.' });
     }
 
     const transporter = nodemailer.createTransport({
@@ -141,6 +156,34 @@ function isRateLimited(ip) {
     return false;
 }
 
+function isSameOrigin(req) {
+    const origin = req.headers.origin;
+
+    if (!origin) {
+        return true;
+    }
+
+    try {
+        return new URL(origin).host === req.headers.host;
+    } catch {
+        return false;
+    }
+}
+
+function isGlobalLimited() {
+    const now = Date.now();
+
+    globalRequests = globalRequests.filter((time) => now - time < globalLimitWindowMs);
+
+    if (globalRequests.length >= globalLimitMaxRequests) {
+        return true;
+    }
+
+    globalRequests.push(now);
+
+    return false;
+}
+
 function getClientIp(req) {
     const remoteAddress = req.socket.remoteAddress || 'unknown';
     const trustedProxyHops = Number(process.env.CONTACT_TRUSTED_PROXY_HOPS || 0);
@@ -171,7 +214,7 @@ function sanitizeText(value, options = {}) {
 }
 
 function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    return /^[^\s@<>(),;:"\\]+@[^\s@<>(),;:"\\]+\.[^\s@<>(),;:"\\]+$/.test(email);
 }
 
 function escapeHtml(value) {

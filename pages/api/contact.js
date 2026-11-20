@@ -1,8 +1,22 @@
+import { isIP } from 'node:net';
 import nodemailer from 'nodemailer';
+
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '64kb'
+        }
+    }
+};
 
 const rateLimitWindowMs = 60 * 1000;
 const rateLimitMaxRequests = 3;
+const rateLimitMaxTrackedIps = 10000;
+const globalLimitWindowMs = 60 * 60 * 1000;
+const globalLimitMaxRequests = 30;
 const requestsByIp = new Map();
+let globalRequests = [];
+let lastRateLimitCleanup = 0;
 
 const CONTACT_RECEIVER = 'gianlucarainis@gmail.com';
 
@@ -11,7 +25,15 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
+    if (!req.headers['content-type']?.startsWith('application/json')) {
+        return res.status(415).json({ error: 'Unsupported content type' });
+    }
+
+    if (!isSameOrigin(req)) {
+        return res.status(403).json({ error: 'Forbidden' });
+    }
+
+    const ip = getClientIp(req);
 
     if (isRateLimited(ip)) {
         return res.status(429).json({ error: 'Too many requests. Please try again later.' });
@@ -46,6 +68,10 @@ export default async function handler(req, res) {
         return res.status(500).json({ success: false, error: 'Email service is not available yet' });
     }
 
+    if (isGlobalLimited()) {
+        return res.status(429).json({ error: 'Too many requests. Please try again later.' });
+    }
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -56,7 +82,7 @@ export default async function handler(req, res) {
 
     try {
         await transporter.sendMail({
-            from: `GRLabs Support Form`,
+            from: `"GRLabs Support Form" <${process.env.EMAIL_NODE_MAILER}>`,
             to: CONTACT_RECEIVER,
             ...(safeReplyEmail && { replyTo: safeReplyEmail }),
             subject: `[Support] ${safeSubject}`,
@@ -99,12 +125,78 @@ export default async function handler(req, res) {
 
 function isRateLimited(ip) {
     const now = Date.now();
+    if (now - lastRateLimitCleanup >= rateLimitWindowMs) {
+        for (const [trackedIp, requests] of requestsByIp) {
+            const recentRequests = requests.filter((time) => now - time < rateLimitWindowMs);
+
+            if (recentRequests.length) {
+                requestsByIp.set(trackedIp, recentRequests);
+            }
+            else {
+                requestsByIp.delete(trackedIp);
+            }
+        }
+
+        lastRateLimitCleanup = now;
+    }
+
     const recentRequests = (requestsByIp.get(ip) ?? []).filter((time) => now - time < rateLimitWindowMs);
+
+    if (recentRequests.length >= rateLimitMaxRequests) {
+        return true;
+    }
+
+    if (!requestsByIp.has(ip) && requestsByIp.size >= rateLimitMaxTrackedIps) {
+        return true;
+    }
 
     recentRequests.push(now);
     requestsByIp.set(ip, recentRequests);
 
-    return recentRequests.length > rateLimitMaxRequests;
+    return false;
+}
+
+function isSameOrigin(req) {
+    const origin = req.headers.origin;
+
+    if (!origin) {
+        return true;
+    }
+
+    try {
+        return new URL(origin).host === req.headers.host;
+    } catch {
+        return false;
+    }
+}
+
+function isGlobalLimited() {
+    const now = Date.now();
+
+    globalRequests = globalRequests.filter((time) => now - time < globalLimitWindowMs);
+
+    if (globalRequests.length >= globalLimitMaxRequests) {
+        return true;
+    }
+
+    globalRequests.push(now);
+
+    return false;
+}
+
+function getClientIp(req) {
+    const remoteAddress = req.socket.remoteAddress || 'unknown';
+    const trustedProxyHops = Number(process.env.CONTACT_TRUSTED_PROXY_HOPS || 0);
+    const forwardedFor = req.headers['x-forwarded-for'];
+
+    if (!Number.isInteger(trustedProxyHops) || trustedProxyHops < 1 || typeof forwardedFor !== 'string') {
+        return remoteAddress;
+    }
+
+    const forwardedIps = forwardedFor.split(',').map((address) => address.trim());
+    const clientIp = forwardedIps[forwardedIps.length - trustedProxyHops];
+
+    return clientIp && isIP(clientIp) ? clientIp : remoteAddress;
 }
 
 function sanitizeText(value, options = {}) {
@@ -122,7 +214,7 @@ function sanitizeText(value, options = {}) {
 }
 
 function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    return /^[^\s@<>(),;:"\\]+@[^\s@<>(),;:"\\]+\.[^\s@<>(),;:"\\]+$/.test(email);
 }
 
 function escapeHtml(value) {

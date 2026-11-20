@@ -20,71 +20,71 @@ The USB-C connector is located in the top-left corner.
 The LED matrices are distributed around the Z80: the data bus matrices (read and write) are to the left, the address bus matrices run along the right side, and the control signal LEDs (such as MREQ, M1, and HALT) are placed close to their respective Z80 pins for clarity.
 The expansion connectors are located on the bottom-right, keeping them accessible for daughter boards.
 
-![Top view of the Z80DevBoard](/docs/Z80DevBoard_FinishedBoard.png)  
+![Top view of the Z80DevBoard](/docs/Z80DevBoard_FinishedBoard.webp)  
 *Top view of the Z80DevBoard*
 
 The silkscreen includes labels for every Z80 pin, every expansion pin, and all the onboard buttons and switches, making the board self-documenting and easy to use without referring to this manual.
 
-![Bottom view of the Z80DevBoard](/docs/Z80DevBoard_FinishedBoard_Back.png)  
+![Bottom view of the Z80DevBoard](/docs/Z80DevBoard_FinishedBoard_Back.webp)  
 *Bottom view of the Z80DevBoard*
 
 ## 7.2 Schematic
 The full schematic is available in `Z80DevBoard.kicad_sch` and can be opened with KiCad 10.0 or later.
 The images below show the main sections of the schematic for reference.
 
-![Full schematic](/docs/screenshot_circuits.png)  
+![Full schematic](/docs/screenshot_circuits.webp)  
 *Full schematic*
 
-![Z80 CPU](/docs/screenshot_circuits_z80.png)  
+![Z80 CPU](/docs/screenshot_circuits_z80.webp)  
 *Z80 CPU*
 
-![RP2040](/docs/screenshot_circuits_rp2040.png)  
+![RP2040](/docs/screenshot_circuits_rp2040.webp)  
 *RP2040*
 
-![Power supply and clock](/docs/power_clock_circuits.png)  
+![Power supply and clock](/docs/power_clock_circuits.webp)  
 *Power supply and clock*
 
-![Shift registers and Data bus](/docs/shift_registers_data_bus_circuits.png)  
+![Shift registers and Data bus](/docs/shift_registers_data_bus_circuits.webp)  
 *Shift registers and Data bus*
 
-![SRAM and flash](/docs/sram_flash_circuits.png)  
+![SRAM and flash](/docs/sram_flash_circuits.webp)  
 *SRAM and flash*
 
 ## 7.3 PCB Layout
 The PCB layout was designed in KiCad with attention to **signal integrity**, **routing clarity**, and **ease of hand-assembly**.
 The board uses **4 layers**: *F.Cu* and *B.Cu* for general signal routing, *In1.Cu* for the power distribution network (5V and 3.3V), and *In2.Cu* as a solid ground plane.
 
-![Front copper layer (F.Cu)](/docs/screenshot_pcb_FCu.png)  
+![Front copper layer (F.Cu)](/docs/screenshot_pcb_FCu.webp)  
 *Front copper layer (F.Cu)*
 
-![Inner layer In1.Cu](/docs/screenshot_pcb_In1Cu.png)  
+![Inner layer In1.Cu](/docs/screenshot_pcb_In1Cu.webp)  
 *Inner layer In1.Cu*
 
-![Inner layer In2.Cu](/docs/screenshot_pcb_In2Cu.png)  
+![Inner layer In2.Cu](/docs/screenshot_pcb_In2Cu.webp)  
 *Inner layer In2.Cu*
 
-![Back copper layer (B.Cu)](/docs/screenshot_pcb_BCu.png)  
+![Back copper layer (B.Cu)](/docs/screenshot_pcb_BCu.webp)  
 *Back copper layer (B.Cu)*
 
-![All layers combined](/docs/screenshot_pcb_only_layers.png)  
+![All layers combined](/docs/screenshot_pcb_only_layers.webp)  
 *All layers combined*
 
 ## 7.4 3D Render
 KiCad's built-in 3D viewer was used to generate a render of the assembled board, useful for previewing component placement before manufacturing and for visualizing the board without needing a physical unit on hand.
 
-![3D render - top view](/docs/screenshot_3d_front.png)  
+![3D render - top view](/docs/screenshot_3d_front.webp)  
 *3D render - top view*
 
-![3D render - bottom view](/docs/screenshot_3d_back.png)  
+![3D render - bottom view](/docs/screenshot_3d_back.webp)  
 *3D render - bottom view*
 
 ## 7.5 The Real Board
 Photos of the assembled, manufactured Z80DevBoard, shown here for reference alongside the 3D render and schematics.
 
-![Assembled Z80DevBoard - top view](/docs/Z80DevBoard_FinishedBoard.png)  
+![Assembled Z80DevBoard - top view](/docs/Z80DevBoard_FinishedBoard.webp)  
 *Assembled Z80DevBoard - top view*
 
-![Assembled Z80DevBoard - bottom view](/docs/Z80DevBoard_FinishedBoard_Back.png)  
+![Assembled Z80DevBoard - bottom view](/docs/Z80DevBoard_FinishedBoard_Back.webp)  
 *Assembled Z80DevBoard - bottom view*
 
 ## 7.6 Design Choices

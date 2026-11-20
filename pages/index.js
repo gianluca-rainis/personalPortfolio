@@ -5,7 +5,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/home.module.css';
-import { usePathname } from 'next/navigation';
 import { MoveUpRight } from 'lucide-react';
 import projects from '@/data/projects.json';
 
@@ -16,6 +15,20 @@ const heroFirstLine = 'Engineering Ideas';
 const heroSecondLine = 'into Reality';
 const heroTitle = `${heroFirstLine} ${heroSecondLine}`;
 
+const activeProjectsCount = projects.filter((project) => project.status === 'In Development').length;
+const categoriesCount = new Set(projects.map((project) => project.category)).size;
+const statsList = [
+    { value: projects.length, label: 'Projects' },
+    { value: activeProjectsCount, label: 'In development' },
+    { value: categoriesCount, label: 'Fields' }
+];
+
+const statusClassNames = {
+    'In Development': styles.statusActive,
+    'Paused': styles.statusPaused,
+    'Finished': styles.statusDone
+};
+
 export async function getStaticProps() {
     return {
         props: {
@@ -24,18 +37,16 @@ export async function getStaticProps() {
     };
 }
 
+function StatusBadge({ status }) {
+    return <span className={`${styles.status} ${statusClassNames[status] ?? ''}`}>{status}</span>;
+}
+
 export default function HomePage({ pageTitle }) {
-    const path = usePathname();
     const [typedCharacters, setTypedCharacters] = useState(0);
 
     useEffect(() => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            setTypedCharacters(heroTitle.length);
-
-            return;
-        }
-
-        let characters = 0;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let characters = reducedMotion ? heroTitle.length - 1 : 0;
 
         const typingInterval = window.setInterval(() => {
             characters += 1;
@@ -44,14 +55,14 @@ export default function HomePage({ pageTitle }) {
             if (characters === heroTitle.length) {
                 window.clearInterval(typingInterval);
             }
-        }, 65);
+        }, reducedMotion ? 0 : 65);
 
         return () => window.clearInterval(typingInterval);
     }, []);
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} />
 
             <Nav />
 
@@ -82,6 +93,15 @@ export default function HomePage({ pageTitle }) {
                     </div>
                 </section>
 
+                <section className={styles.statsSection} aria-label='Overview'>
+                    {statsList.map((stat) => (
+                        <div className={styles.statsDiv} key={stat.label}>
+                            <strong>{String(stat.value).padStart(2, '0')}</strong>
+                            <span>{stat.label}</span>
+                        </div>
+                    ))}
+                </section>
+
                 <section className={styles.projectSection} aria-labelledby='featured-title'>
                     <div className={styles.sectionHeading}>
                         <div>
@@ -97,7 +117,7 @@ export default function HomePage({ pageTitle }) {
                                     <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 
                                         style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
                                         { (project.image && project.image != "") ? 
-                                            <Image src={project.image} alt={project.imageAlt} fill className={styles.image} />
+                                            <Image src={project.image} alt={project.imageAlt} fill sizes='(max-width: 540px) 84vw, (max-width: 800px) 48vw, 32vw' className={styles.image} />
                                             :
                                             <>
                                                 <span>Image to come</span>
@@ -113,6 +133,7 @@ export default function HomePage({ pageTitle }) {
                                         <p className={styles.projectDescription}>
                                             {project.description}
                                         </p>
+                                        <StatusBadge status={project.status} />
                                         <ul className={styles.tags} aria-label='Project tags'>
                                             {project.tags.map((tag) => (
                                                 <li key={tag}>{tag}</li>
@@ -138,38 +159,31 @@ export default function HomePage({ pageTitle }) {
                             <span className={styles.sectionCount}>01 — {projects.at(-1)?.number ?? '00'}</span>
                         </div>
                     </div>
-                    <div className={styles.projectRail}>
+                    <ul className={styles.archiveList}>
                         {projectsInDisplayOrder.map((project) => (
-                            <article className={styles.project} key={project.number}>
-                                <Link href={project.href} className={styles.projectLink} aria-label={project.title}>
-                                    <div className={`${styles.projectImage} ${(project.image && project.image !== "") ? styles.projectImageWithImage : ""}`} role='img' aria-label={`Image of ${project.title}`} 
-                                        style={(project.image && project.image != "") ? {background: "linear-gradient(135deg, rgba(32, 255, 68, 0.07), rgba(255, 255, 255, 0.025))"} : {}}>
-                                        { (project.image && project.image != "") ? 
-                                            <Image src={project.image} alt={project.imageAlt} fill className={styles.image} />
-                                            :
-                                            <>
-                                                <span>Image to come</span>
-                                                <span className={styles.imageNumber}>{project.number}</span>
-                                            </>
-                                        }
-                                    </div>
-                                    <div className={styles.projectInfo}>
-                                        <div className={styles.projectTitleRow}>
-                                            <h3>{project.title}</h3>
-                                            <span>{project.number}</span>
-                                        </div>
-                                        <p className={styles.projectDescription}>
-                                            {project.description}
-                                        </p>
-                                        <ul className={styles.tags} aria-label='Project tags'>
-                                            {project.tags.map((tag) => (
-                                                <li key={tag}>{tag}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                            <li key={project.number}>
+                                <Link href={project.href} className={styles.archiveRow} aria-label={project.title}>
+                                    <span className={styles.archiveNumber}>{project.number}</span>
+                                    <span className={styles.archiveTitle}>{project.title}</span>
+                                    <span className={styles.archiveCategory}>{project.category}</span>
+                                    <StatusBadge status={project.status} />
+                                    <MoveUpRight className={styles.arrowIcon} />
                                 </Link>
-                            </article>
+                            </li>
                         ))}
+                    </ul>
+                </section>
+
+                <section className={styles.cta} aria-labelledby='cta-title'>
+                    <p className={styles.sectionEyebrow}>Got an idea?</p>
+                    <h2 id='cta-title'>Let&apos;s build something.</h2>
+                    <div className={styles.ctaLinks}>
+                        <a href='mailto:gianlucarainis@gianlucarainis.com' className={styles.ctaButton}>
+                            Write me <MoveUpRight className={styles.arrowIcon} />
+                        </a>
+                        <a href='https://github.com/gianluca-rainis' target='_blank' rel='noopener noreferrer' className={styles.ctaButton}>
+                            GitHub <MoveUpRight className={styles.arrowIcon} />
+                        </a>
                     </div>
                 </section>
             </main>

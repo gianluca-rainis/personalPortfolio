@@ -2,7 +2,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export async function getStaticProps() {
 }
 
 export default function ProjectPage({ pageTitle }) {
-    const path = usePathname();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formStatus, setFormStatus] = useState('');
 
@@ -57,7 +55,7 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+            <Head pageTitle={pageTitle} projectData={{
                 name: 'Personal Portfolio',
                 description: 'My personal portfolio, with a high-tech inspired interface.',
                 codeRepository: 'https://github.com/gianluca-rainis/personalPortfolio'
@@ -84,7 +82,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>high-tech</li>
                         </ul>
                     </div>
-                    <img src="/projects/personalPortfolioPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/personalPortfolioPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/personalPortfolio" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -134,8 +132,10 @@ export default function ProjectPage({ pageTitle }) {
                                 The projects are not just a list of links: every project has its own page, with an overview, the architecture, the most interesting parts of the code and the resources to try it or read more.
                                 The documents are written in MDX, so they are rendered directly inside the site, with their own metadata.
                             </p>
-                            <img src="/projects/personalPortfolioPreview.png" alt="Personal portfolio home page" />
-                            <citation>The home page of the portfolio</citation>
+                            <figure>
+                                <img src="/projects/personalPortfolioPreview.webp" alt="Personal portfolio home page" />
+                                <figcaption>The home page of the portfolio</figcaption>
+                            </figure>
                         </section>
                         <section id="architecture">
                             <h2>Architecture</h2>
@@ -162,8 +162,10 @@ export default function ProjectPage({ pageTitle }) {
                                 Every project also has its own page, written separately from the data, usually with an overview, the architecture, the code and the resources.
                                 The projects page lets the visitor narrow the list of cards with filters and a search function, so even a long list stays easy to explore.
                             </p>
-                            <img src="/projects/personalPortfolioProjects.png" alt="Personal portfolio projects page" />
-                            <citation>The projects page, with filters and search</citation>
+                            <figure>
+                                <img src="/projects/personalPortfolioProjects.webp" alt="Personal portfolio projects page" />
+                                <figcaption>The projects page, with filters and search</figcaption>
+                            </figure>
 
                             <h3>Documents</h3>
                             <p>
@@ -173,8 +175,10 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 Each document has its own metadata (for example title and description) that is shown with the content and used to list it in the docs page.
                             </p>
-                            <img src="/projects/personalPortfolioDocs.png" alt="Personal portfolio docs page" />
-                            <citation>The docs page</citation>
+                            <figure>
+                                <img src="/projects/personalPortfolioDocs.webp" alt="Personal portfolio docs page" />
+                                <figcaption>The docs page</figcaption>
+                            </figure>
                         </section>
                         <section id="code">
                             <h2>Code</h2>
@@ -191,15 +195,24 @@ export default function ProjectPage({ pageTitle }) {
                             <pre>
                                 <code>
                                     {String.raw`personalPortfolio/
-├── components/        # UI pieces of the site
-├── data/              # The projects informations
-├── docs/              # The documentation to show in the Docs section
-├── lib/               # Implementation of internal functions
-├── pages/             # Site pages
-├── public/            # Images and downloadable files
-├── styles/            # Global styles and CSS modules
-├── mdx-components.tsx # Component to support the mdx files rendering
-└── next.config.mjs    # Next.js Configuration to support the mdx files`}
+├── components/               # UI pieces of the site
+├── data/                     # Project information
+├── docs/                     # The documentation to show in the Docs section
+├── lib/                      # Implementation of internal functions
+├── pages/                    # Site pages
+├── public/                   # Images and downloadable files
+├── styles/                   # Global styles and CSS modules
+├── templates/                # Templates files
+├── .gitattributes            # Gitattributes file
+├── .gitignore                # Gitignore file
+├── eslint.config.mjs         # The lint configuration file
+├── icon.png                  # The website icon
+├── jsconfig.json             # JavaScript Configuration
+├── LICENSE                   # MIT License
+├── next.config.js            # Next.js Configuration
+├── package-lock.json         # Project Configuration
+├── package.json              # Project Configuration
+└── README.md                 # This file`}
                                 </code>
                             </pre>
                             <p>
@@ -218,7 +231,7 @@ export default function ProjectPage({ pageTitle }) {
         "category": "Website",
         "title": "Personal Portfolio",
         "description": "My personal portfolio, with a high-tech inspired interface.",
-        "image": "/projects/personalPortfolioPreview.png",
+        "image": "/projects/personalPortfolioPreview.webp",
         "imageAlt": "Image of my personal portfolio's home page",
         "tags": ["personal portfolio", "website", "nextjs", "react", "high-tech"],
         "status": "In Development",

@@ -2,7 +2,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export async function getStaticProps() {
 }
 
 export default function ProjectPage({ pageTitle }) {
-    const path = usePathname();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formStatus, setFormStatus] = useState('');
 
@@ -57,7 +55,7 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+            <Head pageTitle={pageTitle} projectData={{
                 name: 'ASILUC',
                 description: 'An ASIC designed to function as an ALU.',
                 codeRepository: 'https://github.com/gianluca-rainis/ASILUC'
@@ -83,7 +81,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>hardware</li>
                         </ul>
                     </div>
-                    <img src="/projects/ASILUCPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/ASILUCPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/ASILUC" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -199,8 +197,10 @@ export default function ProjectPage({ pageTitle }) {
                                 <li><strong>Count clocks from the rising edge of <code>status</code></strong>: the first number must be stable in the first <i>3 cycles</i> (sampled last), the second in the next 3.</li>
                                 <li>Once <code>status</code> has risen, the command can return to <code>0000</code> at any time, as ASILUC no longer reads it.</li>
                             </ul>
-                            <img src="/projects/ASILUCPreview3D.png" alt="ASILUC 3D Render" />
-                            <citation>ASILUC 3D Render</citation>
+                            <figure>
+                                <img src="/projects/ASILUCPreview3D.webp" alt="ASILUC 3D Render" />
+                                <figcaption>ASILUC 3D Render</figcaption>
+                            </figure>
 
                             <h3>ASILUC's tables</h3>
 

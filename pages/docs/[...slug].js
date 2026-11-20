@@ -7,7 +7,6 @@ import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft } from 'lucide-react';
 import { DOCS_DIRECTORY, getAllDocs, getDocMetadata } from '@/lib/docs';
@@ -42,11 +41,9 @@ export async function getStaticProps({ params }) {
 }
 
 export default function DocPage({ mdxSource, title, description, type, date, updated, tags, project, status }) {
-    const path = usePathname();
-
     return (
         <>
-            <Head pageTitle={title} pageUrl={path} />
+            <Head pageTitle={title} />
             <Nav />
 
             <main className={styles.docPage}>

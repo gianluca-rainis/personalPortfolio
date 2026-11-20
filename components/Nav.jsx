@@ -76,7 +76,7 @@ export default function Nav() {
         <nav ref={navRef} className={styles.nav} aria-label='Primary navigation'>
             <div className={styles.brandWrap}>
                 <Link href='/' className={styles.logoLink} aria-label='Homepage'>
-                    <img className={styles.logo} src='/GRLabs.png' alt='Gianluca Rainis Labs Logo' aria-hidden='true' />
+                    <img className={styles.logo} src='/GRLabs.webp' alt='Gianluca Rainis Labs Logo' aria-hidden='true' />
                 </Link>
                 <Link href='/' className={styles.brand} aria-label='Homepage'>
                     <p>Gianluca Rainis</p>
@@ -100,19 +100,23 @@ export default function Nav() {
                     </a>
                 </div>
                 <div className={styles.mobileLinks}>
-                    <svg onClick={() => setMenuOpen(!menuOpen)} className={styles.menuImage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M4 5h16"></path>
-                        <path d="M4 12h16"></path>
-                        <path d="M4 19h16"></path>
-                    </svg>
+                    <button type='button' className={styles.menuButton} onClick={() => setMenuOpen(!menuOpen)} aria-label='Open menu' aria-expanded={menuOpen}>
+                        <svg className={styles.menuImage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <path d="M4 5h16"></path>
+                            <path d="M4 12h16"></path>
+                            <path d="M4 19h16"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
 
             <div className={`${styles.mobileMenu} ${menuOpen?styles.open:""}`} style={{'height': mobileMenuHeight}} aria-hidden={!menuOpen}>
-                <svg onClick={() => setMenuOpen(false)} className={styles.closeMenuImage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M18 6 6 18"></path>
-                    <path d="m6 6 12 12"></path>
-                </svg>
+                <button type='button' className={styles.menuButton} onClick={() => setMenuOpen(false)} aria-label='Close menu'>
+                    <svg className={styles.closeMenuImage} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg>
+                </button>
                 <Link href='/projects' aria-label='All Projects'>
                     All Projects
                 </Link>

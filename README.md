@@ -18,7 +18,7 @@ Another important page is the **document page**, with integrated *mdx rendering*
 
 > **Live site**: [https://projects.gianlucarainis.com](https://projects.gianlucarainis.com)
 
-![Home Page Preview](public/GRLabsPreview.png)
+![Home Page Preview](public/GRLabsPreview.webp)
 
 ## Tech Stack
 - **Next.js**
@@ -35,7 +35,7 @@ The author of the whole project is:
 **All content has been carefully reviewed, tested, adapted, modified, and curated by the author.**
 
 ## License
-This project is under the MIT License.
+This project is under the [MIT License](LICENSE).
 
 ## Project Structure
 ```
@@ -47,21 +47,30 @@ personalPortfolio/
 ├── pages/                    # Site pages
 ├── public/                   # Images and downloadable files
 ├── styles/                   # Global styles and CSS modules
+├── templates/                # Templates files
 ├── .gitattributes            # Gitattributes file
 ├── .gitignore                # Gitignore file
+├── eslint.config.mjs         # The lint configuration file
 ├── icon.png                  # The website icon
 ├── jsconfig.json             # JavaScript Configuration
-├── LICENSE.md                # MIT License
-├── mdx-components.tsx        # Component to support the mdx files rendering
+├── LICENSE                   # MIT License
 ├── next.config.js            # Next.js Configuration
-├── next.config.mjs           # Next.js Configuration to support the mdx files
+├── package-lock.json         # Project Configuration
 ├── package.json              # Project Configuration
-├── README.md                 # This file
-├── robots.txt                # Robots file
-└── sitemap.xml               # The Sitemap
+└── README.md                 # This file
 ```
 
 ## Development and Production
+### Environment Variables
+The contact api requires two Environment Variables: `EMAIL_NODE_MAILER`, that's the email connected to the gmail mail service provider and `PASSWORD_NODE_MAILER`, that's the password of the mail service provider.
+
+Those credentials are used by *nodemailer* to send the email through the contact form.
+
+```env
+EMAIL_NODE_MAILER
+PASSWORD_NODE_MAILER
+```
+
 ### Development
 ```bash
 npm run dev

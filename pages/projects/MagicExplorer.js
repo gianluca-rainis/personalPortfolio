@@ -2,7 +2,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export async function getStaticProps() {
 }
 
 export default function ProjectPage({ pageTitle }) {
-    const path = usePathname();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formStatus, setFormStatus] = useState('');
 
@@ -57,7 +55,7 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+            <Head pageTitle={pageTitle} projectData={{
                 name: 'MagicExplorer',
                 description: 'MagicExplorer is an action 2D game made with Unity, where you play as a wizard that\'s exploring a dungeon full of enemies.',
                 codeRepository: 'https://github.com/gianluca-rainis/MagicExplorer'
@@ -85,7 +83,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>dungeon</li>
                         </ul>
                     </div>
-                    <img src="/projects/MagicExplorerPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/MagicExplorerPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/magicExplorer" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -137,8 +135,10 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 All the graphics of the game were drawn by me, in a pixel art style.
                             </p>
-                            <img src="/projects/MagicExplorerGameplay.png" alt="MagicExplorer gameplay" />
-                            <citation>The wizard exploring the dungeon</citation>
+                            <figure>
+                                <img src="/projects/MagicExplorerGameplay.webp" alt="MagicExplorer gameplay" />
+                                <figcaption>The wizard exploring the dungeon</figcaption>
+                            </figure>
                         </section>
                         <section id="architecture">
                             <h2>Architecture</h2>
@@ -177,16 +177,20 @@ export default function ProjectPage({ pageTitle }) {
                                 A spell that gains a level becomes better in every aspect: it deals more damage, it moves faster if it is a moving spell, it has a stronger kickback on the enemies and the delay between one cast and the next one is shorter.
                                 Since the spell to upgrade is random, every run develops differently, and the player has to adapt the style of play to the spells that become stronger.
                             </p>
-                            <img src="/projects/MagicExplorerRoomWithPowerups.png" alt="A room with two powerups" />
-                            <citation>A room with two powerups</citation>
+                            <figure>
+                                <img src="/projects/MagicExplorerRoomWithPowerups.webp" alt="A room with two powerups" />
+                                <figcaption>A room with two powerups</figcaption>
+                            </figure>
 
                             <h3>Enemies</h3>
                             <p>
                                 The dungeon is populated by different types of enemies.
                                 Each type has its own damage, its own speed and its own bonus points, so the stronger or faster enemies are also the ones that give the best reward.
                             </p>
-                            <img src="/projects/MagicExplorerBlobTable.png" alt="MagicExplorer blob enemy sprite table" />
-                            <citation>The animation table of a blob</citation>
+                            <figure>
+                                <img src="/projects/MagicExplorerBlobTable.webp" alt="MagicExplorer blob enemy sprite table" />
+                                <figcaption>The animation table of a blob</figcaption>
+                            </figure>
 
                             <h3>Bosses</h3>
                             <p>
@@ -210,8 +214,10 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 Unlike the other enemies, a boss that has been defeated does not respawn, so every one of them has to be beaten only once.
                             </p>
-                            <img src="/projects/MagicExplorerBoss.png" alt="A room with the boss" />
-                            <citation>A room with the boss</citation>
+                            <figure>
+                                <img src="/projects/MagicExplorerBoss.webp" alt="A room with the boss" />
+                                <figcaption>A room with the boss</figcaption>
+                            </figure>
 
                             <h3>Controls</h3>
                             <p>

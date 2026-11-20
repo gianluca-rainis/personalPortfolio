@@ -128,15 +128,26 @@
     visibility: visible;
 }
 
+.menuButton {
+    display: flex;
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 .menuImage {
     width: 30px;
     height: 30px;
     color: var(--theme-text);
 }
 
-.closeMenuImage {
+.mobileMenu .menuButton {
     position: absolute;
     right: 10%;
+}
+
+.closeMenuImage {
     color: var(--theme-text);
 }
 

@@ -2,7 +2,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export async function getStaticProps() {
 }
 
 export default function ProjectPage({ pageTitle }) {
-    const path = usePathname();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formStatus, setFormStatus] = useState('');
 
@@ -57,7 +55,7 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+            <Head pageTitle={pageTitle} projectData={{
                 name: 'UHBadge',
                 description: 'Universal Hacker Badge - The ultimate badge for hackers. It\'s a PCB badge with an RP2350, an e-Ink display, NFC, microSD, WiFi, Bluetooth, and more!',
                 codeRepository: 'https://github.com/gianluca-rainis/UHBadge'
@@ -83,7 +81,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>hacker tools</li>
                         </ul>
                     </div>
-                    <img src="/projects/UHBadgePreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/UHBadgePreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/UHBadge" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -135,8 +133,10 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 The project is currently in development, and the first version of the board is in the final steps of its design.
                             </p>
-                            <img src="/projects/UHBadge3DFront.png" alt="UHBadge 3D render, front" />
-                            <citation>UHBadge 3D Render, front</citation>
+                            <figure>
+                                <img src="/projects/UHBadge3DFront.webp" alt="UHBadge 3D render, front" />
+                                <figcaption>UHBadge 3D Render, front</figcaption>
+                            </figure>
                         </section>
                         <section id="architecture">
                             <h2>Architecture</h2>
@@ -197,8 +197,10 @@ export default function ProjectPage({ pageTitle }) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <img src="/projects/UHBadgeSchematics.png" alt="UHBadge schematic" />
-                            <citation>UHBadge schematic</citation>
+                            <figure>
+                                <img src="/projects/UHBadgeSchematics.webp" alt="UHBadge schematic" />
+                                <figcaption>UHBadge schematic</figcaption>
+                            </figure>
 
                             <h3>Interface</h3>
                             <p>
@@ -259,8 +261,10 @@ export default function ProjectPage({ pageTitle }) {
                                 <li><strong>Custom programs</strong>: they can be loaded from the microSD card.</li>
                                 <li><strong>USB-C</strong>: used to charge the battery, to power the badge and to load a custom firmware.</li>
                             </ul>
-                            <img src="/projects/UHBadgePCB.png" alt="UHBadge PCB" />
-                            <citation>UHBadge PCB layout</citation>
+                            <figure>
+                                <img src="/projects/UHBadgePCB.webp" alt="UHBadge PCB" />
+                                <figcaption>UHBadge PCB layout</figcaption>
+                            </figure>
                         </section>
                         <section id="code">
                             <h2>Code</h2>
@@ -312,8 +316,10 @@ make -j$(sysctl -n hw.ncpu)`}
                             <p>
                                 This is how the board looks like from the back.
                             </p>
-                            <img src="/projects/UHBadge3DBack.png" alt="UHBadge 3D render, back" />
-                            <citation>UHBadge 3D Render, back</citation>
+                            <figure>
+                                <img src="/projects/UHBadge3DBack.webp" alt="UHBadge 3D render, back" />
+                                <figcaption>UHBadge 3D Render, back</figcaption>
+                            </figure>
 
                             <h3>Source Repository</h3>
                             <p>

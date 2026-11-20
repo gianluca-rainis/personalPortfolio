@@ -2,7 +2,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export async function getStaticProps() {
 }
 
 export default function ProjectPage({ pageTitle }) {
-    const path = usePathname();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formStatus, setFormStatus] = useState('');
 
@@ -57,7 +55,7 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+            <Head pageTitle={pageTitle} projectData={{
                 name: 'Z80DevBoard',
                 description: 'The Z80DevBoard is an advanced development board for the Z80 microprocessor, based on the RP2040.',
                 codeRepository: 'https://github.com/gianluca-rainis/Z80DevBoard'
@@ -84,7 +82,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>rp2040</li>
                         </ul>
                     </div>
-                    <img src="/projects/Z80DevBoardPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/Z80DevBoardPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/Z80DevBoard" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -146,8 +144,10 @@ export default function ProjectPage({ pageTitle }) {
                                 The board was designed to be used in educational kits, and it was sponsored by PCBWay, which produced the PCB.
                                 The project is currently paused.
                             </p>
-                            <img src="/projects/Z80DevBoard3DFront.png" alt="Z80DevBoard 3D render" />
-                            <citation>Z80DevBoard 3D Render</citation>
+                            <figure>
+                                <img src="/projects/Z80DevBoard3DFront.webp" alt="Z80DevBoard 3D render" />
+                                <figcaption>Z80DevBoard 3D Render</figcaption>
+                            </figure>
                         </section>
                         <section id="architecture">
                             <h2>Architecture</h2>
@@ -248,9 +248,11 @@ export default function ProjectPage({ pageTitle }) {
                                 Combined with the manual clock, the LEDs update at every step.
                                 This way it is possible to see how the Z80 reads from and writes to the memory, without an oscilloscope or a logic analyzer.
                             </p>
-                            <img src="/projects/Z80DevBoardLedsData.png" alt="Z80DevBoard LED matrices" />
-                            <img src="/projects/Z80DevBoardLedsAddress.png" alt="Z80DevBoard LED matrices" />
-                            <citation>The LED matrices showing the state of the buses</citation>
+                            <figure>
+                                <img src="/projects/Z80DevBoardLedsData.webp" alt="Z80DevBoard LED matrices" />
+                                <img src="/projects/Z80DevBoardLedsAddress.webp" alt="Z80DevBoard LED matrices" />
+                                <figcaption>The LED matrices showing the state of the buses</figcaption>
+                            </figure>
 
                             <h3>Expansion connectors</h3>
                             <p>
@@ -299,8 +301,10 @@ export default function ProjectPage({ pageTitle }) {
                                     </tr>
                                 </tbody>
                             </table>
-                            <img src="/projects/Z80DevBoardPCB.png" alt="Z80DevBoard PCB" />
-                            <citation>The PCB layout</citation>
+                            <figure>
+                                <img src="/projects/Z80DevBoardPCB.webp" alt="Z80DevBoard PCB" />
+                                <figcaption>The PCB layout</figcaption>
+                            </figure>
                         </section>
                         <section id="code">
                             <h2>Code</h2>
@@ -445,7 +449,7 @@ HALT             ; stop the CPU`}
                                 <i>If you are looking for a reliable, high-quality PCB manufacturer for your own projects, <a href="https://www.pcbway.com" target="_blank" rel="noopener noreferrer"><strong>PCBWay</strong></a> is highly recommended!</i>
                             </p>
                             <a href="https://www.pcbway.com" target="_blank" rel="noopener noreferrer">
-                                <img src="/projects/PCBWayLogo.png" alt="PCBWay logo" />
+                                <img src="/projects/PCBWayLogo.webp" alt="PCBWay logo" />
                             </a>
                         </section>
                         <section id="support">

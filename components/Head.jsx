@@ -6,7 +6,7 @@ const siteUrl = 'https://projects.gianlucarainis.com';
 const mainSiteUrl = 'https://www.gianlucarainis.com';
 const siteName = 'Gianluca Rainis Labs';
 const description = 'Portfolio of Gianluca Rainis, Computer Science student: a collection of hardware, software and game development projects, from custom PCBs and ASICs to web apps and Unity games.';
-const previewImage = `${siteUrl}/GRLabsPreview.png`;
+const previewImage = `${siteUrl}/GRLabsPreview.jpg`;
 const authorRef = {
     '@type': 'Person',
     '@id': `${mainSiteUrl}/#person`,
@@ -14,10 +14,10 @@ const authorRef = {
     url: mainSiteUrl
 };
 
-export default function Head({ pageTitle='', pageUrl, projectData=null }) {
+export default function Head({ pageTitle='', projectData=null }) {
     const router = useRouter();
     const path = router.asPath.split('?')[0].split('#')[0];
-    const canonicalUrl = pageUrl || `${siteUrl}${path === '/' ? '' : path}`;
+    const canonicalUrl = `${siteUrl}${path === '/' ? '' : path}`;
     const fullTitle = pageTitle ? `${siteName} - ${pageTitle}` : siteName;
     const finalDescription = projectData?.description || description;
 
@@ -61,7 +61,7 @@ export default function Head({ pageTitle='', pageUrl, projectData=null }) {
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={finalDescription} />
             <meta property="og:image" content={previewImage} />
-            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:type" content="image/jpeg" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
             <meta property="og:image:alt" content="Gianluca Rainis Labs preview image" />

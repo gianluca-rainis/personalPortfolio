@@ -5,7 +5,6 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import projects from '@/data/projects.json';
 
 export async function getStaticProps() {
@@ -17,7 +16,6 @@ export async function getStaticProps() {
 }
 
 export default function Projects({ pageTitle }) {
-    const path = usePathname();
     const [searched, setSearched] = useState('');
     const [selectedTag, setSelectedTag] = useState('all');
     const [sortOrder, setSortOrder] = useState('number-desc');
@@ -55,7 +53,7 @@ export default function Projects({ pageTitle }) {
     
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} />
             
             <Nav />
 

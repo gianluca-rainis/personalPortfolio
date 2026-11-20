@@ -348,7 +348,11 @@
     margin: 0 0 1.2em;
 }
 
-.projectArticle citation {
+.projectArticle figure {
+    margin: 0 0 1.2em;
+}
+
+.projectArticle figcaption {
     display: block;
 }
 

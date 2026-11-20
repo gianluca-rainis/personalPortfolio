@@ -2,7 +2,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export async function getStaticProps() {
 }
 
 export default function ProjectPage({ pageTitle }) {
-    const path = usePathname();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formStatus, setFormStatus] = useState('');
 
@@ -57,7 +55,7 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+            <Head pageTitle={pageTitle} projectData={{
                 name: 'Beyond the Quarks',
                 description: 'Beyond the Quarks is a 2D sci-fi exploration and adventure game developed in Unity. You have to fix your wormhole device piece by piece, hopping across alien realities until you can finally return home.',
                 codeRepository: 'https://github.com/gianluca-rainis/BeyondTheQuarks'
@@ -86,7 +84,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>multiverse</li>
                         </ul>
                     </div>
-                    <img src="/projects/BeyondTheQuarksPreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/BeyondTheQuarksPreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/BeyondTheQuarks" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -147,8 +145,10 @@ export default function ProjectPage({ pageTitle }) {
                                 Every world you visit contains new environments, resources, dangers and mysteries.
                                 Some universes may hold the components you need, while others may reveal clues about the deepest secrets of the multiverse itself.
                             </p>
-                            <img src="/projects/BeyondTheQuarksPreview.png" alt="Beyond the Quarks cover" />
-                            <citation>The cover of Beyond the Quarks</citation>
+                            <figure>
+                                <img src="/projects/BeyondTheQuarksPreview.webp" alt="Beyond the Quarks cover" />
+                                <figcaption>The cover of Beyond the Quarks</figcaption>
+                            </figure>
                         </section>
                         <section id="architecture">
                             <h2>Architecture</h2>
@@ -197,8 +197,10 @@ export default function ProjectPage({ pageTitle }) {
                                 The story is told through an opening sequence and a stage intro cutscene, where the text is shown with a typing effect and a typing sound.
                                 During the exploration the player can also talk with the characters of the universes through a dialogue system.
                             </p>
-                            <img src="/projects/BeyondTheQuarksGameplay.png" alt="Beyond the Quarks gameplay" />
-                            <citation>A scene from the game</citation>
+                            <figure>
+                                <img src="/projects/BeyondTheQuarksGameplay.webp" alt="Beyond the Quarks gameplay" />
+                                <figcaption>A scene from the game</figcaption>
+                            </figure>
 
                             <h3>Controls</h3>
                             <p>

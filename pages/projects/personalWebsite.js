@@ -2,7 +2,6 @@ import Head from '@/components/Head';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import styles from '@/styles/projects.module.css';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MoveLeft, MoveRight, BookOpenText, Link as LinkIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -16,7 +15,6 @@ export async function getStaticProps() {
 }
 
 export default function ProjectPage({ pageTitle }) {
-    const path = usePathname();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formStatus, setFormStatus] = useState('');
 
@@ -57,7 +55,7 @@ export default function ProjectPage({ pageTitle }) {
 
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} projectData={{
+            <Head pageTitle={pageTitle} projectData={{
                 name: 'Personal Website',
                 description: 'My personal website, built with Next.js and React with a terminal-inspired theme.',
                 codeRepository: 'https://github.com/gianluca-rainis/personalWebsite'
@@ -84,7 +82,7 @@ export default function ProjectPage({ pageTitle }) {
                             <li>terminal</li>
                         </ul>
                     </div>
-                    <img src="/projects/personalWebsitePreview.png" alt="Project image" className={styles.projectImage} />
+                    <img src="/projects/personalWebsitePreview.webp" alt="Project image" className={styles.projectImage} />
                     <div className={styles.projectLinks}>
                         <a href="https://github.com/gianluca-rainis/personalWebsite" className={styles.projectLink} target="_blank" rel="noopener noreferrer">
                             <img src="/GitHubLogo.svg" alt="GitHub icon" />
@@ -136,8 +134,10 @@ export default function ProjectPage({ pageTitle }) {
                             <p>
                                 Besides the home page, the site has a page where you can view and download an updated copy of my CV (in English and in Italian), a contact page to send me a message directly, and a search page.
                             </p>
-                            <img src="/projects/personalWebsitePreview.png" alt="Personal website home page" />
-                            <citation>The home page of the website</citation>
+                            <figure>
+                                <img src="/projects/personalWebsitePreview.webp" alt="Personal website home page" />
+                                <figcaption>The home page of the website</figcaption>
+                            </figure>
                         </section>
                         <section id="architecture">
                             <h2>Architecture</h2>
@@ -265,8 +265,10 @@ export default function ProjectPage({ pageTitle }) {
                                 <li><strong>Theme manager</strong>: changes the colors of the home page.</li>
                                 <li><strong>Battery</strong>: a battery emulator, with even a Power Save mode.</li>
                             </ul>
-                            <img src="/projects/personalWebsiteThemes.png" alt="Personal website color themes" />
-                            <citation>The home page in some of the available color themes</citation>
+                            <figure>
+                                <img src="/projects/personalWebsiteThemes.webp" alt="Personal website color themes" />
+                                <figcaption>The home page in some of the available color themes</figcaption>
+                            </figure>
 
                             <h3>Other pages</h3>
                             <p>

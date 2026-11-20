@@ -6,7 +6,6 @@ import Footer from '@/components/Footer';
 import styles from '@/styles/docs.module.css';
 import Link from 'next/link';
 import { MoveUpRight } from 'lucide-react';
-import { usePathname } from 'next/navigation';
 import { getAllDocs } from '@/lib/docs';
 
 export async function getStaticProps() {
@@ -19,7 +18,6 @@ export async function getStaticProps() {
 }
 
 export default function Docs({ pageTitle, docs }) {
-    const path = usePathname();
     const [searched, setSearched] = useState('');
     const [selectedTag, setSelectedTag] = useState('all');
     const [selectedType, setSelectedType] = useState('all');
@@ -64,7 +62,7 @@ export default function Docs({ pageTitle, docs }) {
     
     return (
         <>
-            <Head pageTitle={pageTitle} pageUrl={path} />
+            <Head pageTitle={pageTitle} />
             
             <Nav />
 
